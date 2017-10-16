@@ -49,7 +49,11 @@ if( $PHASE == "SS" && $exist_in_new_patch != "" ) then
 	set ed_check_file = $new_patch_SS
 endif
 
-set fff = `cat $ed_check_file |grep -w $EQ|grep -w $PHASE |awk 'NR==1 {print $1}'`
+if( ! -e $ed_check_file ) then
+	set fff = ""
+	else
+	set fff = `cat $ed_check_file |grep -w $EQ|grep -w $PHASE |awk 'NR==1 {print $1}'`
+endif
 
 set total_record_number = `cat $ESinfo |wc -l`
 ## we seperate the PPP sta into an extra file
@@ -238,6 +242,8 @@ endif
 
 
 
+# copy eventinfo to PLOTDIR
+cp $ESinfo $PLOTDIR/
 
 
 

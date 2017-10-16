@@ -54,6 +54,7 @@ echo "copy CDIR to WORKDIR"
 echo "cp $C_DIR $WORKDIR/$ID/ -r "
 cp $C_DIR $WORKDIR/$ID/ -r 
 set C_DIR = $WORKDIR/$ID/c_lib
+mkdir -p $PWD/LOG
 
 foreach EQ (`cat $EQ_LIST`)
 	set INP = ( $PWD $DATADIR $PLOTDIR $EQ $C_DIR $SHELL_DIR $ID $DIR)

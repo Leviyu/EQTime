@@ -41,6 +41,7 @@ else
 endif
 
 
+mkdir -p $TAUP_DIR
 mkdir -p $TAUP_DIR/$EQ
 set taup_time_file = $TAUP_DIR/${EQ}/taup_time.${EQ}.${STA}
 

@@ -41,6 +41,8 @@ set sta_lon = $TMP[10]
 
 
 
+mkdir -p $TAUP_DIR
+mkdir -p $TAUP_DIR/$EQ
 set taup_time_file = $TAUP_DIR/$EQ/taup_time.${EQ}.${STA}
 
 if(! -e $taup_time_file ) then

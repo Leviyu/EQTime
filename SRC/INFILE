@@ -4,7 +4,7 @@
 <SACHOME>				/opt/sac
 <BIGDIR>				/mnt/data2/hongyu/EQTime
 <CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
-<PHASE_LIST>			S ScS 
+<PHASE_LIST>			S 
 
 <EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
 
@@ -18,7 +18,7 @@
 <C_DIR>						/mnt/data2/hongyu/EQTime/Maligaro/c_lib
 <TAUP_DIR>						/mnt/data2/hongyu/EQTime/TIMEDIR
 <T_star_lib>						/mnt/data2/hongyu/EQTime/tstar_lib
-<ED_CHECK_FLAG>			1
-<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/EWM/eventinfo.ed_checked
+<ED_CHECK_FLAG>			0
+<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/eventinfo.ed_checked
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0

@@ -45,8 +45,6 @@ cp $DATADIR/INFILE* $DATADIR/$EQ/
 
 	end #  PHASE
 csh $PWD/plot.sh $ID $EQ
-##/bin/rm -rf $DATADIR/$EQ/1*sac
-##/bin/rm -rf $DATADIR/$EQ/2*sac
 
 ### check if current EQ is checked 
 set ed_check_file = $ED_CHECK_FILE
