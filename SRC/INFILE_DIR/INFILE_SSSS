@@ -1,0 +1,34 @@
+# This is a parameter setting file
+
+
+
+<PHASE>								SSSS
+<COMP>								T
+<filter_flag>						bp
+<DIST_MIN_MAX>						120					180
+<DIST_DELTA>         1
+<Frequency_range>					0.01 0.1
+
+<LONG_BEG>  						-100
+<LONG_LEN>  						200
+<PHASE_BEG>  						-20
+<PHASE_LEN>  						60
+<NOISE_BEG>  						-50
+<NOISE_LEN>  						40
+<velocity_or_displacement>  		velocity
+##<velocity_or_displacement>  		displacement
+<POLAR_SOLUTION>					2
+
+# 1 use CMT prediction
+# 2 use long phase window to cross-correlate and find the best match and use the ccc 
+# (+ or -) to set the polar flag for current record
+
+
+
+# === SNR CCC CUT parameter ==== #
+<SNR_CUT>							2.1
+<CCC_CUT>							0.92
+
+
+
+

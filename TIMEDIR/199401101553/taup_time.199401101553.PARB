@@ -1,0 +1,42 @@
+
+Model: prem
+Distance   Depth   Phase              Travel    Ray Param  Takeoff  Incident  Purist    Purist
+  (deg)     (km)   Name               Time (s)  p (s/deg)   (deg)    (deg)   Distance   Name 
+----------------------------------------------------------------------------------------------
+   24.65   604.9   P                   274.58     8.787     62.57    27.28    24.65   = P               
+   24.65   604.9   PcP                 469.47     2.275     13.29     6.82    24.65   = PcP             
+   24.65   604.9   S                   496.21    15.543     58.49    26.57    24.65   = S               
+   24.65   604.9   pPcP                607.43     2.114    -12.33     6.33    24.65   = pPcP            
+   24.65   604.9   sS                  672.77    16.736    -66.63    28.79    24.65   = sS              
+   24.65   604.9   sS                  672.77    16.743    -66.68    28.80    24.65   = sS              
+   24.65   604.9   ScS                 861.21     4.207     13.34     6.95    24.65   = ScS             
+   24.65   604.9   sScS               1113.86     3.906    -12.37     6.45    24.65   = sScS            
+   24.65   604.9   ScSScS             1770.10     2.187      6.89     3.61    24.65   = ScSScS          
+   24.65   604.9   sScSScS            2025.86     2.094     -6.60     3.45    24.65   = sScSScS         
+   24.65   604.9   ScSScSScS          2696.65     1.463      4.60     2.41    24.65   = ScSScSScS       
+   24.65   604.9   sScSScSScS         2953.04     1.420     -4.47     2.34    24.65   = sScSScSScS      
+   24.65   604.9   ScSScSScSScS       3627.75     1.098      3.45     1.81    24.65   = ScSScSScSScS    
+   24.65   604.9   sScSScSScSScS      3884.39     1.073     -3.37     1.77    24.65   = sScSScSScSScS   
+   24.65   604.9   ScSScSScSScSScS    4560.70     0.878      2.76     1.45    24.65   = ScSScSScSScSScS 
+   24.65   604.9   sScSScSScSScSScS   4817.44     0.862     -2.71     1.42    24.65   = sScSScSScSScSScS
+   24.65   604.9   SSSS               5386.11     9.924     32.98    16.59   335.35   = SSSS            
+   24.65   604.9   ScSScSScSScS       5433.35     8.231     26.84    13.70   335.35   = ScSScSScSScS    
+   24.65   604.9   sSSSS              5615.56    10.107    -33.67    16.91   335.35   = sSSSS           
+   24.65   604.9   sScSScSScSScS      5672.15     8.213    -26.77    13.67   335.35   = sScSScSScSScS   
+   24.65   604.9   SSSS               5838.56     8.661     28.36    14.43   384.65   = SSSS            
+   24.65   604.9   ScSScSScSScS       5842.56     8.349     27.25    13.90   384.65   = ScSScSScSScS    
+   24.65   604.9   SSSSS              5842.59    11.950     40.95    20.11   335.35   = SSSSS           
+   24.65   604.9   sSSSSS             6058.70    12.120    -41.66    20.41   335.35   = sSSSSS          
+   24.65   604.9   sSSSS              6075.16     8.692    -28.47    14.49   384.65   = sSSSS           
+   24.65   604.9   sScSScSScSScS      6080.81     8.343    -27.23    13.89   384.65   = sScSScSScSScS   
+   24.65   604.9   ScSScSScSScSScS    6147.57     7.781     25.26    12.94   335.35   = ScSScSScSScSScS 
+   24.65   604.9   SSSSSS             6187.70    13.224     46.50    22.37   335.35   = SSSSSS          
+   24.65   604.9   sScSScSScSScSScS   6388.42     7.746    -25.14    12.88   335.35   = sScSScSScSScSScS
+   24.65   604.9   sSSSSSS            6393.46    13.391    -47.26    22.67   335.35   = sSSSSSS         
+   24.65   604.9   SSSSS              6403.22    10.786     36.27    18.08   384.65   = SSSSS           
+   24.65   604.9   ScSScSScSScSScS    6539.42     8.092     26.35    13.47   384.65   = ScSScSScSScSScS 
+   24.65   604.9   sSSSSS             6627.42    10.945    -36.89    18.36   384.65   = sSSSSS          
+   24.65   604.9   sScSScSScSScSScS   6778.87     8.070    -26.27    13.43   384.65   = sScSScSScSScSScS
+   24.65   604.9   SSSSSS             6817.12    12.306     42.45    20.74   384.65   = SSSSSS          
+   24.65   604.9   sSSSSSS            7030.58    12.451    -43.07    21.00   384.65   = sSSSSSS         
+

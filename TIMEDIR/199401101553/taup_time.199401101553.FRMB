@@ -1,0 +1,40 @@
+
+Model: prem
+Distance   Depth   Phase              Travel    Ray Param  Takeoff  Incident  Purist    Purist
+  (deg)     (km)   Name               Time (s)  p (s/deg)   (deg)    (deg)   Distance   Name 
+----------------------------------------------------------------------------------------------
+   23.81   604.9   P                   267.20     8.806     62.81    27.34    23.81   = P               
+   23.81   604.9   PcP                 467.59     2.210     12.90     6.62    23.81   = PcP             
+   23.81   604.9   S                   483.20    15.578     58.69    26.63    23.81   = S               
+   23.81   604.9   pPcP                605.66     2.051    -11.96     6.14    23.81   = pPcP            
+   23.81   604.9   ScS                 857.73     4.085     12.95     6.75    23.81   = ScS             
+   23.81   604.9   sScS               1110.65     3.789    -11.99     6.26    23.81   = sScS            
+   23.81   604.9   ScSScS             1768.31     2.115      6.66     3.49    23.81   = ScSScS          
+   23.81   604.9   sScSScS            2024.11     2.025     -6.38     3.34    23.81   = sScSScS         
+   23.81   604.9   ScSScSScS          2695.44     1.414      4.45     2.33    23.81   = ScSScSScS       
+   23.81   604.9   sScSScSScS         2951.88     1.373     -4.32     2.26    23.81   = sScSScSScS      
+   23.81   604.9   ScSScSScSScS       3626.86     1.061      3.33     1.75    23.81   = ScSScSScSScS    
+   23.81   604.9   sScSScSScSScS      3883.51     1.037     -3.26     1.71    23.81   = sScSScSScSScS   
+   23.81   604.9   ScSScSScSScSScS    4559.97     0.848      2.67     1.40    23.81   = ScSScSScSScSScS 
+   23.81   604.9   sScSScSScSScSScS   4816.73     0.833     -2.62     1.37    23.81   = sScSScSScSScSScS
+   23.81   604.9   SSSS               5394.42     9.898     32.88    16.55   336.19   = SSSS            
+   23.81   604.9   ScSScSScSScS       5440.25     8.234     26.85    13.71   336.19   = ScSScSScSScS    
+   23.81   604.9   sSSSS              5624.00    10.081    -33.57    16.86   336.19   = sSSSS           
+   23.81   604.9   sScSScSScSScS      5679.01     8.216    -26.79    13.68   336.19   = sScSScSScSScS   
+   23.81   604.9   SSSS               5831.30     8.668     28.39    14.45   383.81   = SSSS            
+   23.81   604.9   ScSScSScSScS       5835.57     8.348     27.25    13.90   383.81   = ScSScSScSScS    
+   23.81   604.9   SSSSS              5852.60    11.930     40.87    20.08   336.19   = SSSSS           
+   23.81   604.9   sSSSS              6067.87     8.695    -28.48    14.49   383.81   = sSSSS           
+   23.81   604.9   sSSSSS             6068.83    12.100    -41.58    20.38   336.19   = sSSSSS          
+   23.81   604.9   sScSScSScSScS      6073.82     8.342    -27.23    13.89   383.81   = sScSScSScSScS   
+   23.81   604.9   ScSScSScSScSScS    6154.07     7.787     25.29    12.95   336.19   = ScSScSScSScSScS 
+   23.81   604.9   SSSSSS             6198.76    13.208     46.42    22.34   336.19   = SSSSSS          
+   23.81   604.9   SSSSS              6394.15    10.806     36.35    18.12   383.81   = SSSSS           
+   23.81   604.9   sScSScSScSScSScS   6394.92     7.753    -25.16    12.89   336.19   = sScSScSScSScSScS
+   23.81   604.9   sSSSSSS            6404.66    13.375    -47.19    22.64   336.19   = sSSSSSS         
+   23.81   604.9   ScSScSScSScSScS    6532.64     8.088     26.34    13.46   383.81   = ScSScSScSScSScS 
+   23.81   604.9   sSSSSS             6618.25    10.966    -36.97    18.40   383.81   = sSSSSS          
+   23.81   604.9   sScSScSScSScSScS   6772.12     8.066    -26.26    13.42   383.81   = sScSScSScSScSScS
+   23.81   604.9   SSSSSS             6806.83    12.322     42.52    20.77   383.81   = SSSSSS          
+   23.81   604.9   sSSSSSS            7020.14    12.466    -43.14    21.02   383.81   = sSSSSSS         
+

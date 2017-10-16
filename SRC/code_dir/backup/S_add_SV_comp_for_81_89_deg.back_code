@@ -1,0 +1,27 @@
+		#  ========================= for S add SV component for DIST between 81 to 89 ====================
+		if( $PHASE == "S" && `printf "%.0f" $DIST` > 81 && `printf "%.0f" $DIST` < 89 ) then
+				cd $work_dir
+				# plot the SV component for distance 80 to 90 for Phase S		
+				# sac file is already downloaded
+				# find the window from S -50 to S + 50sec
+				set c_file = $SRCDIR/find_phase_window_test.c
+				compile $c_file
+				set sac_file1 = ${EQ}.${NET}.${STA}.BHR.sac
+				set sac_file2 = ${EQ}.${NET}.${STA}.HHR.sac
+				if( -e $work_dir/$sac_file1 ) then
+					set sac_file = $sac_file1
+				else if (-e $work_dir/$sac_file2 ) then
+					set sac_file = $sac_file2
+					endif
+a.out << EOF > /dev/null 
+$EQ_lat $EQ_lon $EQ_dep $STA_lat $STA_lon S $sac_file -50 100
+EOF
+cd $PWD
+
+			set sac2xy_sv_out = $work_dir/sac2xy.${STA}.out
+			mv $work_dir/sac2xy.out  $sac2xy_sv_out
+			## plot this xy file
+			psxy  $sac2xy_sv_out -JX -R -Wfaint/255/255/100 -O -K  >> $OUTFILE
+				
+			endif # S SV component
+		#END  ========================= for S add SV component for DIST between 81 to 89 ====================

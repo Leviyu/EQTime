@@ -1,0 +1,8 @@
+ScS LVA2 long_amp_too_small
+ScS FRD long_amp_too_small
+ScS BZN nan/inf_in_long_file 
+ScS SND nan/inf_in_long_file 
+ScS WMC nan/inf_in_long_file 
+ScS CRY nan/inf_in_long_file 
+ScS KNW nan/inf_in_long_file 
+ScS RDM long_amp_too_small

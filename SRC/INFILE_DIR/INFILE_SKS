@@ -1,0 +1,25 @@
+# This is a parameter setting file
+
+
+
+<PHASE>								SKS
+<COMP>								R
+<DIST_MIN_MAX>						90					100
+<filter_flag>						bp
+<Frequency_range>					0.001				0.1
+
+<LONG_BEG>  						-120
+<LONG_LEN>  						240
+<PHASE_BEG>  						-20
+<PHASE_LEN>  						50
+<NOISE_BEG>  						-50
+<NOISE_LEN>  						40
+<velocity_or_displacement>  		displacement
+##<velocity_or_displacement>  		velocity
+
+
+
+# === SNR CCC CUT parameter ==== #
+<SNR_CUT>						1.8
+<CCC_CUT>						0.95
+

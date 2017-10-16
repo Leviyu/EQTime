@@ -1,0 +1,36 @@
+#!/bin/csh
+# if writing as SAC output, uncomment this line, and
+# the right I/O line in the code:
+##gfortran mk_tstar_cz.f /usr/local/sac/lib/sacio.a
+gfortran mk_tstar.f /usr/local/sac/lib/sacio.a
+
+#gfortran mk_tstar_cz.f 
+set NPTS = $1
+set DELTA = $2
+
+set	t_star_beg = 0.0
+set t_star_end = 30
+set t_star_inc = 0.01
+set num_max = `echo "($t_star_end - $t_star_beg)/$t_star_inc"|bc `
+
+echo $num_max 
+set ttt = $t_star_beg
+set i = 0
+while ( $i < $num_max )
+set ttt = `echo "$t_star_beg + $i*$t_star_inc"|bc -l`
+##set out = `echo $ttt |awk '{if($1>-1.0 && $1<1.0) printf "TSTAR_%.2lf_ASCII",$1 }'`
+set out = `echo $ttt |awk '{printf "TSTAR_%.2f_ASCII",$1 }'`
+echo "working on $out"
+if($ttt == 0 ) then
+set out = TSTAR_0.00_ASCII
+endif
+
+echo "working on $out"
+a.out << END >! $out
+TSTAR_${ttt}
+$NPTS
+$DELTA
+${ttt}
+END
+@ i++
+end

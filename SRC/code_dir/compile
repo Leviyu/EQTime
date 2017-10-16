@@ -1,0 +1,31 @@
+#!/bin/csh
+
+set c_file = $1
+set work_dir = $2
+set C_DIR = $3
+
+if ( $1 == "" ) then
+echo "Input the main file that you want to compile!\n"
+$<
+endif
+
+set my_lib = $C_DIR
+set tool_lib = $my_lib/01_tool_lib
+set ESF_lib = $my_lib/02_ESF_lib
+
+set INFILE = $work_dir/INFILE
+set sachome = `grep -w SACHOME $INFILE |awk '{print $2}'`
+
+
+# make a library file from c file
+gcc -c $tool_lib/*.c -I$tool_lib    -lsacio -L$sachome/lib -lm -I$sachome/include
+gcc -c $ESF_lib/*.c -I$ESF_lib  -I$tool_lib  -L$sachome/lib -I$sachome/include -lsacio  -lm 
+
+
+
+ar cr libHongyu.a *.o
+gcc   $c_file -I$tool_lib -I$ESF_lib   -L./ -lHongyu  -lm -m64    -Wno-unused   -L$sachome/lib -I$sachome/include -lsacio -lm
+
+
+rm *.o *.a
+exit 0 
