@@ -1,8 +1,0 @@
-S LVA2 long_amp_too_small
-S FRD long_amp_too_small
-S BZN nan/inf_in_long_file 
-S SND nan/inf_in_long_file 
-S WMC nan/inf_in_long_file 
-S CRY nan/inf_in_long_file 
-S KNW nan/inf_in_long_file 
-S RDM long_amp_too_small
