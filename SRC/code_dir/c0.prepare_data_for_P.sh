@@ -18,15 +18,16 @@ set DISTMAX = $7
 set PHASE = $8
 set COMP = $9
 set filter_flag = $10
-set get_DATA = get_EQ_sac
+set get_DATA = $SRCDIR/get_EQ_sac
 
 echo "---> Prepare Data for $EQ PHASE $PHASE"
 cd $work_dir
 set macro = $work_dir/sac.macro
+set EQ_SAC_FILE_DIR = `cat ./INFILE |grep EQ_SAC_FILE_DIR|awk '{print $2}'`
 
 # =========================== download eventStation file ======================
 set old_event = eventStation.${EQ}
-$get_DATA ${EQ}/$old_event 
+$get_DATA ${EQ}/$old_event $EQ_SAC_FILE_DIR
 
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
@@ -84,10 +85,10 @@ foreach STA (`cat $event |awk '{print $1}'`)
 	set sacname2 = ${EQ}.${NET}.${STA}.BHZ.sac
 	set sacname3 = ${EQ}.${NET}.${STA}.HHR.sac
 	set sacname4 = ${EQ}.${NET}.${STA}.HHZ.sac
-$get_DATA  ${EQ}/$sacname1  > & /dev/null 
-$get_DATA  ${EQ}/$sacname2  > & /dev/null
-$get_DATA  ${EQ}/$sacname3  > & /dev/null
-$get_DATA  ${EQ}/$sacname4  > & /dev/null
+$get_DATA  ${EQ}/$sacname1 $EQ_SAC_FILE_DIR > & /dev/null 
+$get_DATA  ${EQ}/$sacname2  $EQ_SAC_FILE_DIR> & /dev/null
+$get_DATA  ${EQ}/$sacname3  $EQ_SAC_FILE_DIR> & /dev/null
+$get_DATA  ${EQ}/$sacname4  $EQ_SAC_FILE_DIR> & /dev/null
 
 
 	if(-e $sacname1 && -e $sacname2 ) then

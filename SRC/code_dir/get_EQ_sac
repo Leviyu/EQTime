@@ -1,0 +1,16 @@
+#!/bin/tcsh
+
+set file = $1
+set EQ_SAC_DIR = $2
+if($file == "" || $EQ_SAC_DIR == "") then
+echo "non input file find !"
+exit 0
+endif
+
+
+#set DATADIR = /mnt/data2/hongyu/DATA/IRIS/benchmark_EQ/WORKDIR/201506231218
+#set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
+set DATADIR = $2
+
+cp -r $DATADIR/$file .
+

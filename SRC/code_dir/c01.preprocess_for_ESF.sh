@@ -35,22 +35,22 @@ set NOISE_LEN = `grep -w PHASE_LEN $INFILE |awk '{print $2}'`
 set DISTMIN = `grep -w DIST_MIN_MAX $INFILE |awk '{print $2}'`
 # for Sdiff get min dist
 if($PHASE == "Sdiff" && $DISTMIN == "non") then
-set DISTMIN = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE|awk '{print $2+1}'`
+set DISTMIN = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE $SRCDIR|awk '{print $2+1}'`
 echo "---> Sdiff min distance is $DISTMIN"
 endif
 if($PHASE == "Pdiff" && $DISTMIN == "non") then
-set DISTMIN = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE|awk '{print $2+1}'`
+set DISTMIN = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE $SRCDIR|awk '{print $2+1}'`
 echo "---> Pdiff min distance is $DISTMIN"
 endif
 
 set DISTMAX = `grep -w DIST_MIN_MAX $INFILE |awk '{print $3}'`
 # for S get max dist
 if($PHASE == "S" && $DISTMAX == "non") then
-set DISTMAX = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE |awk '{print $2}'`
+set DISTMAX = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE $SRCDIR|awk '{print $2}'`
 echo "---> S max distance is $DISTMAX"
 endif
 if($PHASE == "P" && $DISTMAX == "non") then
-set DISTMAX = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE |awk '{print $2}'`
+set DISTMAX = `csh $SHELL_DIR/c06.get_S_Sdiff_boundary_distance.sh $EQ $work_dir $PHASE $SRCDIR|awk '{print $2}'`
 echo "---> P max distance is $DISTMAX"
 endif
 set velocity_or_displacement = `grep -w velocity_or_displacement $INFILE |awk 'NR==1 {print $2}'`

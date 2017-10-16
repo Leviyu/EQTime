@@ -6,6 +6,7 @@
 <CURRENT_DIR>			SRC
 <PHASE_LIST>			S ScS 
 
+<EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
 
 
 
@@ -17,7 +18,7 @@
 <C_DIR>					Maligaro/c_lib
 <TAUP_DIR>				TIMEDIR
 <T_star_lib>			tstar_lib
-<ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>			EWM/eventinfo.ed_checked
+<ED_CHECK_FLAG>			1
+<ED_CHECK_FILE>			SRC/eventinfo.ed_checked
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0

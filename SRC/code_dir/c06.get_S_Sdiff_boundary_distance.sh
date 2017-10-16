@@ -18,12 +18,18 @@
 set EQ = $1
 set DATADIR = $2
 set PHASE = $3
+set SRCDIR = $4
 set work_dir = $DATADIR/get_S_Sdiff_boundary_work_dir
 mkdir -p $work_dir
 cd $work_dir
 # 1. first get the eventStation of EQ
 set event = eventStation.${EQ}
-get_EQ_sac ${EQ}/$event
+
+
+set INFILE = ./INFILE
+set EQ_SAC_FILE_DIR = `cat $INFILE |grep EQ_SAC_FILE_DIR|awk '{print $2}'`
+
+$SRCDIR/get_EQ_sac ${EQ}/$event $EQ_SAC_FILE_DIR
 
 # 2. get the boundary distance
 set TMP = `awk 'NR==5 {print $0}' $event`

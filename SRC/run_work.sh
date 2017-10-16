@@ -35,7 +35,7 @@ set INFILE = ${WORKDIR}/$EQ/INFILE
 set DIR =						`grep -w CURRENT_DIR $INFILE | awk '{print $2}'`
 set DATADIR =					`grep -w DATADIR $INFILE | awk '{print $2}'`
 set PLOTDIR =					`grep -w PLOTDIR $INFILE | awk 'NR==1 {print $2}'`
-set C_DIR =						`grep -w C_DIR $INFILE | awk '{print $2}'`
+set C_DIR =						`grep -w "<C_DIR>" $INFILE | awk '{print $2}'`
 set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk '{print $2}'`
 set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk '{print $2}'`
 
@@ -49,7 +49,9 @@ cp $PWD/INPUT_EQ_LIST $DATADIR/
 cp $PWD/INFILE_DIR/INFILE* $DATADIR/
 set EQ_LIST = $DATADIR/INPUT_EQ_LIST
 
+echo "c dir is $C_DIR "
 echo "copy CDIR to WORKDIR"
+echo "cp $C_DIR $WORKDIR/$ID/ -r "
 cp $C_DIR $WORKDIR/$ID/ -r 
 set C_DIR = $WORKDIR/$ID/c_lib
 
