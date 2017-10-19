@@ -22,6 +22,8 @@ set SRCDIR = $4
 set INFILE = ./INFILE
 set EQ_SAC_FILE_DIR = `cat $INFILE |grep EQ_SAC_FILE_DIR|awk '{print $2}'`
 set work_dir = $DATADIR/get_S_Sdiff_boundary_work_dir
+set INFILE = ./INFILE
+set EQ_SAC_FILE_DIR = `cat $INFILE |grep EQ_SAC_FILE_DIR|awk '{print $2}'`
 mkdir -p $work_dir
 cd $work_dir
 # 1. first get the eventStation of EQ
