@@ -6,8 +6,8 @@ set TPWD = `pwd`
 # Ed_checked_2004_not_processed
 # this is the 45 EQ that is the left over of 
 # part1 and part2 for 2004 onward patch
-set BIG_ID = Patch20
-set EQ_LIST = $TPWD/EQ_LIST.PATCH20
+set BIG_ID = Patch8
+set EQ_LIST = $TPWD/EQ_LIST.PATCH8
 
 set processes = 8
 

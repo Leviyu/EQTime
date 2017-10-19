@@ -12,5 +12,7 @@ endif
 #set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
 set DATADIR = $2
 
-cp -r $DATADIR/$file .
+csh ~/bin/get_EQ_sac $file
+
+#cp -r $DATADIR/$file .
 

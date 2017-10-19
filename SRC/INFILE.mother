@@ -1,10 +1,10 @@
 # This is the main infile for general information
 
 # Parameters to Config
-<SACHOME>				/opt/sac
-<BIGDIR>				/mnt/data2/hongyu/EQTime
+<SACHOME>				/usr/local/sac
+<BIGDIR>				/home/hongyu_ubuntu/EQTime
 <CURRENT_DIR>			SRC
-<PHASE_LIST>			S 
+<PHASE_LIST>			S ScS Sdiff SS SSS ScSScS
 
 <EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
 
@@ -12,13 +12,13 @@
 
 
 # Directory information
-<DATADIR>				DATADIR
+<DATADIR>				/DATA1/EWF/DATADIR
 <PLOTDIR>				PLOTDIR
 <SHELL_DIR>				SRC/code_dir
 <C_DIR>					Maligaro/c_lib
 <TAUP_DIR>				TIMEDIR
 <T_star_lib>			tstar_lib
-<ED_CHECK_FLAG>			0
+<ED_CHECK_FLAG>			1
 <ED_CHECK_FILE>			SRC/eventinfo.ed_checked
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0

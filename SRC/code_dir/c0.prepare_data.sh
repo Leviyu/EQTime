@@ -22,7 +22,7 @@ set get_DATA = $SRCDIR/get_EQ_sac
 
 echo "---> Prepare Data for $EQ PHASE $PHASE"
 cd $work_dir
-set EQ_SAC_FILE_DIR = `cat ./INFILE |grep EQ_SAC_FILE_DIR |awk '{print $2}'`
+set EQ_SAC_FILE_DIR = `cat INFILE |grep EQ_SAC_FILE_DIR |awk '{print $2}'`
 
 # =========================== download eventStation file ======================
 set old_event = eventStation.${EQ}

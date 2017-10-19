@@ -5,3 +5,7 @@ set PWD = `pwd`
 mkdir -p ../PLOTDIR
 mkdir -p ../DATADIR
 mkdir -p ../TIMEDIR
+
+cd ..
+rm Maligaro
+git clone https://github.com/Leviyu/Maligaro.git

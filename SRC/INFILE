@@ -1,10 +1,10 @@
 # This is the main infile for general information
 
 # Parameters to Config
-<SACHOME>				/opt/sac
-<BIGDIR>				/mnt/data2/hongyu/EQTime
-<CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
-<PHASE_LIST>			S 
+<SACHOME>				/usr/local/sac
+<BIGDIR>				/home/hongyu_ubuntu/EQTime
+<CURRENT_DIR>						/home/hongyu_ubuntu/EQTime/SRC
+<PHASE_LIST>			S ScS Sdiff SS SSS ScSScS
 
 <EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
 
@@ -12,13 +12,13 @@
 
 
 # Directory information
-<DATADIR>						/mnt/data2/hongyu/EQTime/DATADIR
-<PLOTDIR>						/mnt/data2/hongyu/EQTime/PLOTDIR
-<SHELL_DIR>						/mnt/data2/hongyu/EQTime/SRC/code_dir
-<C_DIR>						/mnt/data2/hongyu/EQTime/Maligaro/c_lib
-<TAUP_DIR>						/mnt/data2/hongyu/EQTime/TIMEDIR
-<T_star_lib>						/mnt/data2/hongyu/EQTime/tstar_lib
-<ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/eventinfo.ed_checked
+<DATADIR>				/DATA1/EWF/DATADIR
+<PLOTDIR>						/home/hongyu_ubuntu/EQTime/PLOTDIR
+<SHELL_DIR>						/home/hongyu_ubuntu/EQTime/SRC/code_dir
+<C_DIR>						/home/hongyu_ubuntu/EQTime/Maligaro/c_lib
+<TAUP_DIR>						/home/hongyu_ubuntu/EQTime/TIMEDIR
+<T_star_lib>						/home/hongyu_ubuntu/EQTime/tstar_lib
+<ED_CHECK_FLAG>			1
+<ED_CHECK_FILE>						/home/hongyu_ubuntu/EQTime/SRC/eventinfo.ed_checked
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
