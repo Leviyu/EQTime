@@ -2,3 +2,5 @@ PLOTDIR/
 DATADIR/
 SRC/LOG/
 TIMEDIR/
+SRC/list.*
+SRC/INFILE.mother
