@@ -33,7 +33,7 @@ set polarity_info = $DATADIR/$EQ/eventinfo.polarity.${PHASE}.${COMP}
 set polar_PPP = $DATADIR/$EQ/PPP.polar
 cat /dev/null >! $polar_PPP
 set eventStation = $DATADIR/$EQ/eventStation.${EQ}.${PHASE}.${COMP}
-set CMT_file = $work_dir/CMT.data
+set CMT_file = $SHELL_DIR/CMT.data
 set CMT = `grep -w $EQ $CMT_file`
 echo "----> Looking for CMT Info "
 

@@ -60,6 +60,5 @@ foreach EQ (`cat $EQ_LIST`)
 	set INP = ( $PWD $DATADIR $PLOTDIR $EQ $C_DIR $SHELL_DIR $ID $DIR)
 	echo "---> Working on $ID $EQ "
 	csh $PWD/work.sh $INP > & $PWD/LOG/logfile.${ID}.${EQ} 
-	##sleep 2h
 end #EQ
 

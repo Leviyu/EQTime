@@ -31,5 +31,6 @@ cp $PART_FILE $TPWD/INPUT_EQ_LIST
 csh $TPWD/mother.sh $ID
 sleep 5s
 
+rm $TPWD/INPUT_EQ_LIST
 @ PART ++
 end

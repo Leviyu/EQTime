@@ -5,7 +5,6 @@
 
 set PWD = `pwd`
 
-# Construct INFILE from INFILE.mother
 set old_file = $PWD/INFILE.mother
 set new_file = $PWD/INFILE
 cat /dev/null >! $new_file
@@ -29,3 +28,4 @@ endif
 
 csh run_work.sh $ID $WORKDIR $PWD> & /dev/null &
 
+rm $new_file
