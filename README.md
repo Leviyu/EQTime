@@ -16,4 +16,6 @@ The code is developed in C and includes large numbers of time series operations,
 
 
 ## Usage
+Go into SRC directory
 
+`./config`
