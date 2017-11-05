@@ -1,5 +1,7 @@
-Inline-style: 
-![alt text](https://github.com/Leviyu/EQTime/blob/master/image/header.png)
+<div align="center">
+  <img src="https://github.com/Leviyu/EQTime/blob/master/image/header.png"><br><br>
+</div>
+
 
 # EQTime
 EQTime is An automated seismic data processing tool, featuring fast travel time 
