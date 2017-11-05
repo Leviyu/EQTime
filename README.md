@@ -8,3 +8,12 @@ useful information systematically and objectively.
 The code is developed in C and includes large numbers of time series operations,
 	including:
 * Iterative Stacking
+* Cross correlation
+* Stretching
+* Time series convolution
+
+
+
+
+## Usage
+
