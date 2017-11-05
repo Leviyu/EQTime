@@ -40,7 +40,7 @@
 
 
 # Directory information
-<BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime
+<BIGDIR>				/mnt/data2/hongyu/test/EQTime
 <SACHOME>				/opt/sac
 <CURRENT_DIR>			SRC
 <EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
