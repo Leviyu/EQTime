@@ -16,6 +16,7 @@ The code is developed in C and includes large numbers of time series operations,
 * Cross correlation
 * Stretching
 * Time series convolution
+
 The C code library is maintained under [Maligari,Empirical Wavelet Construction](https://github.com/Leviyu/Maligaro)
 
 
