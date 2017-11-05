@@ -4,7 +4,7 @@
 
 
 # EQTime
-EQTime is An automated seismic data processing tool, featuring fast travel time 
+EQTime is an automated seismic data processing tool, featuring fast travel time 
 acquisition and other measurements, including waveform distortion and attenuation. 
 
 It is designed to automatically process large mount of seismic data and extract 
@@ -18,6 +18,8 @@ The code is developed in C and includes large numbers of time series operations,
 * Time series convolution
 The C code library is maintained under [Maligari,Empirical Wavelet Construction](https://github.com/Leviyu/Maligaro)
 
+
+Currently this code is only executable on our own server at Arizona State University, as the dataset is there. 
 
 ## Usage
 Go into SRC directory and do
