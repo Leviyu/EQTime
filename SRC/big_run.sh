@@ -20,6 +20,7 @@ set TPWD = `pwd`
 set EQ_NUM = `cat $EQ_LIST |wc -l`
 set INC = `echo "$EQ_NUM / $processes "|bc -l`
 set INC = `printf "%.0f" $INC`
+mkdir -p $TPWD/LOG
 
 
 set PART = 1

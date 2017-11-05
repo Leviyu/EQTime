@@ -8,11 +8,10 @@ exit 0
 endif
 
 
-#set DATADIR = /mnt/data2/hongyu/DATA/IRIS/benchmark_EQ/WORKDIR/201506231218
-#set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
+##set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
 set DATADIR = $2
 
-csh ~/bin/get_EQ_sac $file
+##csh ~/bin/get_EQ_sac $file
 
-#cp -r $DATADIR/$file .
+cp -r $DATADIR/$file .
 

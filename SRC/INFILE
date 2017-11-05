@@ -2,7 +2,7 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				Run12
+<TASK_NAME>				Run3
 						# TASK_NAME should be the unique ID for this task					
 <PHASE_LIST>			S 
 						# Phases of interest, for multiple phases, simple add 
@@ -40,17 +40,17 @@
 
 
 # Directory information
-<BIGDIR>				/mnt/data2/hongyu/wrap_up/EQTime
+<BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime
 <SACHOME>				/opt/sac
-<CURRENT_DIR>						/mnt/data2/hongyu/wrap_up/EQTime/SRC
+<CURRENT_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/SRC
 <EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
-<DATADIR>						/mnt/data2/hongyu/wrap_up/EQTime/DATADIR
-<PLOTDIR>						/mnt/data2/hongyu/wrap_up/EQTime/PLOTDIR
-<SHELL_DIR>						/mnt/data2/hongyu/wrap_up/EQTime/SRC/code_dir
-<C_DIR>						/mnt/data2/hongyu/wrap_up/EQTime/Maligaro/c_lib
-<TAUP_DIR>						/mnt/data2/hongyu/wrap_up/EQTime/TIMEDIR
-<T_star_lib>						/mnt/data2/hongyu/wrap_up/EQTime/tstar_lib
+<DATADIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/DATADIR
+<PLOTDIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/PLOTDIR
+<SHELL_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/SRC/code_dir
+<C_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/Maligaro/c_lib
+<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/TIMEDIR
+<T_star_lib>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/tstar_lib
 <ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>						/mnt/data2/hongyu/wrap_up/EQTime/code_dir/eventinfo
+<ED_CHECK_FILE>						/mnt/soddisk/soduser/Hongyu_DIR/test/EQTime/code_dir/eventinfo
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
