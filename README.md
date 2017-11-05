@@ -1,3 +1,6 @@
+Inline-style: 
+![alt text](https://github.com/Leviyu/EQTime/blob/master/image/header.png)
+
 # EQTime
 EQTime is An automated seismic data processing tool, featuring fast travel time 
 acquisition and other measurements, including waveform distortion and attenuation. 
