@@ -1,0 +1,56 @@
+# This is the main infile for general information
+
+# =============================================================
+# Parameters To Change
+<TASK_NAME>				Run12
+						# TASK_NAME should be the unique ID for this task					
+<PHASE_LIST>			S 
+						# Phases of interest, for multiple phases, simple add 
+						# the other phase at the end of the line
+						# e.g. P PcP Pdiff 
+
+<EQ_LIST_FILE>			EQ_LIST
+						# List of events, by default, events from EQ_LIST under
+						# current directory is read in
+						# e.g. 200601022213 
+
+<Process_Number>		2
+						# How many processes to run at the same time
+						# the events from EQ_LIST would be divided into multiple
+						# parts and each part is processed individually
+						# this number should not be greater then 8
+
+# =============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Directory information
+<BIGDIR>				/mnt/data2/hongyu/wrap_up/EQTime
+<SACHOME>				/opt/sac
+<CURRENT_DIR>			SRC
+<EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
+<DATADIR>				DATADIR
+<PLOTDIR>				PLOTDIR
+<SHELL_DIR>				SRC/code_dir
+<C_DIR>					Maligaro/c_lib
+<TAUP_DIR>				TIMEDIR
+<T_star_lib>			tstar_lib
+<ED_CHECK_FLAG>			0
+<ED_CHECK_FILE>			code_dir/eventinfo
+<DELTA>					0.1
+<BENCHMARK_FLAG>		0
