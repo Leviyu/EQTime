@@ -17,15 +17,18 @@ The code is developed in C and includes large numbers of time series operations,
 * Stretching
 * Time series convolution
 
-The C code library is maintained under [Maligari,Empirical Wavelet Construction](https://github.com/Leviyu/Maligaro)
+The C code library is maintained under [Empirical Wavelet Construction,Maligaro](https://github.com/Leviyu/Maligaro)
 
 
 Currently this code is only executable on our own server at Arizona State University, as the dataset is there. 
 
-## Usage
-Go into SRC directory and do
-`./config`
+This code is still improving, if there is any bug, please take a few minutes and open an issue.
 
+## Usage
+Go into SRC directory and execute:
+```shell
+./config
+```
 Change parameters in `INFILE.mother`, including:
 * Taks name
 * Phase list
@@ -33,7 +36,7 @@ Change parameters in `INFILE.mother`, including:
 * Process Number
 
 For each phase, there is a corresponding file to it located under `INFILE_DIR/INFILE_${PHASE_NAME}`, change parameters in it depending on your need.
-The description of each entry in each phase infile is only shown in `INFILE_DIR/INFILE_S`.
+The description of each entry in the phase infile is only shown in `INFILE_DIR/INFILE_S`.
 
 To execute the code:
 ```shell
@@ -43,7 +46,7 @@ To execute the code:
 The produced catalog plots are located under `../PLOTDIR`, the directory name is same as the `TASK_NAME` specified in `INFILE.mother`.
 
 
-After all processes have finished, to generate a master catalog PDF file of all pdf within the directory, go into the directory and execute:
+After all processes have finished, to generate a master catalog file of all catalog files within the directory, go into the directory and execute:
 ```shell
 ./c40.generate_master_pdf.sh .
 ```
