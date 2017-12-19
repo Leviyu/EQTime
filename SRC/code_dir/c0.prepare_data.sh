@@ -22,7 +22,8 @@ set get_DATA = $SRCDIR/get_EQ_sac
 
 echo "---> Prepare Data for $EQ PHASE $PHASE"
 cd $work_dir
-set EQ_SAC_FILE_DIR = `cat INFILE |grep EQ_SAC_FILE_DIR |awk '{print $2}'`
+set EQ_SAC_FILE_DIR = `cat $work_dir/INFILE |grep EQ_SAC_FILE_DIR |awk '{print $2}'`
+set Fix_missing_sta_flag = `cat $work_dir/INFILE |grep Fix_missing_sta_flag |awk '{print $2}'`
 
 # =========================== download eventStation file ======================
 set old_event = eventStation.${EQ}
@@ -31,6 +32,38 @@ $get_DATA ${EQ}/$old_event $EQ_SAC_FILE_DIR
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
 awk '{if (NR>1 && $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -k 3 > $event
+
+
+
+# =============================================================
+# if Fix_missing_sta_flag == 1
+# we use previous S_ES as empirical wavelet and only process for those 
+# that has not been procesed
+# =============================================================
+if($Fix_missing_sta_flag == 1) then
+echo "Fix_missing_sta_flag processing begin"
+set new_event_list = $work_dir/old.event.list
+cat $event |awk '{print $1}'|sort|uniq >! $new_event_list
+
+set old_event_file = /mnt/soddisk/soduser/Hongyu_DIR/eventStation_orig/bk_nov_16/eventStation.${EQ}
+set old_event_list = $work_dir/new.event.list
+cat $old_event_file |awk '{print $1}'|sort|uniq >! $old_event_list
+
+set diff_list = $work_dir/diff.event.list
+comm $old_event_list $new_event_list -13 >! $diff_list
+set missing_sta_event = $work_dir/missing.sta.list
+cat /dev/null >! $missing_sta_event
+foreach sta (`cat $diff_list`)
+	grep -w $sta $event |awk 'NR==1 {print $0}' >> $missing_sta_event
+	end
+mv $missing_sta_event $event
+set S_ES_DIR = /mnt/data2/hongyu/Catalog_Plots/mother_dir/C01_make_eventinfo/eventinfo_dir/S_ES_DIR_all
+cp $S_ES_DIR/${EQ}.S_ES $work_dir/main_ES.out
+endif
+
+
+
+
 set total_num = `cat  $event |wc -l`
 echo "Total records: $total_num"
 
@@ -172,13 +205,12 @@ foreach sta (`cat $work_dir/sta.list`)
 	end
 
 
+
 # sort according to distance	
 sort -n -k 3 event_uniq |uniq > $event
 
 #clean up 
 /bin/rm $work_dir/sta.list $work_dir/event_uniq
-
-
 exit 0
 
 

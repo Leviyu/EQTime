@@ -905,7 +905,7 @@ EOF
 	pstext -JX2i/0.5i -R0/1/0/1 -O -K -N -P -X5.2i <<END>>$OUTFILE
 	0 1.0  7 0 0 LB  ----------------------
 	0 0.75 7 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak 
-	0 0.5  7 0 0 LB ccc:$ccc SNR:$SNR CCC3: $CCC3 dt:$dt_obs_prem gau_factor: $record_gaussian_factor
+	0 0.5  7 0 0 LB CCC3: $CCC3 CCC:$ccc SNR:$SNR  dt:$dt_obs_prem gau_factor: $record_gaussian_factor
 	0 0.25 7 0 0 LB stretch_ccc: $best_stretch_ccc factor: $best_stretch_coeff tstar: $tstar ccc: $tstar_ccc
 	0 0.0  7 0 0 LB AZ:$AZ  weight: $record_weight polar: $CMT_polar_prediction
 END

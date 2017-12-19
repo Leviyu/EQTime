@@ -92,11 +92,13 @@ echo "we are current making source"
 make > & /dev/null
 cp EWM $work_dir/
 endif
+echo "makign source done"
 
 cd $work_dir
 set c_input = $work_dir/input.c
 echo $EQ $PHASE $DELTA  > ! $c_input
 
+date
 ##./EWM.out << EOF  >> & $c_logfile
 ./EWM $c_input
 

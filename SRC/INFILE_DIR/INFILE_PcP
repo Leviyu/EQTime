@@ -7,7 +7,7 @@
 <filter_flag>						bp
 <DIST_MIN_MAX>						0 83
 <DIST_DELTA>         1
-<Frequency_range>			0.01 1
+<Frequency_range>			0.01 0.8
 
 <LONG_BEG>  						-50
 <LONG_LEN>  						100

@@ -3,7 +3,7 @@
 # Parameters to Config
 <SACHOME>				/opt/sac
 <BIGDIR>				/mnt/data2/hongyu/EQTime
-<CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
+<CURRENT_DIR>			SRC
 <PHASE_LIST>			S ScS Sdiff  SSS ScSScS SS
 
 <EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
@@ -13,13 +13,13 @@
 
 # Directory information
 <DATADIR>				/mnt/data2/hongyu/EQTime/DATADIR
-<PLOTDIR>						/mnt/data2/hongyu/EQTime/PLOTDIR
-<SHELL_DIR>						/mnt/data2/hongyu/EQTime/SRC/code_dir
-<C_DIR>						/mnt/data2/hongyu/EQTime/Maligaro/c_lib
-<TAUP_DIR>						/mnt/data2/hongyu/EQTime/TIMEDIR
-<T_star_lib>						/mnt/data2/hongyu/EQTime/tstar_lib
+<PLOTDIR>				PLOTDIR
+<SHELL_DIR>				SRC/code_dir
+<C_DIR>					Maligaro/c_lib
+<TAUP_DIR>				TIMEDIR
+<T_star_lib>			tstar_lib
 <ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/eventinfo.ed_checked
+<ED_CHECK_FILE>			SRC/code_dir/eventinfo.ed_checked
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process

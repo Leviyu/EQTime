@@ -5,7 +5,7 @@
 <PHASE>								SSSSS
 <COMP>								T
 <filter_flag>						bp
-<DIST_MIN_MAX>						100					180
+<DIST_MIN_MAX>						130					180
 <DIST_DELTA>         1
 <Frequency_range>					0.01 0.1
 

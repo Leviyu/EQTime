@@ -77,16 +77,18 @@ EOF
 # add explanation to some symbles
 # ======================
 psxy -JX -R -O -W/red  -K -Y-0.5i -N  << EOF >> $OUT
-1 1
-1.5 1
 EOF
+#1 1
+#1.5 1
+#EOF
 ##pstext -JX -R -O -K -N  << EOF >> $OUT
 ##2 1 10 0 0 CB S E.W.
 ##EOF
 psxy -JX -R -O -W/green  -K  -N  << EOF >> $OUT
-3 1
-3.5 1
 EOF
+#3 1
+#3.5 1
+#EOF
 ##pstext -JX -R -O -K -N  << EOF >> $OUT
 ##4 1 10 0 0 LB Hilbert(S E.W.) 
 ##EOF
@@ -132,8 +134,8 @@ set ymax = 1.2
 EOF
 	set number_of_good_record = `awk '$14!=-1&&$30!=0 {print $0}' $eventinfo |wc -l`
 
-	set first_EW_flag = 		"Iteratively stacked E.W. with STD (all records weight > 0) NUM: $number_of_good_record"
-	set first_EW_flag_color = 	"Iteratively stacked E.W. with STD (all records weight > 0) NUM: $number_of_good_record"
+	set first_EW_flag = 		"Iteratively stacked E.W. with STD (all records weight > 0) "
+	set first_EW_flag_color = 	"Iteratively stacked E.W. with STD (all records weight > 0) "
 
 	pstext -JX -R -N -O -K << EOF >> $OUT
 $xmax -2 8 0 0 RB $first_EW_flag
@@ -178,8 +180,8 @@ psscale -L -N -C$CPT -D8i/1.5i/2i/0.1ih   -O -K  -N300 >>$OUT
 	$xmax 0
 EOF
 	set number_of_good_record = `awk '$14!=-1&&$30!=0 {print $0}' $eventinfo |wc -l`
-	set second_EW_flag = 		"Stretched Records stacked E.W. with STD (all records weight > 0) NUM: $number_of_good_record"
-	set second_EW_flag_color = 	"Stretched Records stacked E.W. with STD (all records weight > 0) NUM: $number_of_good_record"
+	set second_EW_flag = 		"Stretched Records stacked E.W. with STD (all records weight > 0) "
+	set second_EW_flag_color = 	"Stretched Records stacked E.W. with STD (all records weight > 0) "
 	pstext -JX -N -R -O -K << EOF >> $OUT
 $xmax -2 8 0 0 RB $second_EW_flag
 EOF
@@ -219,10 +221,8 @@ psxy $third_ES  $PROJ $REG  -O -K -Ba10f5:"Time (sec)":/a1f0.5SW    >>$OUT
 	$xmax 0
 EOF
 	set number_of_good_record = `awk '$14==1{print $0}' $eventinfo |wc -l`
-	set third_EW_flag = 		"Stretched Records stacked E.W. with STD (just for good records) NUM: $number_of_good_record"
-	set third_EW_flag_color = 	"Stretched Records stacked E.W. with STD (just for good records) NUM: $number_of_good_record"
-##set third_EW_flag = 		"After tstar processing Raw Records stacked E.W. with STD (just for good records) NUM: $number_of_good_record"
-##set third_EW_flag_color = 	"After tstar processing Raw Records stacked E.W. with STD (just for good records) NUM: $number_of_good_record"
+	set third_EW_flag = 		"Stretched Records stacked E.W. with STD (just for good records) "
+	set third_EW_flag_color = 	"Stretched Records stacked E.W. with STD (just for good records) "
 	pstext -JX -N -R -O -K << EOF >> $OUT 
 $xmax -2 8 0 0 RB  $third_EW_flag
 EOF
