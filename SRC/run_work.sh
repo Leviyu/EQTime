@@ -33,20 +33,24 @@ cp $PWD/INFILE $WORKDIR/$EQ/
 
 set INFILE = ${WORKDIR}/$EQ/INFILE
 set DIR =						`grep -w CURRENT_DIR $INFILE | awk '{print $2}'`
-set DATADIR =					`grep -w DATADIR $INFILE | awk '{print $2}'`
 set PLOTDIR =					`grep -w PLOTDIR $INFILE | awk 'NR==1 {print $2}'`
 set C_DIR =						`grep -w "<C_DIR>" $INFILE | awk '{print $2}'`
 set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk '{print $2}'`
 set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk '{print $2}'`
 
 
-set DATADIR = $DATADIR/$ID
-set PLOTDIR = $PLOTDIR/$ID
+#set DATADIR = $DATADIR/$ID
+set DATADIR = $WORKDIR/$ID
+
+set big_id = `echo $ID |awk -F"_" '{print $1}'`
+
+set PLOTDIR = $PLOTDIR/$big_id
 mkdir -p $DATADIR 
 mkdir -p $PLOTDIR
-cp $PWD/code_dir/CMT.data $DATADIR/
+cp $SHELL_DIR/CMT.data $DATADIR/
 cp $PWD/INPUT_EQ_LIST $DATADIR/
 cp $PWD/INFILE_DIR/INFILE* $DATADIR/
+cp $SHELL_DIR/c40.generate_master_pdf.sh $PLOTDIR
 set EQ_LIST = $DATADIR/INPUT_EQ_LIST
 
 echo "c dir is $C_DIR "
@@ -59,7 +63,6 @@ mkdir -p $PWD/LOG
 foreach EQ (`cat $EQ_LIST`)
 	set INP = ( $PWD $DATADIR $PLOTDIR $EQ $C_DIR $SHELL_DIR $ID $DIR)
 	echo "---> Working on $ID $EQ "
-	csh $PWD/work.sh $INP > & $PWD/LOG/logfile.${ID}.${EQ} 
-	##sleep 2h
+	csh $PWD/work.sh $INP > & $PWD/LOG/logfile.${ID}.${EQ}
 end #EQ
 

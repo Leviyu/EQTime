@@ -2,13 +2,27 @@
 
 
 
+# ============================================================================
 <PHASE>								S
 <COMP>								T
 <filter_flag>						bp
-<DIST_MIN_MAX>						30 non
-<DIST_DELTA>         1
 <Frequency_range>					0.01	0.1
+	# bp means bandpass filter,frequency_range defines the corner frequency 
+	# of the bandpass filter, with the first one being the low corner and the 
+	# second one being the high corner
+<DIST_MIN_MAX>						70 71
+	# minimum / maximum distance 
+	# only stations with the distance range would be processed
+# ============================================================================
 
+
+
+
+
+
+
+
+<DIST_DELTA>				        1
 <LONG_BEG>  						-100
 <LONG_LEN>  						200
 <PHASE_BEG>  						-10

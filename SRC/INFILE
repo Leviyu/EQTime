@@ -1,25 +1,42 @@
 # This is the main infile for general information
 
-# Parameters to Config
-<SACHOME>				/opt/sac
-<BIGDIR>				/mnt/data2/hongyu/EQTime
-<CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
-<PHASE_LIST>			S ScS Sdiff  SSS ScSScS SS
+# =============================================================
+# Parameters To Change
+<TASK_NAME>				T1
+						# TASK_NAME should be the unique ID for this task					
+<PHASE_LIST>			S 
+						# Phases of interest, for multiple phases, simple add 
+						# the other phase at the end of the line
+						# e.g. P PcP Pdiff 
 
-<EQ_SAC_FILE_DIR>			/mnt/soddisk/soduser/Merge.Mw6.50km
+<EQ_LIST_FILE>			T1
+						# List of events, by default, events from EQ_LIST under
+						# current directory is read in
+						# e.g. 200601022213 
+
+<Process_Number>		1
+						# How many processes to run at the same time
+						# the events from EQ_LIST would be divided into multiple
+						# parts and each part is processed individually
+						# this number should not be greater then 8
+# =============================================================
 
 
 
 
 # Directory information
-<DATADIR>				/mnt/data2/hongyu/EQTime/DATADIR
+<BIGDIR>				/mnt/data2/hongyu/EQTime
+<SACHOME>				/opt/sac
+<CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
+<EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
+<DATADIR>						/mnt/data2/hongyu/EQTime/DATADIR
 <PLOTDIR>						/mnt/data2/hongyu/EQTime/PLOTDIR
 <SHELL_DIR>						/mnt/data2/hongyu/EQTime/SRC/code_dir
 <C_DIR>						/mnt/data2/hongyu/EQTime/Maligaro/c_lib
 <TAUP_DIR>						/mnt/data2/hongyu/EQTime/TIMEDIR
 <T_star_lib>						/mnt/data2/hongyu/EQTime/tstar_lib
 <ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/eventinfo.ed_checked
+<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/code_dir/eventinfo
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process

@@ -6,5 +6,12 @@ mkdir -p ../PLOTDIR
 mkdir -p ../DATADIR
 mkdir -p ../TIMEDIR
 cd ..
-rm Maligaro
+/bin/rm -rf Maligaro > & /dev/null
 git clone https://github.com/Leviyu/Maligaro.git
+
+
+set DIR = `pwd`
+cd $PWD
+sed -i '/BIGDIR/c\<BIGDIR>				'$DIR'' $PWD/INFILE.mother
+
+

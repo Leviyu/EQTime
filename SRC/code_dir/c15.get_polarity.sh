@@ -33,7 +33,7 @@ set polarity_info = $DATADIR/$EQ/eventinfo.polarity.${PHASE}.${COMP}
 set polar_PPP = $DATADIR/$EQ/PPP.polar
 cat /dev/null >! $polar_PPP
 set eventStation = $DATADIR/$EQ/eventStation.${EQ}.${PHASE}.${COMP}
-set CMT_file = $work_dir/CMT.data
+set CMT_file = $SHELL_DIR/CMT.data
 set CMT = `grep -w $EQ $CMT_file`
 echo "----> Looking for CMT Info "
 
@@ -55,7 +55,7 @@ set rake = $CMT[4]
 
 set CMT2RAD = $SHELL_DIR/radiation.f90
 f95 $CMT2RAD -o CMT2RAD
-CMT2RAD << EOF > & /dev/null
+./CMT2RAD << EOF > & /dev/null
 $strike $dip $rake
 EOF
 
@@ -73,8 +73,8 @@ if(`echo $PHASE |grep S` != "") then
 endif
 
 
-set RADTHAZ = $SHELL_DIR/radiation_th,az.f
-f95 $RADTHAZ -o RADTHAZ
+set RAD_code = $SHELL_DIR/radiation_th,az.f
+f95 $RAD_code -o RADTHAZ
 /bin/rm -r $polarity_info > & /dev/null
 foreach STA (`awk '{print $1}' $eventStation`)
 	set TMP = `awk -v sta=$STA '$1==sta {print $0}' $eventStation`
@@ -93,7 +93,7 @@ foreach STA (`awk '{print $1}' $eventStation`)
 ##set take_off = `taup_time -mod prem -ph $PHASE -deg $DIST -h $EQ_DEP | awk 'NR==6 {print $6}'`
 
 ##echo $STA $strike $dip $rake $the_comp $take_off $AZ	
-RADTHAZ <<EOF >$work_dir/polarity.tmp
+./RADTHAZ <<EOF >$work_dir/polarity.tmp
 $strike $dip $rake
 $the_comp
 $take_off $AZ

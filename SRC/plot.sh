@@ -35,7 +35,11 @@ echo "======================================================"
 
 
 set DATADIR = $DATADIR/$ID
-set PLOTDIR = $PLOTDIR/$ID
+
+set big_id = `echo $ID |awk -F"_" '{print $1}'`
+
+set PLOTDIR = $PLOTDIR/$big_id
+
 mkdir -p $DATADIR 
 mkdir -p $PLOTDIR
 set EQ_LIST = $DATADIR/INPUT_EQ_LIST

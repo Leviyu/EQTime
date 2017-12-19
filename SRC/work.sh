@@ -30,11 +30,7 @@ mkdir -p $DATADIR/$EQ
 cp $DATADIR/CMT.data $DATADIR/$EQ/
 cp $DATADIR/INFILE* $DATADIR/$EQ/
 
-##set new_phase_list = `cat $PWD/eventinfo.final |grep -w $EQ | awk '{print $20}'|sort|uniq |awk '{printf "%s ",$0}'`
-
-
 	foreach PHASE ( `echo $EQ_PHASE_LIST `)
-	##foreach PHASE ( `echo $new_phase_list `)
 		echo "============================================================================="
 		echo "****Empirical Wavelet Algorithm Running for $EQ   PHASE: $PHASE **********`date`"
 		set INPUT = ($EQ $DATADIR  $PLOTDIR $C_DIR $SHELL_DIR   $DIR $PHASE)
@@ -46,7 +42,9 @@ cp $DATADIR/INFILE* $DATADIR/$EQ/
 	end #  PHASE
 csh $PWD/plot.sh $ID $EQ
 
-### check if current EQ is checked 
+
+
+
 set ed_check_file = $ED_CHECK_FILE
 set fff = `cat $ed_check_file |grep $EQ |awk 'NR==1 {print $1}' `
 if($fff != "" ) then
