@@ -25,8 +25,16 @@ Currently this code is only executable on our own server at Arizona State Univer
 This code is still improving, if there is any bug, please take a few minutes and open an issue.
 
 ## Usage
+
+First, clone the repository to your local directory
+```shell
+git clone https://github.com/Leviyu/EQTime.git
+```
+
+
 Go into SRC directory and execute:
 ```shell
+cd EQTime/SRC
 ./config
 ```
 Change parameters in `INFILE.mother`, including:
