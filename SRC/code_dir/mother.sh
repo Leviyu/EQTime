@@ -29,5 +29,5 @@ if($ID == "" || $ID == " ") then
 exit 0
 endif
 
-csh run_work.sh $ID $WORKDIR $PWD> & /dev/null &
+csh $PWD/code_dir/run_work.sh $ID $WORKDIR $PWD> & /dev/null &
 

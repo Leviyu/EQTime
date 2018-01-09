@@ -4,38 +4,49 @@
 
 # ============================================================================
 <PHASE>								S
+	# Phase name
 <COMP>								T
+	# Component, choose from T/R/Z
 <filter_flag>						bp
 <Frequency_range>					0.01	0.1
 	# bp means bandpass filter,frequency_range defines the corner frequency 
 	# of the bandpass filter, with the first one being the low corner and the 
-	# second one being the high corner
+	# second one being the high corner in Hz
 <DIST_MIN_MAX>						70 71
 	# minimum / maximum distance 
 	# only stations with the distance range would be processed
 # ============================================================================
 
 
-
-
-
 <DIST_DELTA>				        1
+	# Distance stack increment for record section distance stack 
 <LONG_BEG>  						-100
+	# large window begin time relative to PREM in seconds
 <LONG_LEN>  						200
+	# large window length in seconds
 <PHASE_BEG>  						-10
+	# phase window begin time relative to PREM in seconds
 <PHASE_LEN>  						50
+	# phase length in seconds
 <NOISE_BEG>  						-100
+	# noise window begin time relative to PREM in seconds
 <NOISE_LEN>  						80
+	# noise window length in seconds
 <velocity_or_displacement>  		velocity
-#<velocity_or_displacement>  		displacement
-<POLAR_SOLUTION>					2
+	# velocity / displacement
+	# whether to process records in velocity domain or displacement domain
 
-# 1 use CMT prediction
-# 2 use long phase window to cross-correlate and find the best match and use the ccc 
-# (+ or -) to set the polar flag for current record
 
 
 
 # === SNR CCC CUT parameter ==== #
 <SNR_CUT>							2.1
 <CCC_CUT>							0.92
+	# SNR threshold and CCC threshold
+	# records with SNR smaller then SNR_CUT  and CCC smaller then
+	# CCC_CUT would be classified as bad records
+
+
+
+<POLAR_SOLUTION>					2
+	# Discarded flag

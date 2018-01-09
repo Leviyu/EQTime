@@ -40,7 +40,7 @@ cp $DATADIR/INFILE* $DATADIR/$EQ/
 		echo "============================================================================="
 
 	end #  PHASE
-csh $PWD/plot.sh $ID $EQ
+csh $PWD/code_dir/plot.sh $ID $EQ
 
 
 

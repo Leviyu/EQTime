@@ -2,7 +2,7 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				TESTRUN1
+<TASK_NAME>				TESTRUN5
 						# TASK_NAME should be the unique ID for this task					
 
 <PHASE_LIST>			S
@@ -17,19 +17,22 @@
 
 <Process_Number>		1
 						# How many processes to run at the same time
-						# the events from EQ_LIST would be divided into multiple
+						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
 # =============================================================
 
 
 <GMT_DIR>				/opt/gmt/GMT4.5.9/bin
+						# the directory information of GMT 
 <TAUP_DIR>				/opt/TauP-2.1.1/bin
+						# the directory information of TAUP
+<SACHOME>				/opt/sac
+						# the directory information of SAC
 
 
 # Directory information
 <BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime
-<SACHOME>				/opt/sac
 <CURRENT_DIR>			SRC
 <EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
 <DATADIR>				DATADIR
@@ -44,6 +47,3 @@
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process
 <Reprocessing_Flag>		0			# if this flag is on, we reprocess all picked records
-# and restack Empirical Wavelet and do the measurements again
-# The picked records is grabbed from 
-#  ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_all.Dec1_2017/travel_time.ascii 
