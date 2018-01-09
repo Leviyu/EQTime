@@ -53,7 +53,7 @@ After all processes have finished, to generate a master catalog file of all cata
 
 ## To do List
 - [x] Renew CMT information to include recent year events
-- [ ] Debug, possible depth phase travel time missing
+- [x] Debug, possible depth phase travel time missing
 - [ ] Combine virtual station into current setup
  
 

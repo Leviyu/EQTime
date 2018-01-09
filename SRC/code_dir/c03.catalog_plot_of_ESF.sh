@@ -36,6 +36,7 @@ set ESinfo = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 
 set BENCHMARK_FLAG = `cat $DATADIR/$EQ/INFILE |grep -w BENCHMARK_FLAG|awk '{print $2}'`
+set reprocessing_flag = `cat $DATADIR/$EQ/INFILE |grep -w Reprocessing_Flag|awk '{print $2}'`
 
 set ed_check_file = $ED_CHECK_FILE1
 
@@ -238,6 +239,9 @@ cat $eventinfo_good_tmp_list |sort -n -k 3 >> $ESinfo
 
 # =============================================================================== fff not NULL
 endif
+
+
+
 
 
 

@@ -7,6 +7,7 @@ set BIG_ID = `cat $INFILE|grep TASK_NAME |awk 'NR==1 {print $2}'`
 set EQ_LIST = `cat $INFILE |grep EQ_LIST|awk 'NR==1 {print $2}'`
 set processes = `cat $INFILE |grep Process_Number|awk 'NR==1 {print $2}'`
 set EQ_LIST = $PWD/EQ_LIST_DIR/$EQ_LIST
+
 cp $EQ_LIST $PWD/INPUT_EQ_LIST
 set TPWD = $PWD
 

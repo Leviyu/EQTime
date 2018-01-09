@@ -144,6 +144,26 @@ EOF
 cat $polar_PPP >> $polarity_info
 
 
+
+# if  reprocessing_flag = 1 then we clean eventStation to be exactly what we
+# have picked
+set reprocessing_flag = `cat $DATADIR/$EQ/INFILE |grep -w Reprocessing_Flag|awk '{print $2}'`
+# if is Reprocessing_Flag then we only use selected records to plot
+if($reprocessing_flag == 1) then
+	set re_evenet = $work_dir/event.re
+	cat /dev/null >! $re_evenet
+	set select_file = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE} 
+	foreach STA (`cat $select_file |awk '{print $1}'`)
+		cat $eventStation |grep -w $STA >> $re_evenet
+	end 
+	mv $re_evenet $eventStation
+endif
+
+
+
+
+
+
 	echo "--> Looking for CMT and polar info DONE"
 
 exit 0

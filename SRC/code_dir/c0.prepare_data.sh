@@ -31,7 +31,29 @@ $get_DATA ${EQ}/$old_event $EQ_SAC_FILE_DIR
 
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
-awk '{if (NR>1 && $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -k 3 > $event
+awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -k 3 > $event
+
+
+# ======
+# we check to make sure when Reprocessing_Flag is on, we only selected those
+# that is picked
+set Reprocessing_Flag = `cat $work_dir/INFILE |grep Reprocessing_Flag |awk '{print $2}'`
+if($Reprocessing_Flag == 1) then
+echo "-> Reprocessing_Flag"
+set picked_eventinfo = ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_all.Dec1_2017/travel_time.ascii
+set Reprocessing_event = $work_dir/event.Reprocessing_Flag
+cat /dev/null >! $Reprocessing_event
+set current_eq_phase_list = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE}
+cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46}' >! $current_eq_phase_list
+foreach STA (`cat $current_eq_phase_list|awk '{print $1}'`)
+	cat $event |grep -w $STA >> $Reprocessing_event
+end #STA
+mv $Reprocessing_event $event
+endif # Reprocessing_Flag
+# ======
+
+
+
 
 
 
@@ -60,7 +82,6 @@ mv $missing_sta_event $event
 set S_ES_DIR = /mnt/data2/hongyu/Catalog_Plots/mother_dir/C01_make_eventinfo/eventinfo_dir/S_ES_DIR_all
 cp $S_ES_DIR/${EQ}.S_ES $work_dir/main_ES.out
 endif
-
 
 
 

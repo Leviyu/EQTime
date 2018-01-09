@@ -2,17 +2,18 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				T1
+<TASK_NAME>				TESTRUN1
 						# TASK_NAME should be the unique ID for this task					
-<PHASE_LIST>			S 
+
+<PHASE_LIST>			S
+#<PHASE_LIST>			S Sdiff ScS SSS ScSScS SS
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			T1
-						# List of events, by default, events from EQ_LIST under
-						# current directory is read in
-						# e.g. 200601022213 
+<EQ_LIST_FILE>			EXAMPLE
+						# file name of a list of events to be processed
+						# by default, the file is placed under EQ_LIST_DIR 
 
 <Process_Number>		1
 						# How many processes to run at the same time
@@ -40,3 +41,7 @@
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process
+<Reprocessing_Flag>		0			# if this flag is on, we reprocess all picked records
+# and restack Empirical Wavelet and do the measurements again
+# The picked records is grabbed from 
+#  ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_all.Dec1_2017/travel_time.ascii 
