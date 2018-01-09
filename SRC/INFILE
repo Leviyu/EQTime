@@ -23,6 +23,8 @@
 # =============================================================
 
 
+<GMT_DIR>				/opt/gmt/GMT4.5.9/bin
+<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime//opt/TauP-2.1.1/bin
 
 
 # Directory information
@@ -34,7 +36,7 @@
 <PLOTDIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/PLOTDIR
 <SHELL_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/SRC/code_dir
 <C_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/Maligaro/c_lib
-<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/TIMEDIR
+<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime//opt/TauP-2.1.1/bin
 <T_star_lib>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/tstar_lib
 <ED_CHECK_FLAG>			0
 <ED_CHECK_FILE>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/SRC/code_dir/eventinfo

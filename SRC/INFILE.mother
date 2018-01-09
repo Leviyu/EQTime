@@ -23,6 +23,8 @@
 # =============================================================
 
 
+<GMT_DIR>				/opt/gmt/GMT4.5.9/bin
+<TAUP_DIR>				/opt/TauP-2.1.1/bin
 
 
 # Directory information

@@ -15,3 +15,11 @@ cd $PWD
 sed -i '/BIGDIR/c\<BIGDIR>				'$DIR'' $PWD/INFILE.mother
 
 
+
+# set up environment variable
+set INFILE = $PWD/INFILE.mother
+set GMT_DIR = `cat $INFILE|grep GMT_DIR |awk '{print $2}'`
+set TAUP_DIR = `cat $INFILE|grep TAUP_DIR |awk '{print $2}'`
+echo "set path=($path ${GMT_DIR})" >> ~/.tcshrc
+echo "set path=($path ${TAUP_DIR})" >> ~/.tcshrc
+source ~/.tcshrc
