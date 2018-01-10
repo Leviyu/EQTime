@@ -20,7 +20,6 @@
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
-# =============================================================
 
 
 <GMT_DIR>				/opt/gmt/GMT4.5.9/bin
@@ -30,6 +29,7 @@
 <SACHOME>				/opt/sac
 						# the directory information of SAC
 
+# =============================================================
 
 # Directory information
 <BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime
