@@ -31,17 +31,22 @@ First, clone the repository to your local directory
 git clone https://github.com/Leviyu/EQTime.git
 ```
 
-
-Go into SRC directory and execute:
+Go to SRC directory and change parameters in `INFILE.mother`:
 ```shell
 cd EQTime/SRC
+vi INFILE.mother
+```
+Parameters we have include:
+* Taks name (unique ID to identify each run)
+* Phase list (Phase of interest)
+* Earthquake File (Earthquake of interest)
+* Process Number (number of working process to be run at the same time )
+* Support software path, including taup, sac and gmt
+
+Then execute config file:
+```shell
 ./config
 ```
-Change parameters in `INFILE.mother`, including:
-* Taks name
-* Phase list
-* Earthquake File
-* Process Number
 
 For each phase, there is a corresponding file to it located under `INFILE_DIR/INFILE_${PHASE_NAME}`, change parameters in it depending on your need.
 The description of each entry in the phase infile is only shown in `INFILE_DIR/INFILE_S`.
@@ -51,7 +56,7 @@ To execute the code:
 ./big_run.sh
 ```
 
-The produced catalog plots are located under `../PLOTDIR`, the directory name is same as the `TASK_NAME` specified in `INFILE.mother`.
+The produced catalog pdf plots are located under `../PLOTDIR`, the directory name is same as the `TASK_NAME` specified in `INFILE.mother`.
 
 
 After all processes have finished, to generate a master catalog file of all catalog files within the directory, go into the directory and execute:
