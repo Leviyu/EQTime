@@ -24,7 +24,7 @@
 
 <GMT_DIR>				/opt/gmt/GMT4.5.9/bin
 						# the directory information of GMT 
-<TAUP_DIR>				/opt/TauP-2.1.1/bin
+<TAUPDIR>				/opt/TauP-2.1.1/bin
 						# the directory information of TAUP
 <SACHOME>				/opt/sac
 						# the directory information of SAC
@@ -32,7 +32,7 @@
 # =============================================================
 
 # Directory information
-<BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime
+<BIGDIR>				/mnt/data2/hongyu/EQTime
 <CURRENT_DIR>			SRC
 <EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
 <DATADIR>				DATADIR

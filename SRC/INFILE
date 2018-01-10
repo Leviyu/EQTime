@@ -20,29 +20,29 @@
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
-# =============================================================
 
 
 <GMT_DIR>				/opt/gmt/GMT4.5.9/bin
 						# the directory information of GMT 
-<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime//opt/TauP-2.1.1/bin
+<TAUPDIR>				/opt/TauP-2.1.1/bin
 						# the directory information of TAUP
 <SACHOME>				/opt/sac
 						# the directory information of SAC
 
+# =============================================================
 
 # Directory information
-<BIGDIR>				/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime
-<CURRENT_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/SRC
+<BIGDIR>				/mnt/data2/hongyu/EQTime
+<CURRENT_DIR>						/mnt/data2/hongyu/EQTime/SRC
 <EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
-<DATADIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/DATADIR
-<PLOTDIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/PLOTDIR
-<SHELL_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/SRC/code_dir
-<C_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/Maligaro/c_lib
-<TAUP_DIR>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime//opt/TauP-2.1.1/bin
-<T_star_lib>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/tstar_lib
+<DATADIR>						/mnt/data2/hongyu/EQTime/DATADIR
+<PLOTDIR>						/mnt/data2/hongyu/EQTime/PLOTDIR
+<SHELL_DIR>						/mnt/data2/hongyu/EQTime/SRC/code_dir
+<C_DIR>						/mnt/data2/hongyu/EQTime/Maligaro/c_lib
+<TAUP_DIR>						/mnt/data2/hongyu/EQTime/TIMEDIR
+<T_star_lib>						/mnt/data2/hongyu/EQTime/tstar_lib
 <ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>						/mnt/soddisk/soduser/Hongyu_DIR/TTT/EQTime/SRC/code_dir/eventinfo
+<ED_CHECK_FILE>						/mnt/data2/hongyu/EQTime/SRC/code_dir/eventinfo
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process
