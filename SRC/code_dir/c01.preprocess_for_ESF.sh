@@ -93,6 +93,7 @@ date
 if(! -e $work_dir/EWM ) then
 cd $C_DIR/lib
 echo "we are current making source"
+make clean > & /dev/null
 make > & /dev/null
 cp EWM $work_dir/
 endif
