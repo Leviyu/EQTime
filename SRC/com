@@ -1,0 +1,2 @@
+use hongyu_db1;
+SELECT DISTINCT EQ_NAME FROM EQTIME;

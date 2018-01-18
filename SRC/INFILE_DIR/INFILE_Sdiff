@@ -4,7 +4,7 @@
 <PHASE>								Sdiff
 <COMP>								T	
 <filter_flag>						bp
-<DIST_MIN_MAX>						non 180
+<DIST_MIN_MAX>						105 108
 <DIST_DELTA>                        2
 <Frequency_range>					0.01	0.1
 
