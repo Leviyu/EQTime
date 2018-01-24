@@ -58,6 +58,7 @@ set SNR_CUT = `grep -w SNR_CUT $INFILE | awk 'NR==1 {print $2}'`
 set CCC_CUT = `grep -w CCC_CUT $INFILE | awk 'NR==1 {print $2}'`
 set filter_flag =  `grep filter_flag $INFILE | awk '{print $2}'`
 set DELTA = `grep -w  DELTA $work_dir/INFILE | awk 'NR==1 {print $2}'`
+set Reprocessing_Flag = `grep   Reprocessing_Flag $work_dir/INFILE | awk 'NR==1 {print $2}'`
 
 
 
@@ -79,6 +80,7 @@ date
 # ===================================================
 set INPUT = ( $EQ $DATADIR $PLOTDIR $C_DIR $SHELL_DIR )
 set c15_INPUT = ($INPUT $DISTMIN $DISTMAX $PHASE $COMP $filter_flag  )
+# for postprocessing, we use polarity flag from picks
 csh $SRCDIR/c15.get_polarity.sh							$c15_INPUT
 date
 

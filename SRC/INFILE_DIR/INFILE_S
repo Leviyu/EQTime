@@ -12,7 +12,7 @@
 	# bp means bandpass filter,frequency_range defines the corner frequency 
 	# of the bandpass filter, with the first one being the low corner and the 
 	# second one being the high corner in Hz
-<DIST_MIN_MAX>						30 70
+<DIST_MIN_MAX>						30 non
 	# minimum / maximum distance 
 	# only stations with the distance range would be processed
 # ============================================================================
@@ -24,9 +24,9 @@
 	# large window begin time relative to PREM in seconds
 <LONG_LEN>  						200
 	# large window length in seconds
-<PHASE_BEG>  						-10
+<PHASE_BEG>  						-5
 	# phase window begin time relative to PREM in seconds
-<PHASE_LEN>  						50
+<PHASE_LEN>  						35
 	# phase length in seconds
 <NOISE_BEG>  						-100
 	# noise window begin time relative to PREM in seconds

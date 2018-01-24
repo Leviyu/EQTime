@@ -87,3 +87,4 @@ csh $csh_file $EQ $DATADIR $PLOTDIR $C_DIR $SHELL_DIR
 # delete all taup_time file
 #/bin/rm $TAUP_DIR/taup_time.${EQ}.* 
 
+to_hongyu $PLOTDIR

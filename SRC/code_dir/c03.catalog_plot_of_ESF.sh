@@ -381,9 +381,9 @@ set long = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.long
 set emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.emp
 set gau = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.gau
 set orig_emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.orig.emp
-set CMT_polar_prediction_file = $work_dir/eventinfo.polarity.${PHASE}.${COMP}
-set CMT_polar_tmp  = `grep -w $sta $CMT_polar_prediction_file |awk 'NR==1 {print $2}'` 
-set CMT_polar_prediction = `printf "%.2f" $CMT_polar_tmp`
+#set CMT_polar_prediction_file = $work_dir/eventinfo.polarity.${PHASE}.${COMP}
+#set CMT_polar_tmp  = `grep -w $sta $CMT_polar_prediction_file |awk 'NR==1 {print $2}'` 
+#set CMT_polar_prediction = `printf "%.2f" $CMT_polar_tmp`
 ##echo "---> sta $sta cmt $CMT_polar_prediction"
 
 
@@ -452,6 +452,7 @@ set EQ_mag = `printf "%.1f" $infoES[11]`
 set EQ_name = $infoES[12]
 set polar_flag = $infoES[13]
 set quality_flag = $infoES[14]
+set CMT_polar_prediction = $infoES[43]
 ## here we hardwire the picking info with our big eventinfo.final
 ##set final_event = $DIR/eventinfo.final
 ##ls $final_event
@@ -502,6 +503,14 @@ set PHASE_WINDOW_BEG = $infoES[29]
 set PHASE_WINDOW_END = `echo "$PHASE_WINDOW_BEG + $PHASE_LEN"|bc`
 
 set record_weight = $infoES[30]
+
+set misfit2T_pre = $infoES[46]
+set misfit2T_bak = $infoES[48]
+set misfit3T_pre = $infoES[47]
+set misfit3T_bak = $infoES[49]
+set SNR_peak_trough = $infoES[50]
+set SNR_peak_ratio = $infoES[51]
+
 
 set ONSET = $infoES[33]
 set ENDSET = $infoES[34]
@@ -907,11 +916,12 @@ EOF
 
 	# ================= add info section ===================
 	pstext -JX2i/0.5i -R0/1/0/1 -O -K -N -P -X5.2i <<END>>$OUTFILE
-	0 1.0  7 0 0 LB  ----------------------
-	0 0.75 7 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak 
-	0 0.5  7 0 0 LB CCC3: $CCC3 CCC:$ccc SNR:$SNR  dt:$dt_obs_prem gau_factor: $record_gaussian_factor
-	0 0.25 7 0 0 LB stretch_ccc: $best_stretch_ccc factor: $best_stretch_coeff tstar: $tstar ccc: $tstar_ccc
-	0 0.0  7 0 0 LB AZ:$AZ  weight: $record_weight polar: $CMT_polar_prediction
+	0 1.0  5 0 0 LB  ----------------------
+	0 0.8 5 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak 
+	0 0.6  5 0 0 LB CCC3: $CCC3 CCC:$ccc SNR:$SNR dt:$dt_obs_prem gaufactor: $record_gaussian_factor
+	0 0.4 5 0 0 LB stretch_ccc: $best_stretch_ccc factor: $best_stretch_coeff tstar: $tstar ccc: $tstar_ccc
+	0 0.2  5 0 0 LB AZ:$AZ  weight: $record_weight polar: $CMT_polar_prediction
+	0 0.0 5 0 0 LB Misfit2T: $misfit2T_pre/$misfit2T_bak Misfit3T: $misfit3T_pre/$misfit3T_bak SNR3/4: $SNR_peak_trough / $SNR_peak_ratio
 END
 
 
@@ -989,5 +999,6 @@ EOF
 end #sta foreach
 
 ps2pdf $tmp_ps $OUTFILE_pdf
+#to_hongyu $PLOTDIR_main
 /bin/rm $tmp_ps
 

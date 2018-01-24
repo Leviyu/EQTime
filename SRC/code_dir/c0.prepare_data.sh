@@ -44,11 +44,12 @@ set picked_eventinfo = ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_
 set Reprocessing_event = $work_dir/event.Reprocessing_Flag
 cat /dev/null >! $Reprocessing_event
 set current_eq_phase_list = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE}
-cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46}' >! $current_eq_phase_list
+cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46,$13,$43}' >! $current_eq_phase_list
 foreach STA (`cat $current_eq_phase_list|awk '{print $1}'`)
 	cat $event |grep -w $STA >> $Reprocessing_event
 end #STA
 mv $Reprocessing_event $event
+
 endif # Reprocessing_Flag
 # ======
 
