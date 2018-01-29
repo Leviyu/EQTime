@@ -10,8 +10,8 @@
 
 <LONG_BEG>  						-100
 <LONG_LEN>  						200
-<PHASE_BEG>  						-15
-<PHASE_LEN>  						40
+<PHASE_BEG>  						-13
+<PHASE_LEN>  						35
 <NOISE_BEG>  						-100
 <NOISE_LEN>  						80
 <velocity_or_displacement>  		velocity

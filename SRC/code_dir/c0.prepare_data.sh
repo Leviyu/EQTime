@@ -40,11 +40,19 @@ awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -
 set Reprocessing_Flag = `cat $work_dir/INFILE |grep Reprocessing_Flag |awk '{print $2}'`
 if($Reprocessing_Flag == 1) then
 echo "-> Reprocessing_Flag"
-set picked_eventinfo = ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_all.Dec1_2017/travel_time.ascii
+#set picked_eventinfo = ~/Catalog_Plots/mother_dir/C01_make_eventinfo/TravelTime_all.Dec1_2017/travel_time.ascii
 set Reprocessing_event = $work_dir/event.Reprocessing_Flag
 cat /dev/null >! $Reprocessing_event
 set current_eq_phase_list = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE}
-cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46,$13,$43}' >! $current_eq_phase_list
+set command = $work_dir/.command
+cat << EOF >! $command
+use hongyu_db1;
+SELECT STA,DT+MANUAL_SHIFT,POLAR_FLAG,POLARITY FROM EQTIME 
+WHERE EQ_NAME = ${EQ} && PHASE = "${PHASE}";
+EOF
+hongyusql_command $command |awk 'NR > 1 {print $0}' > ! $current_eq_phase_list
+
+#//cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46,$13,$43}' >! $current_eq_phase_list
 foreach STA (`cat $current_eq_phase_list|awk '{print $1}'`)
 	cat $event |grep -w $STA >> $Reprocessing_event
 end #STA

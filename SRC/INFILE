@@ -2,16 +2,17 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				M200
+<TASK_NAME>				M413
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S Sdiff ScS SSS ScSScS SS
-#<PHASE_LIST>			S 
+#<PHASE_LIST>			S ScS
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			POST1994
+<EQ_LIST_FILE>			POSTMORE
+#<EQ_LIST_FILE>			POST2
 #<EQ_LIST_FILE>			EXAMPLE
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 

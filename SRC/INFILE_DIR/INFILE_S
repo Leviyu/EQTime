@@ -24,9 +24,9 @@
 	# large window begin time relative to PREM in seconds
 <LONG_LEN>  						200
 	# large window length in seconds
-<PHASE_BEG>  						-5
+<PHASE_BEG>  						-13
 	# phase window begin time relative to PREM in seconds
-<PHASE_LEN>  						35
+<PHASE_LEN>  						40
 	# phase length in seconds
 <NOISE_BEG>  						-100
 	# noise window begin time relative to PREM in seconds
