@@ -2,8 +2,7 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				K1
-#<TASK_NAME>				Patch507
+<TASK_NAME>				Patch505
 #<TASK_NAME>				POST
 						# TASK_NAME should be the unique ID for this task				
 
@@ -13,15 +12,14 @@
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			T1
-#<EQ_LIST_FILE>			EQ_LIST.PATCH505
+<EQ_LIST_FILE>			EQ_LIST.PATCH505
 #<EQ_LIST_FILE>			POST
 #<EQ_LIST_FILE>			POSTMORE
 #<EQ_LIST_FILE>			EXAMPLE
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		2
+<Process_Number>		5
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
