@@ -2,7 +2,9 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				POST
+<TASK_NAME>				K1
+#<TASK_NAME>				Patch507
+#<TASK_NAME>				POST
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S Sdiff ScS SSS ScSScS SS
@@ -11,13 +13,15 @@
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			POST
+<EQ_LIST_FILE>			T1
+#<EQ_LIST_FILE>			EQ_LIST.PATCH505
+#<EQ_LIST_FILE>			POST
 #<EQ_LIST_FILE>			POSTMORE
 #<EQ_LIST_FILE>			EXAMPLE
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		6
+<Process_Number>		2
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
@@ -48,4 +52,4 @@
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process
-<Reprocessing_Flag>		1			# if this flag is on, we reprocess all picked records
+<Reprocessing_Flag>		0			# if this flag is on, we reprocess all picked records
