@@ -18,7 +18,7 @@
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		6
+<Process_Number>		1
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
