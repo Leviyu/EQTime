@@ -2,7 +2,7 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				POSTM
+<TASK_NAME>				POST_FEB
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S Sdiff ScS SSS ScSScS SS
