@@ -2,7 +2,7 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				POST_FEB
+<TASK_NAME>				POSTMAR3
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S Sdiff ScS SSS ScSScS SS
@@ -11,11 +11,10 @@
 						# e.g. P PcP Pdiff 
 
 <EQ_LIST_FILE>			POST
-#<EQ_LIST_FILE>			EXAMPLE
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		6
+<Process_Number>		8
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually

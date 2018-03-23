@@ -35,6 +35,11 @@ set input = $work_dir/input
 set ESinfo = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 
+# remove record with quality flag != 1
+cat $ESinfo |awk '$14>=1 {print $0}' >! $ESinfo_tmp
+mv $ESinfo_tmp $ESinfo
+
+
 set BENCHMARK_FLAG = `cat $DATADIR/$EQ/INFILE |grep -w BENCHMARK_FLAG|awk '{print $2}'`
 set reprocessing_flag = `cat $DATADIR/$EQ/INFILE |grep -w Reprocessing_Flag|awk '{print $2}'`
 
