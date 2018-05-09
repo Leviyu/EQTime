@@ -47,9 +47,10 @@ set current_eq_phase_list = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE}
 set command = $work_dir/.command
 cat << EOF >! $command
 use hongyu_db1;
-SELECT STA,DT+MANUAL_SHIFT,POLAR_FLAG,POLARITY FROM EQTIME 
+SELECT STA,DT,POLAR_FLAG,POLARITY FROM EQTIME 
 WHERE EQ_NAME = ${EQ} && PHASE = "${PHASE}";
 EOF
+#SELECT STA,DT+MANUAL_SHIFT,POLAR_FLAG,POLARITY FROM EQTIME 
 hongyusql_command $command |awk 'NR > 1 {print $0}' > ! $current_eq_phase_list
 
 #//cat $picked_eventinfo|grep -w $EQ |grep -w $PHASE |awk '{print $1,$19+$46,$13,$43}' >! $current_eq_phase_list
@@ -212,6 +213,16 @@ rtr
 rmean
 interpolate delta ${DELTA}
 lp co $bp_min n 2 p 2
+write over
+EOF
+
+
+else
+cat<< EOF >> $macro
+r $sacname
+rtr
+rmean
+interpolate delta ${DELTA}
 write over
 EOF
 

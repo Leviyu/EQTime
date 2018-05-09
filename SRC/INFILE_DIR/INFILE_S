@@ -8,11 +8,11 @@
 <COMP>								T
 	# Component, choose from T/R/Z
 <filter_flag>						bp
-<Frequency_range>					0.01	0.1
+<Frequency_range>					0.01 0.1
 	# bp means bandpass filter,frequency_range defines the corner frequency 
 	# of the bandpass filter, with the first one being the low corner and the 
 	# second one being the high corner in Hz
-<DIST_MIN_MAX>						30 non
+<DIST_MIN_MAX>						70 72
 	# minimum / maximum distance 
 	# only stations with the distance range would be processed
 # ============================================================================
