@@ -922,10 +922,10 @@ EOF
 	# ================= add info section ===================
 	pstext -JX2i/0.5i -R0/1/0/1 -O -K -N -P -X5.2i <<END>>$OUTFILE
 	0 1.0  5 0 0 LB  ----------------------
-	0 0.8 5 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak 
+	0 0.8 5 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak weight: $record_weight
 	0 0.6  5 0 0 LB CCC3: $CCC3 CCC:$ccc SNR:$SNR dt:$dt_obs_prem gaufactor: $record_gaussian_factor
 	0 0.4 5 0 0 LB stretch_ccc: $best_stretch_ccc factor: $best_stretch_coeff tstar: $tstar ccc: $tstar_ccc
-	0 0.2  5 0 0 LB AZ:$AZ  weight: $record_weight polar: $CMT_polar_prediction
+	0 0.2  5 0 0 LB AZ:$AZ  polar: $CMT_polar_prediction
 	0 0.0 5 0 0 LB Misfit2T: $misfit2T_pre/$misfit2T_bak Misfit3T: $misfit3T_pre/$misfit3T_bak SNR3/4: $SNR_peak_trough / $SNR_peak_ratio
 END
 

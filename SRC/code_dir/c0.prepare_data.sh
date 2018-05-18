@@ -200,7 +200,7 @@ r $sacname
 rtr
 rmean
 interpolate delta ${DELTA}
-bp co $bp_min $bp_max n 2 p 2
+bp co $bp_min $bp_max n 2 p 1
 write over
 EOF
 #sac < $macro > &/dev/null
@@ -212,7 +212,7 @@ r $sacname
 rtr
 rmean
 interpolate delta ${DELTA}
-lp co $bp_min n 2 p 2
+lp co $bp_min n 2 p 1
 write over
 EOF
 
