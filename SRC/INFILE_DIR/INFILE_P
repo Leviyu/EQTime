@@ -15,8 +15,6 @@
 <PHASE_LEN>  						40
 <NOISE_BEG>  						-50
 <NOISE_LEN>  						35
-<velocity_or_displacement>  		velocity
-##<velocity_or_displacement>  		displacement
 <POLAR_SOLUTION>					2
 
 # 1 use CMT prediction

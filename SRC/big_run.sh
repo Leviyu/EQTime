@@ -23,7 +23,7 @@ echo "--> Working on $PART / $processes for $BIG_ID"
 
 set BEG = `echo " ($PART - 1)*$INC +1"|bc`
 set END = `echo "($PART)*$INC "|bc`
-set PART_FILE = $TPWD/LOG/list.EQ.${BIG_ID}.${PART}
+set PART_FILE = $TPWD/LOG/.list.EQ.${BIG_ID}.${PART}
 cat $EQ_LIST |awk '{ if(NR>='$BEG' && NR<='$END') print $0}' >! $PART_FILE
 cd $TPWD
 set ID = ${BIG_ID}_${PART}

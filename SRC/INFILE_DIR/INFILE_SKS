@@ -14,8 +14,6 @@
 <PHASE_LEN>  						50
 <NOISE_BEG>  						-50
 <NOISE_LEN>  						40
-<velocity_or_displacement>  		displacement
-##<velocity_or_displacement>  		velocity
 
 
 

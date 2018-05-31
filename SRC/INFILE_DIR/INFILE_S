@@ -8,11 +8,11 @@
 <COMP>								T
 	# Component, choose from T/R/Z
 <filter_flag>						bp
-<Frequency_range>					0.01 0.1
+<Frequency_range>					0.01 0.0667
 	# bp means bandpass filter,frequency_range defines the corner frequency 
 	# of the bandpass filter, with the first one being the low corner and the 
 	# second one being the high corner in Hz
-<DIST_MIN_MAX>						70 71
+<DIST_MIN_MAX>						30 non
 	# minimum / maximum distance 
 	# only stations with the distance range would be processed
 # ============================================================================
@@ -32,7 +32,6 @@
 	# noise window begin time relative to PREM in seconds
 <NOISE_LEN>  						80
 	# noise window length in seconds
-<velocity_or_displacement>  		velocity
 	# velocity / displacement
 	# whether to process records in velocity domain or displacement domain
 

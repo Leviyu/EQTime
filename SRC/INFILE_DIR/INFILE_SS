@@ -8,7 +8,7 @@
 <DIST_MIN_MAX>						60 180
 <DIST_DELTA>         1
 <filter_flag>						bp
-<Frequency_range>					0.01 0.1
+<Frequency_range>					0.01 0.0667
 
 <LONG_BEG>  						-150
 <LONG_LEN>  						300
@@ -16,8 +16,6 @@
 <PHASE_LEN>  						45
 <NOISE_BEG>  						-100
 <NOISE_LEN>  						80
-<velocity_or_displacement>  		velocity
-#<velocity_or_displacement>  		displacement
 <POLAR_SOLUTION>                    2
 
 

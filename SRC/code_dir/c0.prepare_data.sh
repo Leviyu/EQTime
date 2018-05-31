@@ -47,7 +47,7 @@ set current_eq_phase_list = $work_dir/list.Reprocessing_Flag.${EQ}.${PHASE}
 set command = $work_dir/.command
 cat << EOF >! $command
 use hongyu_db1;
-SELECT STA,DT,POLAR_FLAG,POLARITY FROM EQTIME 
+SELECT STA,DT2,POLAR_FLAG,POLARITY FROM EQTIME 
 WHERE EQ_NAME = ${EQ} && PHASE = "${PHASE}";
 EOF
 #SELECT STA,DT+MANUAL_SHIFT,POLAR_FLAG,POLARITY FROM EQTIME 

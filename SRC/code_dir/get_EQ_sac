@@ -1,17 +1,17 @@
 #!/bin/tcsh
 
 set file = $1
-set EQ_SAC_DIR = $2
-if($file == "" || $EQ_SAC_DIR == "") then
+#set EQ_SAC_DIR = $2
+if($file == "" ) then
 echo "non input file find !"
 exit 0
 endif
 
 
-##set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
-set DATADIR = $2
+#set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
 
-##csh ~/bin/get_EQ_sac $file
+#csh ~/bin/get_EQ_sac $file 
+#scp -r -P 9022 hongyu@eq2.la.asu.edu:${DATADIR}/$file .
+#cp -r $DATADIR/$file .
 
-cp -r $DATADIR/$file .
-
+cp /mnt/soduser/$file . -r

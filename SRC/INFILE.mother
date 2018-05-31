@@ -2,41 +2,45 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				test
-#<TASK_NAME>				U1pass2
+<TASK_NAME>				POST
 						# TASK_NAME should be the unique ID for this task				
 
-<PHASE_LIST>			S 
-#<PHASE_LIST>			S SS SSS Sdiff ScS ScSScS
+<PHASE_LIST>			S SS SSS Sdiff ScS ScSScS
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			test
-#<EQ_LIST_FILE>			POST5
+<EQ_LIST_FILE>			POST
+#<EQ_LIST_FILE>			EQ5
+#<EQ_LIST_FILE>			test
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		1
+<Process_Number>		5
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
 
 
-<GMT_DIR>				/opt/gmt/GMT4.5.9/bin
+<GMT_DIR>				/home/hongyu_ubuntu/bin/resource/gmt-4.5.9/GMT/bin
 						# the directory information of GMT 
-<TAUPDIR>				/opt/TauP-2.1.1/bin
+<TAUPDIR>				/home/hongyu_ubuntu/bin/resource/TauP-2.1.2/bin
 						# the directory information of TAUP
-<SACHOME>				/opt/sac
+<SACHOME>				/usr/local/sac
 						# the directory information of SAC
+
+<velocity_or_displacement>	velocity
+#<velocity_or_displacement>	displacement
+						# decide whether to do in velocity or displacement
+
 
 # =============================================================
 
 # Directory information
-<BIGDIR>				/mnt/data2/hongyu/EQTime
+<BIGDIR>				/home/hongyu_ubuntu/EQTime
 <CURRENT_DIR>			SRC
-<EQ_SAC_FILE_DIR>		/mnt/soddisk/soduser/Merge.Mw6.50km
+<EQ_SAC_FILE_DIR>		/mnt/soduser
 <DATADIR>				DATADIR
 <PLOTDIR>				PLOTDIR
 <SHELL_DIR>				SRC/code_dir

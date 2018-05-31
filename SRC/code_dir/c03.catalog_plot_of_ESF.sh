@@ -36,8 +36,8 @@ set ESinfo = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 
 # remove record with quality flag != 1
-cat $ESinfo |awk '$14>=1 {print $0}' >! $ESinfo_tmp
-mv $ESinfo_tmp $ESinfo
+#cat $ESinfo |awk '$14>=1 {print $0}' >! $ESinfo_tmp
+#mv $ESinfo_tmp $ESinfo
 
 
 set BENCHMARK_FLAG = `cat $DATADIR/$EQ/INFILE |grep -w BENCHMARK_FLAG|awk '{print $2}'`
@@ -384,6 +384,7 @@ foreach sta (`cat $ESinfo |awk '{print $1}'`)
 ##echo "---> Working on plotting $sta PHASE is $PHASE"
 set long = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.long
 set emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.emp
+set phase = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.phase
 set gau = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.gau
 set orig_emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.orig.emp
 #set CMT_polar_prediction_file = $work_dir/eventinfo.polarity.${PHASE}.${COMP}
@@ -519,6 +520,7 @@ set SNR_peak_ratio = $infoES[51]
 
 set ONSET = $infoES[33]
 set ENDSET = $infoES[34]
+set one_period = $infoES[54]
 
 
 ##for ScS cut from -80 to 80 sec
@@ -831,6 +833,8 @@ EOF
 		set emp_color = red 
 		psxy $emp -JX -R -W/$emp_color -O -K>>$OUTFILE
 
+#//psxy $phase -JX -R -W/blue -O -K >> $OUTFILE
+
 
 		## add best fit gaussian here
 		psxy $gau -JX -R -W/orange -O -K>>$OUTFILE
@@ -925,7 +929,7 @@ EOF
 	0 0.8 5 0 0 LB $STA $NET $DIST $STA_lat $STA_lon misfit: $misfit_pre/$misfit/$misfit_bak weight: $record_weight
 	0 0.6  5 0 0 LB CCC3: $CCC3 CCC:$ccc SNR:$SNR dt:$dt_obs_prem gaufactor: $record_gaussian_factor
 	0 0.4 5 0 0 LB stretch_ccc: $best_stretch_ccc factor: $best_stretch_coeff tstar: $tstar ccc: $tstar_ccc
-	0 0.2  5 0 0 LB AZ:$AZ  polar: $CMT_polar_prediction
+	0 0.2  5 0 0 LB AZ:$AZ  polar: $CMT_polar_prediction 1T: $one_period
 	0 0.0 5 0 0 LB Misfit2T: $misfit2T_pre/$misfit2T_bak Misfit3T: $misfit3T_pre/$misfit3T_bak SNR3/4: $SNR_peak_trough / $SNR_peak_ratio
 END
 

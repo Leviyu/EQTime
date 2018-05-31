@@ -15,8 +15,6 @@
 <PHASE_LEN>  						60
 <NOISE_BEG>  						-80
 <NOISE_LEN>  						65
-<velocity_or_displacement>  		velocity
-##<velocity_or_displacement>  		displacement
 
 <POLAR_SOLUTION>                    2 
 
