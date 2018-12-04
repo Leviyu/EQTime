@@ -45,7 +45,9 @@ set DELTA = `cat $work_dir/INFILE |grep DELTA |awk '{print $2}'`
 
 
 # ========================= download sac file =================
+set index = 1
 foreach STA (`cat $event |awk '{print $1}'`)
+echo "--> download $index / $total_num"
 	set tmp1 = `awk -v sta=$STA '$1==sta {print $0}' $event`
 	set EQ = $tmp1[19]
 	set NET = $tmp1[2]
@@ -98,6 +100,8 @@ $get_DATA  ${EQ}/$sacname4  $EQ_SAC_FILE_DIR> & /dev/null
 	set sacR = $sacname3
 	set sacZ = $sacname4
 	else
+echo "<------- Did not find R/Z component, something is missing"
+@ index ++
 	continue
 	endif
 
@@ -109,13 +113,13 @@ r $sacR
 rtr
 rmean
 interpolate delta $DELTA
-bp co $bp_min $bp_max n 2 p 2
+bp co $bp_min $bp_max n 2 p 1
 write over
 r $sacZ
 rtr 
 rmean
 interpolate delta $DELTA
-bp co $bp_min $bp_max n 2 p 2
+bp co $bp_min $bp_max n 2 p 1
 write over
 q
 EOF
@@ -128,13 +132,13 @@ r $sacR
 rtr
 rmean
 interpolate delta $DELTA
-lp co $bp_min  n 2 p 2
+lp co $bp_min  n 2 p 1
 write over
 r $sacZ
 rtr 
 rmean
 interpolate delta $DELTA
-lp co $bp_min  n 2 p 2
+lp co $bp_min  n 2 p 1
 write over
 q
 EOF
@@ -148,6 +152,7 @@ set Z_npts = `saclst npts f $sacZ|awk '{print $2}'`
 set comm_npts = `echo $R_npts $Z_npts |awk '{if($1>$2) print $2; else print $1}'`
 set npts_diff = `echo "$R_npts - $Z_npts"|bc`
 
+#//echo "difference npts is $npts_diff common npts is $comm_npts"
 
 if( $npts_diff > 1000 ) then
 echo "R and Z file npts is too far away ERROR STA $STA"
@@ -155,17 +160,27 @@ rm $sacR $sacZ
 continue
 endif
 
-cat >! $macro << EOF
+if( ! -e $sacR ) then
+continue
+endif
+if( ! -e $sacZ ) then
+continue
+endif
+
+cat > $macro << EOF
 r $sacR $sacZ
 interpolate npts $comm_npts
 rotate through $incident
+interpolate delta 0.1
 w $sacR $sacZ
 q
 EOF
 #//cat $macro
-#//sac < $macro 
-#sac < $macro > & /dev/null
+#sac < $macro 
+timeout 2s sac < $macro > & /dev/null
 
+
+@ index ++
 	end #foreach
 
 # =============================================================

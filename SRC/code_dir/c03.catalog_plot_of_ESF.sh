@@ -688,7 +688,7 @@ EOF
 
 	# ================== plot the trace =====================
 		set long_color = 0/0/0
-		set long_color_flag = `echo ddd |awk '{if('$CMT_polar_prediction' >= -0.15 && '$CMT_polar_prediction' <= 0.15 ) print "green"; else print "hahaha"}'`
+		set long_color_flag = `echo ddd |awk '{if('$CMT_polar_prediction' >= -0.1 && '$CMT_polar_prediction' <= 0.1 ) print "green"; else print "hahaha"}'`
 ##echo "sta $sta long color is $long_color_flag"
 		if($long_color_flag == "green" ) then
 		set long_color = 178/102/255

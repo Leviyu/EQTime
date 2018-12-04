@@ -27,11 +27,17 @@ set Fix_missing_sta_flag = `cat $work_dir/INFILE |grep Fix_missing_sta_flag |awk
 
 # =========================== download eventStation file ======================
 set old_event = eventStation.${EQ}
+set old_event2 = eventStation.dump.${EQ}
 $get_DATA ${EQ}/$old_event $EQ_SAC_FILE_DIR
+$get_DATA ${EQ}/$old_event2 $EQ_SAC_FILE_DIR
+
+set tmp_event = eventStation.tmp2
+cat $old_event $old_event2 |sort|uniq >! $tmp_event
+
 
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
-awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -k 3 > $event
+awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $tmp_event |sort -n -k 3 > $event
 
 
 # ======

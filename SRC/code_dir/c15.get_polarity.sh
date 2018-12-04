@@ -34,21 +34,29 @@ set polar_PPP = $DATADIR/$EQ/PPP.polar
 cat /dev/null >! $polar_PPP
 set eventStation = $DATADIR/$EQ/eventStation.${EQ}.${PHASE}.${COMP}
 set CMT_file = $SHELL_DIR/CMT.data
-set CMT = `grep -w $EQ $CMT_file`
+set CMT = `grep -w $EQ $CMT_file|awk 'NR==1 {print $0}'`
 echo "----> Looking for CMT Info "
 
-set EQ_name_found = `echo $CMT |awk '{print $1}'`
+#set EQ_name_found = `echo $CMT |awk '{print $1}'`
 
 # if we dont find CMT info, we dont use CMT
-if( $EQ_name_found  == "" ) then
-echo "----> CMT for $EQ is not found"
-awk '{print $1,0}' $eventStation > $polarity_info
-exit 0
-else 
+#if( $EQ_name_found  == "" ) then
+#echo "----> CMT for $EQ is not found"
+#awk '{print $1,0}' $eventStation > $polarity_info
+#exit 0
+#else 
 echo "----> CMT for $EQ is $CMT"
-endif
+#endif
 
+set CMT_FILE = $work_dir/.tmp.cmt
+#check_event $EQ >! $CMT_FILE
+#echo $CMT >! $CMT_FILE
 
+#set strike = `cat $CMT_FILE |grep STRIKE |awk '{print $2}'`
+#set dip = `cat $CMT_FILE |grep DIP |awk '{print $2}'`
+#set rake = `cat $CMT_FILE |grep RAKE |awk '{print $2}'`
+
+#echo "CMT is $strike $dip $rake"
 set strike =  $CMT[2]
 set dip = $CMT[3]
 set rake = $CMT[4]
@@ -78,12 +86,13 @@ f95 $RAD_code -o RADTHAZ
 /bin/rm -r $polarity_info > & /dev/null
 foreach STA (`awk '{print $1}' $eventStation`)
 	set TMP = `awk -v sta=$STA '$1==sta {print $0}' $eventStation`
+#echo "--> on $STA "
+#echo $TMP
 	set NET = $TMP[2]
 	set DIST = $TMP[3]
 	set AZ = $TMP[5]
 	set EQ_DEP = $TMP[13]
-
-
+#echo $NET $DIST $AZ $EQ_DEP
 
 	set take_off = `csh $SHELL_DIR/c101.get_taup_takeoff_for_record.sh $EQ $STA $PHASE|awk 'NR==1 {print $1}'`
 
@@ -92,7 +101,7 @@ foreach STA (`awk '{print $1}' $eventStation`)
 ##endif
 ##set take_off = `taup_time -mod prem -ph $PHASE -deg $DIST -h $EQ_DEP | awk 'NR==6 {print $6}'`
 
-##echo $STA $strike $dip $rake $the_comp $take_off $AZ	
+#echo $STA $strike $dip $rake $the_comp $take_off $AZ	
 ./RADTHAZ <<EOF >$work_dir/polarity.tmp
 $strike $dip $rake
 $the_comp

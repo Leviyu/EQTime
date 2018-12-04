@@ -20,24 +20,39 @@ set EQ =	$1
 set STA =	$2
 set PHASE = $3
 
+if(`echo $STA |grep PPP ` != "" ) then
+set STA = `echo $STA |rev|cut -c 5-|rev`
+endif
+
+
+
 if(`echo $PHASE | grep m ` == "" ) then
 set main_PHASE = $PHASE
 else
 set main_PHASE = `echo $PHASE | sed 's/.$//' `
 endif
 
+if(`echo $PHASE |grep S` != "") then
+set COMP = T
+else
+set COMP = Z
+endif
+
+
 
 set INFILE = ./INFILE
 set TAUP_DIR = `grep TAUP_DIR $INFILE|awk 'NR==1 {print $2}'`
 set SHELL_DIR = `grep SHELL_DIR $INFILE|awk 'NR==1 {print $2}'`
-set eventStation = ./eventStation.${EQ}
+set eventStation = ./eventStation.${EQ}.${PHASE}.${COMP}
 
 set TMP = `grep -w $STA $eventStation|awk 'NR==1 {print $0}'`
+#echo "------ tmp "
 set eq_lat = $TMP[11]
 set eq_lon = $TMP[12]
 set eq_dep = $TMP[13]
 set sta_lat = $TMP[9]
 set sta_lon = $TMP[10]
+#echo "------ tmp "
 
 
 

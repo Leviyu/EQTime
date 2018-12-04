@@ -2,21 +2,37 @@
 
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				POST
+<TASK_NAME>				SdataPatch1
+#<TASK_NAME>				PdataPatch2
+#<TASK_NAME>				EWPredict3
+#<TASK_NAME>				p1plot2
+#<TASK_NAME>				POST2more
+#<TASK_NAME>				test7
+#<TASK_NAME>				POST2
 						# TASK_NAME should be the unique ID for this task				
 
-<PHASE_LIST>			S SS SSS Sdiff ScS ScSScS
+<PHASE_LIST>			S ScS Sdiff ScSScS SS SSS
+#<PHASE_LIST>			P Pdiff
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			POST
-#<EQ_LIST_FILE>			EQ5
+<EQ_LIST_FILE>			SdataPatch1
+#<EQ_LIST_FILE>			PdataPatch2
+#<EQ_LIST_FILE>			WILL
+#<EQ_LIST_FILE>			LIST.P.2016
+#<EQ_LIST_FILE>			EXAMPLE1
 #<EQ_LIST_FILE>			test
+#<EQ_LIST_FILE>			EWPredict
+#<EQ_LIST_FILE>			POST3fix1T
+#<EQ_LIST_FILE>			EWtest
+#<EQ_LIST_FILE>			EQ5
+#<EQ_LIST_FILE>			POST2_9
+#<EQ_LIST_FILE>			POST
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		5
+<Process_Number>		2
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
@@ -40,8 +56,8 @@
 # Directory information
 <BIGDIR>				/home/hongyu_ubuntu/EQTime
 <CURRENT_DIR>						/home/hongyu_ubuntu/EQTime/SRC
-<EQ_SAC_FILE_DIR>		/mnt/soduser
-<DATADIR>						/home/hongyu_ubuntu/EQTime/DATADIR
+<EQ_SAC_FILE_DIR>		/mnt/soduser/Merge.Mw6.50km
+<DATADIR>				/DATA1/EQTime/DATADIR
 <PLOTDIR>						/home/hongyu_ubuntu/EQTime/PLOTDIR
 <SHELL_DIR>						/home/hongyu_ubuntu/EQTime/SRC/code_dir
 <C_DIR>						/home/hongyu_ubuntu/EQTime/Maligaro/c_lib
@@ -52,4 +68,5 @@
 <DELTA>					0.1
 <BENCHMARK_FLAG>		0
 <Fix_missing_sta_flag>	0			# only use missing station to process
-<Reprocessing_Flag>		1			# if this flag is on, we reprocess all picked records
+<Reprocessing_Flag>		0			# if this flag is on, we reprocess all picked records
+<PLOT_FLAG>				1

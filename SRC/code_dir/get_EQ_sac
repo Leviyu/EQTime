@@ -14,4 +14,4 @@ endif
 #scp -r -P 9022 hongyu@eq2.la.asu.edu:${DATADIR}/$file .
 #cp -r $DATADIR/$file .
 
-cp /mnt/soduser/$file . -r
+cp /mnt/soduser/Merge.Mw6.50km/$file . -r

@@ -5,14 +5,14 @@
 <PHASE>								Pdiff
 <COMP>								Z
 <filter_flag>						bp
-<DIST_MIN_MAX>						non				180
+<DIST_MIN_MAX>						non 180
 <DIST_DELTA>                        2
-<Frequency_range>			0.01 0.8
+<Frequency_range>			0.01 0.1
 
 <LONG_BEG>  						-50
 <LONG_LEN>  						100
 <PHASE_BEG>  						-10
-<PHASE_LEN>  						25
+<PHASE_LEN>  						40
 <NOISE_BEG>  						-50
 <NOISE_LEN>  						35
 <POLAR_SOLUTION>					2
