@@ -1,2 +1,0 @@
-# Maligaro
-My Personal Library
