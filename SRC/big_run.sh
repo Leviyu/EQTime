@@ -2,7 +2,7 @@
 
 
 set PWD = `pwd`
-set INFILE = $PWD/INFILE.mother
+set INFILE = $PWD/INFILE
 set BIG_ID = `cat $INFILE|grep TASK_NAME |awk 'NR==1 {print $2}'`
 set EQ_LIST = `cat $INFILE |grep EQ_LIST|awk 'NR==1 {print $2}'`
 set processes = `cat $INFILE |grep Process_Number|awk 'NR==1 {print $2}'`
@@ -28,7 +28,7 @@ cat $EQ_LIST |awk '{ if(NR>='$BEG' && NR<='$END') print $0}' >! $PART_FILE
 cd $TPWD
 set ID = ${BIG_ID}_${PART}
 cp $PART_FILE $TPWD/code_dir/INPUT_EQ_LIST
-csh $TPWD/code_dir/mother.sh $ID 
+csh $TPWD/code_dir/mother.sh $PWD $ID  > & /dev/null &
 sleep 3s
 
 #rm $TPWD/INPUT_EQ_LIST

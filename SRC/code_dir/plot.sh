@@ -8,9 +8,11 @@
 # ===================================================================
 
 
+set ID = $1
+set EQ = $2
+set WORKDIR = $3
 ## ======= Read in parameter ===========
-set PWD = `pwd`
-set INFILE = ${PWD}/INFILE
+set INFILE = $WORKDIR/INFILE
 set DIR =						`grep -w CURRENT_DIR $INFILE | awk '{print $2}'`
 set DATADIR =					`grep -w DATADIR $INFILE | awk '{print $2}'`
 set PLOTDIR =					`grep -w PLOTDIR $INFILE | awk 'NR==1 {print $2}'`
@@ -19,8 +21,6 @@ set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk '{print $2}'`
 set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk '{print $2}'`
 
 
-set ID = $1
-set EQ = $2
 if($ID == "" || $ID == " ") then
 echo "======================================================"
 echo "=============Be careful My friend, ID does not exist!========================="
