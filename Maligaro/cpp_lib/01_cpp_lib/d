@@ -1,0 +1,1 @@
+int amplitudeloc(double* array, int len, int* max_amp_loc, double* amplitude, int flag)

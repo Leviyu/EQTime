@@ -1,0 +1,21 @@
+class CRUST_MODEL
+{
+	public:
+
+		double** boundary;
+		double** vs;
+		double** vp;
+		double** rho;
+
+
+
+		void read_crust_model();
+		void get_single_station_correction(double lat, double lon, double* thickness, double* CRUST_TIME, double* PREM_TIME );
+		void get_single_station_correction_vp(double lat, double lon, double* thickness, double* CRUST_TIME, double* PREM_TIME );
+
+
+		CRUST_MODEL();
+		~CRUST_MODEL();
+
+};
+
