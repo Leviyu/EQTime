@@ -67,6 +67,9 @@ First, clone the repository to your local directory
 git clone https://github.com/Leviyu/EQTime.git
 ```
 
+Then, go to `SRC` directory, where most of the code would be implemented.
+
+
 We have maintained a `INFILE` to manage the parameters for this task, include:
 * Taks name (unique ID to identify each run)
 * Phase list (Phase of interest)
@@ -91,6 +94,7 @@ To execute the code, try:
 ./big_run.sh
 ```
 
+All processing happends under `../DATADIR/` and a corresponding subdirectory is created named after `TASK_NAME`.
 The produced catalog pdf plots are located under `../PLOTDIR`, the directory name is same as the `TASK_NAME` specified in `INFILE`.
 
 
