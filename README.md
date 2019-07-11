@@ -54,7 +54,7 @@ EQTime has some further dependencies, you may want to:
 
 The seismic data used for this package is pre-download and stored on our sever at Geophysics Lab at Arizona State University. This package directly download data from the sever through SSH.
 
-To automate the process, you would need access of the server, please contact Professor [Garnero](garnero@asu.edu). To see how to setup [SSH connection without password](http://www.linuxproblem.org/art_9.html).
+To automate the process, you would need access of the server, please contact Professor [Garnero](http://garnero.asu.edu/). To see how to setup [SSH connection without password](http://www.linuxproblem.org/art_9.html).
 
 Another way to access the data is to mount the disk on your local drive, which would need assistance from IT support.
 
