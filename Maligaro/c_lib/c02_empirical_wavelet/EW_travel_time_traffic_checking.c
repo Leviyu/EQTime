@@ -170,141 +170,138 @@ int EW_travel_time_traffic_checking(new_RECORD* my_record, new_INPUT* my_input)
 	else if(strcmp(my_input->PHASE,"SSSS") == 0 )
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"sScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"sSSSS");	iphase++;
+		strcpy(traffic_phase[iphase],"sSSS");	iphase++;
+		strcpy(traffic_phase[iphase],"SSSm");	iphase++;
+		strcpy(traffic_phase[iphase],"sSSSm");	iphase++;
 		traffic_range_sec = 20;
 	}
 	else if(strcmp(my_input->PHASE,"SSSSS") == 0 )
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"SSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSS4");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"SSSm");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"ScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSS");iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSm");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSm");iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSm");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSm");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScS");iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScS") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"SSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"SSS");iphase++;
+		strcpy(traffic_phase[iphase],"sSSS");iphase++;
+		strcpy(traffic_phase[iphase],"SSSS");	iphase++;
+		strcpy(traffic_phase[iphase],"sSSSS");	iphase++;
+		strcpy(traffic_phase[iphase],"SSSSS"); iphase++;  
+		strcpy(traffic_phase[iphase],"sSSSSS"); iphase++;  
+		strcpy(traffic_phase[iphase],"sScSScSScS"); iphase++;  
+		strcpy(traffic_phase[iphase],"SSSSm"); iphase++;  
+		strcpy(traffic_phase[iphase],"sSSSSm"); iphase++;  
+		traffic_range_sec = 30;
+	}
+	else if(strcmp(my_input->PHASE,"ScSScSScSScS") == 0)
+	{
+		iphase = 0;
+		strcpy(traffic_phase[iphase],"ScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScSScSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");		iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS");		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"SSSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"SSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSm");
-		iphase++;
+		strcpy(traffic_phase[iphase],"SSSS"); 		iphase++;
+		strcpy(traffic_phase[iphase],"sSSSS"); 		iphase++;
+		strcpy(traffic_phase[iphase],"SSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"SSSSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"SSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSm");
-		iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSm");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSS");iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSS");iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSS");		 iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSS");		 iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"SSSSSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSSm");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"SSSSSS") == 0)
@@ -327,46 +324,44 @@ int EW_travel_time_traffic_checking(new_RECORD* my_record, new_INPUT* my_input)
 	else if(strcmp(my_input->PHASE,"SSSSSSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sSSSSSSm");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScS");	iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSS"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScSScSScS") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"ScSScSScSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSm");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"SSSSSS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSm");		iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScSScSScSm") == 0)
 	{
 		iphase = 0;
-		strcpy(traffic_phase[iphase],"ScSScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScSScS");
-		iphase++;
-		strcpy(traffic_phase[iphase],"sScSScSScSScSScS");
-		iphase++;
+		strcpy(traffic_phase[iphase],"ScSScSScSScSScSScS");iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"sScSScSScSScSScS"); iphase++;
+		strcpy(traffic_phase[iphase],"SSSSSSm"); iphase++;
+		strcpy(traffic_phase[iphase],"sSSSSSSm"); iphase++;
 		traffic_range_sec = 30;
 	}
 	else if(strcmp(my_input->PHASE,"ScSScSScSScSScSScS") == 0)

@@ -28,7 +28,6 @@
 
 int t_star_func_mine(double t_star, int npts , double delta, double* tstar_array)
 {
-
 	void IDFT(double* inreal, double* inimag, double* outreal, double* outimag, int n);
 	//DFT(double* inreal, double* inimag, double* outreal, double* outimag, int n);
 	int BINFD(int LX, int* LX1, int* N);
@@ -36,9 +35,7 @@ int t_star_func_mine(double t_star, int npts , double delta, double* tstar_array
 	int lx1;
 	int np;
 	int lcent;
-
 	BINFD(npts, &lx1, &np);
-//printf("lx1 np %d %d  \n", lx1, np);
 	lhalf = lx1;
 	lx1 = lx1*2;
 	lcent = lhalf +1;
@@ -47,7 +44,6 @@ int t_star_func_mine(double t_star, int npts , double delta, double* tstar_array
 	tt = lx1*delta;
 	double df;
 	df = 1/ tt;
-
 
 	int count;
 	double Q_real[10000];
@@ -92,34 +88,12 @@ int t_star_func_mine(double t_star, int npts , double delta, double* tstar_array
 	//IDFT( Q_real, Q_imag, array_out_real, array_out_imag , npts );
 	IDFT( Q_real, Q_imag, array_out_real, array_out_imag , pow(2,np));
 	//IDFT( array_in_real, array_in_imag, array_out_real, tstar_array , npts);
-
-
-
-	// construct tstar array
 	
+	// construct tstar array
 	for(count = 0; count < npts; count++)
 	{
 		tstar_array[count] = exp(PI*t_star)*array_out_real[count];
 	}
-
-
-
-	// make sure that we only have the first part
-	//for(count = 0; count < npts; count ++)
-	//{
-		//tstar_array[count] = array_out_real[count];
-	//}
-	
-	// make sure its symetric
-	//for(count = 0 ; count < (int)(npts/2); count ++ )
-	//{
-		//tstar_array[count] = array_out_real[count];
-	//}
-	//for(count = (int)(npts/2) ; count < npts; count ++ )
-	//{
-		//tstar_array[count] = array_out_real[npts - count];
-	//}
-
 
 	return 0;
 }
@@ -127,18 +101,12 @@ int t_star_func_mine(double t_star, int npts , double delta, double* tstar_array
 int BINFD(int LX, int* LX1, int* N)
 {
 	int count;
-
 	int current_npts;
-
-
 	if(LX <= 0 )
 	{
 		printf("ERROR LX is too small!");
 		return 1;
 	}
-
-
-
 	for(count = 0; count < 100; count++)
 	{
 		
@@ -150,12 +118,6 @@ int BINFD(int LX, int* LX1, int* N)
 			break;
 		}
 	}
-
-
-
-
-
-
 	return 0;
 }
 

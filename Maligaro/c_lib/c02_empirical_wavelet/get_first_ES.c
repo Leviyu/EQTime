@@ -10,7 +10,7 @@ int get_first_ES(new_RECORD* my_record, new_INPUT* my_input, double* ES)
 //printf(" ntps phase is %d \n", npts_phase);
 //output_array1("check.out",my_record[i].T[phase_flag].phase_win, 800);
 	for(i=0;i<npts_phase;i++)
-		ES[i] = 0;
+		ES[i] = 0.001;
 
 	for(i=0;i<my_input->sta_num;i++)
 	{

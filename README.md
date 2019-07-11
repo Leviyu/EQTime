@@ -26,6 +26,24 @@ Currently this code is only executable on our own server at Arizona State Univer
 
 This code is still improving, if there is any bug, please take a few minutes and open an issue.
 
+## Dependency
+
+* Python (>=2.7)
+* GMT 4.5 (>5.0 version would not be compatible)
+* SAC (>101.6a)
+* TauP (>2.4.5)
+
+
+## Data Download
+
+The seismic data used for this package is pre-download and stored on our sever at Geophysics Lab at Arizona State University. This package directly download data from the sever through SSH.
+
+To automate the process, you would need access of the server, please contact Professor [Garnero](garnero@asu.edu). To see how to setup [SSH connection without password](http://www.linuxproblem.org/art_9.html).
+
+Another way to access the data is to mount the disk on your local drive, which would need assistance from IT support.
+
+Modify script `./SRC/code_dir/get_EQ_sac` to choose the suitable option.
+
 ## Usage
 
 First, clone the repository to your local directory

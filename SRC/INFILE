@@ -1,34 +1,38 @@
 # This is the main infile for general information
 
 # =============================================================
+# =============================================================
 # Parameters To Change
-<TASK_NAME>				B10
-#<TASK_NAME>			PdataPatch2
+<TASK_NAME>				test4
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S 
 #<PHASE_LIST>			S ScS Sdiff ScSScS SS SSS
-#<PHASE_LIST>			P Pdiff
+#<PHASE_LIST>			P PcP Pdiff
+#<PHASE_LIST>			SSS SSSm SSSS SSSSm SSSSS SSSSSm SSSSSS SSSSSSm ScSScSScS ScSScSScSm ScSScSScSScS ScSScSScSScSm ScSScSScSScSScS ScSScSScSScSScSm
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
 
-<EQ_LIST_FILE>			B1
-#<EQ_LIST_FILE>			PdataPatch2
-#<EQ_LIST_FILE>			WILL
+<EQ_LIST_FILE>			test
+#<EQ_LIST_FILE>			SwaveMLPatch5
 						# file name of a list of events to be processed
 						# by default, the file is placed under EQ_LIST_DIR 
 
-<Process_Number>		1
+<IS_MULTI_PHASE>		NO
+
+<Process_Number>		2
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
+# =============================================================
+# =============================================================
+# the following is pre-configured, don't change
 
-
-<GMT_DIR>				/home/hongyu_ubuntu/bin/resource/gmt-4.5.9/GMT/bin
+<GMT_DIR>				/mnt/data2/maligaro/.local/gmt/bin
 						# the directory information of GMT 
-<TAUPDIR>				/home/hongyu_ubuntu/bin/resource/TauP-2.1.2/bin
+<TAUPDIR>				/opt/TauP-2.1.1/bin
 						# the directory information of TAUP
 <SACHOME>				/usr/local/sac
 						# the directory information of SAC
@@ -38,22 +42,35 @@
 						# decide whether to do in velocity or displacement
 
 
-# =============================================================
-
 # Directory information
-<BIGDIR>				/home/hongyu_ubuntu/EQTime
+<BIGDIR>				/mnt/data2/maligaro/EQTime
+						# This has to be absolute path of current directory
+#<EQ_SAC_FILE_DIR>		/mnt/soduser/Merge.Mw6.50km
+<DATADIR>				/mnt/data2/maligaro/EQTime/DATADIR
+						# This has to be absolute path of where you would prefer 
+						# the data processing to happen, which can take some space
+
+
 <CURRENT_DIR>			SRC
-<EQ_SAC_FILE_DIR>		/mnt/soduser/Merge.Mw6.50km
-<DATADIR>				/DATA1/EQTime/DATADIR
+                        # source scripts for plotting and post-processing
 <PLOTDIR>				PLOTDIR
+                        # location where to store the pdf catalog
 <SHELL_DIR>				SRC/code_dir
+                        # shell scripts locations
 <C_DIR>					Maligaro/c_lib
+                        # c code locations 
 <TAUP_DIR>				TIMEDIR
+                        # taup_time storage locations
 <T_star_lib>			tstar_lib
+                        # tstar storage locations
 <ED_CHECK_FLAG>			0
 <ED_CHECK_FILE>			SRC/code_dir/eventinfo
 <DELTA>					0.1
+                        # interpolation time increment
 <BENCHMARK_FLAG>		0
-<Fix_missing_sta_flag>	0			# only use missing station to process
-<Reprocessing_Flag>		0			# if this flag is on, we reprocess all picked records
+                        # for benchmark purpose only
+<Fix_missing_sta_flag>	0			
+                        # only use missing station to process
+<Reprocessing_Flag>		0			
+                        # if this flag is on, we reprocess all picked records
 <PLOT_FLAG>				1

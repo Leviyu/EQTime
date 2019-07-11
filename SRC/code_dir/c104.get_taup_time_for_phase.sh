@@ -62,7 +62,9 @@ set main_result = `cat $taup_time_file |grep -w $main_PHASE | awk '$8<180 {print
 else 
 set main_result = `cat $taup_time_file |grep -w $main_PHASE | awk '$8>180 {print $4}' |awk 'NR==1 {print $0}'  `
 endif
-#echo "main $main_result tresult $tresult"
+#cat $taup_time_file |grep -w $main_PHASE| awk '$8<180 {print $4}' |awk 'NR==1 {print $0}'
+#echo $PHASE $main_PHASE
+#echo "main $main_result "
 if($main_result == "" ) then
 	set time_diff = 0
 	else

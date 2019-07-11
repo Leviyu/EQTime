@@ -49,6 +49,8 @@ mkdir -p $DATADIR
 mkdir -p $PLOTDIR
 cp $SHELL_DIR/CMT.data $DATADIR/
 cp $PWD/code_dir/INPUT_EQ_LIST $DATADIR/
+echo "------------------ ahahah"
+cp $PWD/EQ_LIST_DIR/GOOD_MULTI_EVENT $DATADIR/
 cp $PWD/INFILE_DIR/INFILE* $DATADIR/
 cp $SHELL_DIR/c40.generate_master_pdf.sh $PLOTDIR
 set EQ_LIST = $DATADIR/INPUT_EQ_LIST

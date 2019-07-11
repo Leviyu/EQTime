@@ -52,6 +52,7 @@ mkdir -p $DATADIR
 mkdir -p $PLOTDIR
 cp $SHELL_DIR/CMT.data $DATADIR/
 cp $PWD/code_dir/INPUT_EQ_LIST $DATADIR/
+cp $PWD/code_dir/GOOD_MULTI_EVENT $DATADIR/
 cp $PWD/INFILE_DIR/INFILE* $DATADIR/
 cp $SHELL_DIR/c40.generate_master_pdf.sh $PLOTDIR
 set EQ_LIST = $DATADIR/INPUT_EQ_LIST
@@ -67,5 +68,7 @@ foreach EQ (`cat $EQ_LIST`)
 	set INP = ( $PWD $DATADIR $PLOTDIR $EQ $C_DIR $SHELL_DIR $ID $DIR)
 	echo "---> Working on $ID $EQ "
 	csh $PWD/code_dir/work.sh $INP > & $PWD/LOG/logfile.${ID}.${EQ}
+	#/bin/rm -rf $DATADIR/$EQ
+
 end #EQ
 

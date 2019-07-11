@@ -9,7 +9,7 @@ ESF_DIR = ../c02_empirical_wavelet
 ESF_CPP = $(wildcard ../c02_empirical_wavelet/*.c)
 ESF_OBJ = $(ESF_CPP:.c=.o)
 
-SACHOME = /usr/local/sac
+SACHOME = /opt/sac
 #SOURCE = ./empirical_wavelet.c
 SOURCE = ./main.c
 OBJ = $(SOURCE:.c=.o)

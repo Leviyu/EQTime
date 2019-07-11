@@ -66,7 +66,7 @@ int empirical_source_for_each_record(new_RECORD* my_record, new_INPUT* my_input,
 					// find negative amp and normalize with it
 					amplitudeloc(my_record[ista].phase_win, (int)(my_record[ista].phase_len/my_input->delta),&max_amp_loc, &AMP_phase, -1);
 					if(AMP_phase == 0)
-						AMP_phase =1;
+						AMP_phase = -1;
 					// normalize 
 					for(idd = 0; idd< (int)(my_record[ista].phase_len/my_input->delta); idd++)
 						my_record[ista].phase_win[idd] *= 1/AMP_phase ;

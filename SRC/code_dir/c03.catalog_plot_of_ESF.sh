@@ -35,6 +35,25 @@ set input = $work_dir/input
 set ESinfo = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 
+
+cd $work_dir
+# =========================================================== # 
+# Implement ML algorithm to make prediction
+cp $SHELL_DIR/ML_model/* .
+sed "s/^[ \t]*//" -i $ESinfo
+python3 make_prediction.py $ESinfo 
+# outfile is saved as pred
+set out_pred = ./pred_out
+cat ./pred |awk 'NR>1 {print $0}' >! $out_pred
+paste $ESinfo $out_pred >! $ESinfo_tmp
+mv $ESinfo_tmp $ESinfo
+cd -
+
+# =========================================================== # 
+
+
+
+
 # remove record with quality flag != 1
 #cat $ESinfo |awk '$14>=1 {print $0}' >! $ESinfo_tmp
 #mv $ESinfo_tmp $ESinfo
@@ -43,7 +62,8 @@ set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 set BENCHMARK_FLAG = `cat $DATADIR/$EQ/INFILE |grep -w BENCHMARK_FLAG|awk '{print $2}'`
 set reprocessing_flag = `cat $DATADIR/$EQ/INFILE |grep -w Reprocessing_Flag|awk '{print $2}'`
 
-set ed_check_file = $ED_CHECK_FILE1
+set ed_check_file = ./dfsdf
+#set ed_check_file = $ED_CHECK_FILE1
 
 set new_patch_SS = /mnt/data2/hongyu/new_git/EWM/new_patch_SS.list
 set exist_in_new_patch = `cat $new_patch_SS |grep $EQ |awk 'NR==1 {print $1}'`
@@ -521,7 +541,13 @@ set SNR_peak_ratio = $infoES[51]
 set ONSET = $infoES[33]
 set ENDSET = $infoES[34]
 set one_period = $infoES[54]
+set ML_quality = $infoES[55]
+set ML_flag = $infoES[56]
 
+#set ML_quality = $quality_flag
+#set ML_flag = 1
+#set ML_quality = 0
+#set ML_flag = 0
 
 ##for ScS cut from -80 to 80 sec
 ##if($PHASE == "ScS") then
@@ -688,7 +714,7 @@ EOF
 
 	# ================== plot the trace =====================
 		set long_color = 0/0/0
-		set long_color_flag = `echo ddd |awk '{if('$CMT_polar_prediction' >= -0.1 && '$CMT_polar_prediction' <= 0.1 ) print "green"; else print "hahaha"}'`
+		set long_color_flag = `echo ddd |awk '{if('$CMT_polar_prediction' >= -0.15 && '$CMT_polar_prediction' <= 0.15 ) print "green"; else print "hahaha"}'`
 ##echo "sta $sta long color is $long_color_flag"
 		if($long_color_flag == "green" ) then
 		set long_color = 178/102/255
@@ -933,10 +959,10 @@ EOF
 	0 0.0 5 0 0 LB Misfit2T: $misfit2T_pre/$misfit2T_bak Misfit3T: $misfit3T_pre/$misfit3T_bak SNR3/4: $SNR_peak_trough / $SNR_peak_ratio
 END
 
-
+echo "$STA $ML_quality $ML_flag"
 
 	# add pdfmarker
-if($quality_flag >= 1) then
+if($ML_quality >= 1) then
 cat  << EOF >> $OUTFILE
 [ 
 /T ( ${EQ}_${STA} )
@@ -967,6 +993,7 @@ cat  << EOF >> $OUTFILE
 EOF
 endif
 
+# add value 
 cat  << EOF >> $OUTFILE
 [ 
 /Subtype /Widget
@@ -979,6 +1006,41 @@ cat  << EOF >> $OUTFILE
 >>
 /ANN pdfmark
 EOF
+
+if( $ML_flag == 0) then
+#echo "found it "
+# Here we add another tiny box to indicate if ML model disagree with original pick
+cat  << EOF >> $OUTFILE
+[ 
+/T ( ${EQ}_ML_${STA}_ML_disagree )
+/V /${EQ}_ML_${STA}_ML_disagree
+/FT /Btn
+/Rect [-200 50 -160 100] % — position
+/F 4 /H /O
+/BS << /W 1 /S /S >>
+/MK << /CA (8) /BC [ 0 ] /BG [ 1 ] >>  % Colors
+/DA (/ZaDb 0 Tf 1 0 0 rg) % — size and colors
+/AP << /N << /${EQ}_ML_${STA}_ML_disagree /null >> >> % — checkbox value
+/Subtype /Widget
+/ANN pdfmark
+EOF
+else 
+cat  << EOF >> $OUTFILE
+[ 
+/T ( ${EQ}_ML_${STA}_ML_disagree )
+/FT /Btn
+/Rect [-200 50 -160 100] % — position
+/F 4 /H /O
+/BS << /W 1 /S /S >>
+/MK << /CA (8) /BC [ 0 ] /BG [ 1 ] >>  % Colors
+/DA (/ZaDb 0 Tf 1 0 0 rg) % — size and colors
+/AP << /N << /${EQ}_ML_${STA}_ML_disagree /null >> >> % — checkbox value
+/Subtype /Widget
+/ANN pdfmark
+EOF
+
+endif
+
 
 
 	pstext -JX -R -O -K -N -P -X-5.2i <<END>>$OUTFILE

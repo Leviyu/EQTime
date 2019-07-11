@@ -1,17 +1,27 @@
 #!/bin/tcsh
+# Script to download data from server EQ1 at Geophysics Lab at ASU.
+# There are two ways to implement this 
+# 1. SSH with password
+# 2. Load the data disk from the server and mount on local
+
+
 
 set file = $1
-#set EQ_SAC_DIR = $2
 if($file == "" ) then
-echo "non input file find !"
-exit 0
+	echo "non input file find !"
+	exit 0
 endif
 
 
+# Method 1. Through SSH
 #set DATADIR = /mnt/soddisk/soduser/Merge.Mw6.50km
-
-#csh ~/bin/get_EQ_sac $file 
-#scp -r -P 9022 hongyu@eq2.la.asu.edu:${DATADIR}/$file .
+#scp -r -P 9022 hongyu@eq1.la.asu.edu:${DATADIR}/$file .
 #cp -r $DATADIR/$file .
 
-cp /mnt/soduser/Merge.Mw6.50km/$file . -r
+
+# Method 2. Mount data disk as local disk
+
+#set filename = /mnt/soduser/Merge.Mw6.50km/$file
+set filename = /mnt/soddisk/soduser/Merge.Mw6.50km/$file
+#echo $filename
+cp $filename . -r

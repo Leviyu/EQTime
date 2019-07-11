@@ -50,8 +50,12 @@ fprintf(my_input->out_logfile,"--> output_current_ES_for_phase");
 		output_array2(out_file1, xarray, yarray_double, npts_phase,0);
 	}
 
-	/*
 
+
+
+
+
+	/*
 	char command[300]= "csh bp_S_ES.sh";
 	char sac_file[300] = "S_ES_bp.sac";
 	// bp filter S empirical wavelet and write to S_ES_bp.sac

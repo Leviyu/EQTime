@@ -474,6 +474,7 @@ void redo_for_S_P_remake_EW(new_RECORD* my_record, new_INPUT* my_input);
 int restack_ES_for_phase_code_choice(new_RECORD* my_record, new_INPUT* my_input, double* ES);
 int output_ES_with_STD_loop(new_RECORD* my_record,new_INPUT*  my_input,double* current_ES, int loop_num);
 int get_SNR3_and_4_for_record(double* phase_win,int phase_npts, double* noise_win,int noise_npts, double* SNR3, double* SNR4, new_INPUT* my_input);
+int output_GEW_weight(new_INPUT* my_input, new_RECORD * my_record);
 int zero_out_traffic_phase( new_RECORD* my_record, new_INPUT* my_input);
 
 #endif

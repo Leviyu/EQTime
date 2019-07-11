@@ -65,9 +65,9 @@ printf("---> Read eventstation list info \n");
 					my_record[ista].polarity = tmp_polarity;
 				//printf("sta %s polarity is %lf \n", my_record[ista].name, tmp_polarity);
 				// set polar_flag according to the polarity info
-				if( my_record[ista].polarity > 0.1)
+				if( my_record[ista].polarity > 0.15)
 					my_record[ista].polar_flag = 1;
-				else if( my_record[ista].polarity < -0.1)
+				else if( my_record[ista].polarity < -0.15)
 					my_record[ista].polar_flag = -1;
 				else 
 					my_record[ista].polar_flag = 0;

@@ -29,8 +29,30 @@ mkdir -p $PLOTDIR/$EQ
 mkdir -p $DATADIR/$EQ
 cp $DATADIR/CMT.data $DATADIR/$EQ/
 cp $DATADIR/INFILE* $DATADIR/$EQ/
+cp $DATADIR/GOOD_MULTI_EVENT $DATADIR/$EQ/
+
+ls $DATADIR/GOOD_MULTI_EVENT
+ls $DATADIR/$EQ/GOOD_MULTI_EVENT
+
+set IS_MULTI_PHASE = `cat $INFILE |grep IS_MULTI_PHASE|awk '{print $2}'`
+echo ">>> IS_MULTI_PHASE is $IS_MULTI_PHASE"
+set GOOD_MULTI_EVENT = $DATADIR/$EQ/GOOD_MULTI_EVENT
 
 	foreach PHASE ( `echo $EQ_PHASE_LIST `)
+		# here we check if current phase is multi phase and if it is within our list
+		if( $IS_MULTI_PHASE == "YES" ) then
+			set simple_phase = `python $SHELL_DIR/NAMING_CONVENTION.py $PHASE`
+			set IS_PHASE_EXIST = `cat $GOOD_MULTI_EVENT |grep $EQ |grep -w $simple_phase |awk '{print $1}'`
+			echo "---> orig phase is $PHASE simple phase is $simple_phase IS_PHASE_EXIST $IS_PHASE_EXIST"
+			if( $IS_PHASE_EXIST == "" || $IS_PHASE_EXIST == " " ) then
+				echo "--------->"
+				echo "---------> Current Phase is skipped cause of user choice in GOOD_MULTI_EVENT"
+				continue
+			endif
+		endif
+
+
+
 		echo "============================================================================="
 		echo "****Empirical Wavelet Algorithm Running for $EQ   PHASE: $PHASE **********`date`"
 		set INPUT = ($EQ $DATADIR  $PLOTDIR $C_DIR $SHELL_DIR   $DIR $PHASE)

@@ -4,7 +4,8 @@ SRC/LOG/
 TIMEDIR/
 Maligaro_plot/
 SRC/list.*
-SRC/INFILE
 SRC/EQ_LIST_DIR/
 SRC/benchmark/
 SRC/plot_zerio_weight/
+tstar_lib/
+SRC/S_EW_DIR

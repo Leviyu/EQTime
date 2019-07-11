@@ -104,8 +104,10 @@ set c_input = $work_dir/input.c
 echo $EQ $PHASE $DELTA  > ! $c_input
 
 date
+set c_logfile = $work_dir/logfile.c
 ##./EWM.out << EOF  >> & $c_logfile
-./EWM $c_input
+#./EWM $c_input
+./EWM $c_input >& $c_logfile 
 
 date
 exit 0

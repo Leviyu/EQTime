@@ -129,6 +129,8 @@ int empirical_source_function(new_RECORD* my_record, new_INPUT* my_input)
 	normalize_array(stretch_record_stack, npts_phase);
 	output_STD_of_second_ES(my_record,my_input, stretch_record_stack);
 	output_current_ES_for_phase_second(my_input, stretch_record_stack);
+	output_GEW_weight(my_input, my_record);
+
 
 	// for non S phase use current_ES
 	// for S use stretch_record_stack

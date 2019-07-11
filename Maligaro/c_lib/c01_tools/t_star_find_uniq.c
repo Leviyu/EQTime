@@ -25,27 +25,18 @@
 
 int t_star_find_uniq(double t_star , double* tstar_array, int npts, double delta,char* tstar_lib)
 {
-	//char lib_dir[400] = "/mnt/data2/hongyu/new_git/tstar_lib";
-
 	char command[1000];
 	sprintf(command, "cd %s; csh make_tstar.sh  %d %lf %.2lf", tstar_lib, npts, delta, t_star);
-//int shell_pipe_command(char* command);
-//shell_pipe_command(command);
-	//system(command);
 
 	char in_file[600];
 	sprintf(in_file,"%s/TSTAR_%.2lf_ASCII",tstar_lib,t_star);
 
-//printf(" working on file %s \n", in_file);
 	FILE* in;
 	in = fopen(in_file,"r");
-
 	int count;
-
 	char tmp1[200];
 	char tmp2[200];
 
-	//printf("-->read in %s \n",in_file);
 	fscanf(in,"%s %s",tmp1,tmp2);
 	fscanf(in,"%s %s",tmp1,tmp2);
 	for(count = 0; count < npts; count++)
@@ -53,7 +44,6 @@ int t_star_find_uniq(double t_star , double* tstar_array, int npts, double delta
 		fscanf(in,"%lf",&tstar_array[count]);
 		//printf("%lf\n",tstar_array[npts]);
 	}
-
 
 	fclose(in);
 	return 0;

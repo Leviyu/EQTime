@@ -30,6 +30,8 @@ set old_event = eventStation.${EQ}
 $get_DATA ${EQ}/$old_event $EQ_SAC_FILE_DIR
 
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
+set existing_sta_list = $work_dir/sta.list.tmp
+cat /dev/null >! $existing_sta_list
 # ========================== find the right distance range ===================
 awk '{if (NR>1 && $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $old_event |sort -n -k 3 > $event
 set total_num = `cat  $event |wc -l`
@@ -47,7 +49,7 @@ set DELTA = `cat $work_dir/INFILE |grep DELTA |awk '{print $2}'`
 # ========================= download sac file =================
 set index = 1
 foreach STA (`cat $event |awk '{print $1}'`)
-echo "--> download $index / $total_num"
+#echo "--> download $index / $total_num"
 	set tmp1 = `awk -v sta=$STA '$1==sta {print $0}' $event`
 	set EQ = $tmp1[19]
 	set NET = $tmp1[2]
@@ -177,9 +179,14 @@ q
 EOF
 #//cat $macro
 #sac < $macro 
-timeout 2s sac < $macro > & /dev/null
+timeout 5s sac < $macro > & /dev/null
+#sac < $macro 
 
+if ( -e $sacZ ) then
+echo $STA >> $existing_sta_list
+endif
 
+#//echo "--> download $index / $total_num done  incident: $incident "
 @ index ++
 	end #foreach
 
@@ -187,8 +194,7 @@ timeout 2s sac < $macro > & /dev/null
 # throw away stations that reported to different network and just keep one
 # =============================================================
 /bin/rm $work_dir/event_uniq >& /dev/null
-awk '{print $1}' $event |sort -u > $work_dir/sta.list
-foreach sta (`cat $work_dir/sta.list`)
+foreach sta (`cat $existing_sta_list`)
 	grep $sta $event |awk 'NR==1 {print $0}' >> $work_dir/event_uniq
 	end
 
@@ -197,7 +203,7 @@ foreach sta (`cat $work_dir/sta.list`)
 sort -n -k 3 event_uniq |uniq > $event
 
 #clean up 
-/bin/rm $work_dir/sta.list $work_dir/event_uniq
+/bin/rm  $work_dir/event_uniq
 
 
 exit 0

@@ -35,6 +35,41 @@ set tmp_event = eventStation.tmp2
 cat $old_event $old_event2 |sort|uniq >! $tmp_event
 
 
+# ============================ if is multi phase =================
+# we use DIST MIN MAX in files
+set IS_MULTI_PHASE = `cat $work_dir/INFILE |grep IS_MULTI_PHASE |awk '{print $2}'`
+if( $IS_MULTI_PHASE == "YES" ) then
+
+set MULTI_FILE = $work_dir/GOOD_MULTI_EVENT
+set DISTMIN2 = `cat $MULTI_FILE |grep $EQ |awk 'NR==1 {print $2}'`
+set DISTMAX2 = `cat $MULTI_FILE |grep $EQ |awk 'NR==1 {print $3}'`
+
+echo "--> DIST2 $DISTMIN2 $DISTMAX2 default is $DISTMIN $DISTMAX"
+if( $DISTMIN2 > $DISTMIN ) then
+set DISTMIN = $DISTMIN2
+endif
+echo "--> h2 "
+if( $DISTMAX2 < $DISTMAX ) then
+set DISTMAX = $DISTMAX2 
+endif
+echo "--> h3 "
+
+f( $DISTMIN > $DISTMAX ) then
+set DISTMAX = $DISTMIN
+endif
+
+
+echo "---> New DISTMINMAX is $DISTMIN $DISTMAX"
+
+# copy S_ES to local dir 
+set S_ES_DIR = ~/EQTime/SRC/S_EW_DIR
+cp $S_ES_DIR/S_ES.${EQ} $work_dir/main_ES.out
+
+endif
+
+
+
+
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
 awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $tmp_event |sort -n -k 3 > $event
@@ -109,10 +144,12 @@ set bp_min = `grep -w Frequency_range $INFILE | awk '{print $2}'`
 set bp_max = `grep -w Frequency_range $INFILE | awk '{print $3}'`
 set LONG_BEG = `grep -w LONG_BEG $INFILE |awk '{print $2}'`
 set LONG_LEN = `grep -w LONG_LEN $INFILE |awk '{print $2}'`
-
 set DELTA = `cat $work_dir/INFILE |grep DELTA |awk '{print $2}'`
 
+#echo "$bp_min $bp_max $LONG_BEG $LONG_LEN $DELTA"
 
+
+echo "--> begin downloading sac file"
 # ========================= download sac file =================
 foreach STA (`cat $event |awk '{print $1}'`)
 	set tmp1 = `awk -v sta=$STA '$1==sta {print $0}' $event`
@@ -121,8 +158,10 @@ foreach STA (`cat $event |awk '{print $1}'`)
 	set DIST = $tmp1[3]
 	set EQ_DEP = $tmp1[13]
 
+#echo $EQ $NET $DIST $EQ_DEP
 	set sacname1 = ${EQ}.${NET}.${STA}.BH${COMP}.sac
 	set sacname2 = ${EQ}.${NET}.${STA}.HH${COMP}.sac
+#echo $sacname1 $sacname2
 	##if(-e $sacname1 || -e $sacname2 ) then
 	##set sac_file_already_exist = 0
 	##else
@@ -178,11 +217,12 @@ EOF
 #sac < $macro > & /dev/null
 endif
 
-# ================================
+# ===============================
 # Deal with SSSSS Huawei
 if( $PHASE == "SSSSS" || $PHASE == "SSSSSm" ) then
-set huawei == "haha"
+set huawei = "haha"
 endif
+
 
 # ================================
 # Deal with S6 Huawei
@@ -201,6 +241,7 @@ endif
 
 #filter 
 if( $filter_flag == "bp") then
+##    echo "-----> filter bp"
 cat<< EOF >> $macro
 r $sacname
 rtr
