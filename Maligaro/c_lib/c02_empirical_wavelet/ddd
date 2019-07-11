@@ -1,1 +1,0 @@
-	for(npts_shift = -1* ( npts_y - 1) ; npts_shift < npts_x  -1; npts_shift ++)

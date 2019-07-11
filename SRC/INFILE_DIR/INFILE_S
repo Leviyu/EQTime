@@ -7,6 +7,7 @@
 	# Phase name
 <COMP>								T
 	# Component, choose from T/R/Z
+    # For SH wave, please use 'T'
 <filter_flag>						bp
 <Frequency_range>					0.01 0.0667
 	# bp means bandpass filter,frequency_range defines the corner frequency 

@@ -3,7 +3,7 @@
 # =============================================================
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				test4
+<TASK_NAME>				test6
 						# TASK_NAME should be the unique ID for this task				
 
 <PHASE_LIST>			S 

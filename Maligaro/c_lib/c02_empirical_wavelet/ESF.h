@@ -77,8 +77,6 @@ struct new_INPUT
 
 	double TIME_REF; // the reference time for stacking 
 	// this is specified to zoom in that area
-	//
-	//
 	
 	double mask_win_min;	//default -15
 	double mask_win_max;	//default 20
@@ -101,9 +99,7 @@ struct new_INPUT
 	double EW_period;
 
 	FILE* traffic_phase_file;
-
 	int Fix_missing_sta_flag;
-
 	int Reprocessing_Flag;
 	int PLOT_FLAG;
 	double Reprocessing_shift;	// alloable shift for reprocessing

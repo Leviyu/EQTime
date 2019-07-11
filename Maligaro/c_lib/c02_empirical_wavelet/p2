@@ -1,1 +1,0 @@
-			printf(" --> reprocessing_flag STA %s shifted %lf \n", my_record[ista].name, shift_time);
