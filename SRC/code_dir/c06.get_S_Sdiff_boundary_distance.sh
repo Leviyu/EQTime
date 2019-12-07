@@ -4,14 +4,10 @@
 # ====================================================================
 # This is a csh script for getting the boundary distance between S and Sdiff
 # 	using taup_time
-# 
 # Input: 
 #		EQ_name
-#
-#
 # Output:
 #		boundary distance
-#
 # DATE:	Oct 10 2014				Keywords: 
 # ===================================================================
 
@@ -28,9 +24,6 @@ mkdir -p $work_dir
 cd $work_dir
 # 1. first get the eventStation of EQ
 set event = eventStation.${EQ}
-
-
-
 $SRCDIR/get_EQ_sac ${EQ}/$event $EQ_SAC_FILE_DIR
 
 # 2. get the boundary distance
@@ -38,15 +31,12 @@ set TMP = `awk 'NR==5 {print $0}' $event`
 set EQ_dep = $TMP[13]
 set EQ_lat = $TMP[11]
 set EQ_lon = $TMP[12]
-
 set DIST = 95
 while( $DIST  < 105)
 	set timeinfo = `taup_time -mod prem -ph $PHASE -h $EQ_dep -deg  $DIST |awk 'NR==6 {print $4}'`
-##echo $DIST $timeinfo
 	if( $timeinfo == "" ) then
 	break
 	endif
-
 @ DIST ++
 	end
 set DIST = `echo "$DIST - 1"|bc -l`

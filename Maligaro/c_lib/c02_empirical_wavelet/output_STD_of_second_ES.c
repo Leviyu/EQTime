@@ -18,10 +18,6 @@ int output_STD_of_second_ES(new_RECORD* my_record,new_INPUT*  my_input,double* c
 	double weight_sum = 0;
 	double stretch_factor_record;
 
-
-
-
-	//int amplitudeloc(double* array, int len, int* max_amp_loc, double* amplitude, int flag) 
 	int max_loc;
 	double amp_ES;
 	double amp_phase;
@@ -37,21 +33,15 @@ int output_STD_of_second_ES(new_RECORD* my_record,new_INPUT*  my_input,double* c
 		for(ista = 0; ista < my_input->sta_num; ista ++)
 		{
 
-			//if(my_record[ista].quality > 0 )
-			//{
-				// calculate the std
-				//weight = my_record[ista].weight;
 				weight = my_record->weight;
 				if(weight == 0 && my_input->Reprocessing_Flag != 1)
 					continue;
 				amplitudeloc(my_record[ista].stretched_phase_win, npts_phase, &max_loc, &amp_phase,1);
 				if(amp_phase == 0) amp_phase = 1;
-				//normalize_array(my_record[ista].stretched_phase_win,npts_phase);
 				STD[pcount] += pow( (current_ES[pcount]/ amp_ES - 
 							my_record[ista].stretched_phase_win[pcount]  / amp_phase) ,2 ) * weight;
 				weight_sum += weight;
 				num = num + 1;
-			//}	
 		}
 		if(num == 0)
 		{
@@ -70,9 +60,6 @@ int output_STD_of_second_ES(new_RECORD* my_record,new_INPUT*  my_input,double* c
 		{
 			if(my_record[ista].quality != -1 && my_record[ista].weight > 0)
 			{
-				// calculate the std
-
-				// output stretched record into out2
 				for(ii = 0; ii < npts_phase; ii++)
 					fprintf(out2,"%lf %lf %d\n", ii *my_input->delta, my_record[ista].stretched_phase_win[ii],1);
 			}	

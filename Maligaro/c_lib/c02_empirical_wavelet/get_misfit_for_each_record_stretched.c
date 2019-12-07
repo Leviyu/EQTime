@@ -11,11 +11,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 	{
 		int npts_phase = (int)(my_input->phase_len / my_input->delta);
 
-		//if(my_record[ista].quality == -1)
-			//continue;
-
-//printf("--->processing for sta %s \n",my_record[ista].name);
-		//calculate the misfit from ONSET to ENDSET with an additional 6sec extension
 		
 		double npts_ONSET,npts_ENDSET;
 		double extra_time = 3;	//sec
@@ -34,7 +29,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		double misfit = 0;
 		double AMP_ES = amplitude(my_record[ista].ES_win, npts_phase);
 		double AMP_record = amplitude(my_record[ista].phase_win, npts_phase);
-//printf("sta %s AMP ES %15.10lf record %15.10lf \n", my_record[ista].name, AMP_ES, AMP_record);
 		if(AMP_ES ==0 || AMP_record == 0)
 		{
 			my_record[ista].quality = -1;
@@ -42,14 +36,10 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		}
 		for(count = npts_ONSET; count < npts_ENDSET; count++)
 		{
-			//misfit_ES +=  fabs( my_record[ista].ES_win[count] );
-			//misfit_record +=  fabs( my_record[ista].phase_win[count] );
 			misfit += fabs( my_record[ista].ES_win[count]/AMP_ES -  my_record[ista].phase_win[count] / AMP_record);
 		}
 
 		//average it with the number of points
-		//misfit_ES = misfit_ES / (npts_ENDSET - npts_ONSET);
-		//misfit_record = misfit_record / (npts_ENDSET - npts_ONSET);
 		misfit = misfit / (npts_ENDSET - npts_ONSET);
 
 		my_record[ista].misfit = misfit;
@@ -71,7 +61,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 			noise_signal += fabs(my_record[ista].noise_win[i]);
 			noise_npts ++;
 		}
-		//printf("noise signal is %lf phase signa; is %lf npts noise phase %d %d\n", noise_signal, phase_signal, my_record[ista].npts_noise,my_record[ista].npts_phase);
 		if( noise_signal == 0 || noise_npts == 0)
 		{
 			puts("ERROR: noise_signal is 0 SNR problem!");
@@ -81,8 +70,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		}
 		else
 		{
-			//double SNR_sig = phase_signal / (npts_ENDSET - npts_ONSET);
-			//double SNR_noi = noise_signal / (my_record[ista].noise_len/my_input->delta);
 			// exclide those that we have masked to be zero
 			double SNR_sig = phase_signal / signal_npts;
 			double SNR_noi = noise_signal / noise_npts;
@@ -95,8 +82,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		// calculate SNR2, which is the SNR relative to noise window in front of S
 			if(strcmp(my_input->PHASE,"S") ==0 || strcmp(my_input->PHASE,"Sdiff") ==0 )
 			{
-				//if(my_record[ista].quality == -1)
-					//continue;
 				char noise_output[200];
 				sprintf(noise_output,"noise_output_for_S_Sdiff.data");
 				FILE* out2;
@@ -112,7 +97,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 				char command[300];
 				sprintf(command,"grep -w %s noise_output_for_S_Sdiff.data | awk 'NR==1 {print $2}'", my_record[ista].name);
 				SNR_noise_for_S = shell_pipe(command);
-				//printf("SNR_sig is %lf SNR_noise for S is %lf \n", SNR_sig, SNR_noise_for_S);
 				if(SNR_noise_for_S == 0)
 					SNR_noise_for_S =1;
 				my_record[ista].SNR2 = SNR_sig / SNR_noise_for_S;
@@ -121,7 +105,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 
 		}
 
-		//printf("---> In getting misfit SNR for %s is %lf \n",my_record[ista].name, my_record[ista].SNR);
 	}
 
 
@@ -134,8 +117,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		out2 = fopen(noise_output,"w");
 		for(ista =0; ista < my_input->sta_num ; ista ++)
 		{
-			//if(my_record[ista].quality == -1)
-				//continue;
 			fprintf(out2,"%10s %15.10lf\n", my_record[ista].name, my_record[ista].SNR_noi);
 			my_record[ista].SNR2 = my_record[ista].SNR;
 		}
@@ -145,8 +126,6 @@ puts("---> Get Misfit for each recrod and get the SNR for stretched");
 		out2 = fopen(noise_output,"a");
 		for(ista =0; ista < my_input->sta_num ; ista ++)
 		{
-			//if(my_record[ista].quality == -1)
-				//continue;
 			fprintf(out2,"%10s %15.10lf\n", my_record[ista].name, my_record[ista].SNR_noi);
 			my_record[ista].SNR2 = my_record[ista].SNR;
 		}

@@ -5,14 +5,6 @@
  *
  *  The goal of this script is to define a misfit window for PHASE
  *  and calcualte the misfit and update the SNR
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
@@ -38,7 +30,7 @@ int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
 
 
 		// use max value as the phase peak
-			// assumption is that the phase peak will always be the first peak
+		// assumption is that the phase peak will always be the first peak
 		AMP = 0;
 		for(i = 0; i<npts_phase;i++)
 		{
@@ -49,7 +41,6 @@ int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
 			}
 		}
 	
-		//printf("sta %s amp is %15.10lf \n", my_record[ista].name, AMP);
 		// store phase peak time and npts
 		my_record[ista].time_phase_peak = my_record[ista].phase_beg + npts_peak * my_input->delta;
 		my_record[ista].npts_phase_peak = npts_peak;
@@ -87,7 +78,6 @@ int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
 		my_record[ista].ONSET = dt_ONSET;
 		my_record[ista].ENDSET = dt_ENDSET;
 
-//printf("sta is %s ONSET time is %lf phase beg is %lf npts_onset is %d * my_input->delta =  %lf  \n",my_record[ista].name,  dt_ONSET, my_record[ista].phase_beg, npts_ONSET, npts_ONSET * my_input->delta);
 
 
 		double extra_time = 3;
@@ -112,7 +102,6 @@ int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
 		{
 			noise_signal += fabs(my_record[ista].noise_win[i]);
 		}
-		//printf("noise signal is %lf phase signa; is %lf npts noise phase %d %d\n", noise_signal, phase_signal, my_record[ista].npts_noise,my_record[ista].npts_phase);
 		if( noise_signal == 0 )
 		{
 			puts("ERROR: noise_signal is 0 SNR problem!");
@@ -130,11 +119,9 @@ int get_ONSET_ENDSET_for_each_record_origional_phase(new_RECORD* my_record,
 			my_record[ista].SNR = SNR;
 		}
 
-		//printf("---> sta %s SNR %lf misfit %lf \n", my_record[ista].name,my_record[ista].SNR, my_record[ista].misfit);
 		}
 
 
-//puts("---> get_ONSET_ENDSET_for_each_record Begin for origional EW before stretching ");
 		return 0;
 }
 

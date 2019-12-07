@@ -12,9 +12,6 @@ int stretch_gaussian_find_best_match_for_given_interval(double* phase_win, int n
 	double record_tmp[npts_phase];
 	double ES_tmp[npts_phase];
 	double gaussian_func(double a, double b, double c, double d, double x);
-	//define standard gaussian
-	//for(count = 0; count < npts_phase; count ++)
-		//ES_win[count] = gaussian_func(1,npts_phase/2, npts_phase/10, 0, count);
 
 	output_array1("origional_gaussian",ES_win,npts_phase);
 
@@ -22,7 +19,6 @@ int stretch_gaussian_find_best_match_for_given_interval(double* phase_win, int n
 	int NUM;
 	int NUM_max; // number of stretching needed
 	NUM_max = (int)( (coeff_max - coeff_min)/coeff_delta)+1;
-	//NUM_max = 100;
 
 	//stretch and CCC
 	double** stretched_ES;		// 2D array to store the stretched ES
@@ -39,8 +35,6 @@ int stretch_gaussian_find_best_match_for_given_interval(double* phase_win, int n
 		if(coeff <= 0)
 			continue;
 		stretched_coefficient[NUM] = coeff;
-//
-//printf("--> tstar beg for %lf \n", coeff);
 		double tmp_ES[npts_phase];
 		//1. stretch ES
 		//stretch_ES_function(ES_win, npts_phase, coeff, tmp_ES);
@@ -60,7 +54,6 @@ int stretch_gaussian_find_best_match_for_given_interval(double* phase_win, int n
 			construct_array_with_main_lobe(tmp_ES, &npts_phase,ES_tmp);
 			construct_array_with_main_lobe(phase_win, &npts_phase,record_tmp);
 
-//printf("--> tstar end \n\n");
 		//2. ccc stretched ES with record
 		double ccc;
 		int npts_shift, npts_tmp,ccc_flag;
@@ -73,7 +66,6 @@ int stretch_gaussian_find_best_match_for_given_interval(double* phase_win, int n
 		stretched_CCC[NUM] = ccc;
 		stretched_coefficient[NUM] = coeff;
 		stretched_timeshift[NUM] = npts_shift;
-		//printf("--->working on coeff %lf ccc %lf time shift %d \n",coeff, ccc, npts_shift);
 	}
 
 	int j;

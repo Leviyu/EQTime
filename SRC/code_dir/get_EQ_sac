@@ -1,5 +1,5 @@
 #!/bin/tcsh
-# Script to download data from server EQ1 at Geophysics Lab at ASU.
+# Script to download data from server EQ2 at Geophysics Lab at ASU.
 # There are two ways to implement this 
 # 1. SSH with password
 # 2. Load the data disk from the server and mount on local
@@ -8,7 +8,7 @@
 
 set file = $1
 if($file == "" ) then
-	echo "non input file find !"
+	echo "no input file found !"
 	exit 0
 endif
 

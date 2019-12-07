@@ -2,9 +2,6 @@
 
 # ==================================================
 #	This Script plot the catalog plot of ESF
-#	
-#	Hongyu DATE: 
-#	Key words: 
 # ==================================================
 
 
@@ -25,13 +22,12 @@ set INFILE = $DATADIR/$EQ/INFILE_${PHASE}
 set COMP = `grep -w COMP $INFILE |awk 'NR==1 {print $2}'`
 set filter_flag = `grep -w filter_flag $INFILE |awk 'NR==1 {print $2}'`
 set velocity_or_displacement = `grep -w velocity_or_displacement $INFILE |awk 'NR==1 {print $2}'`
-set PHASE_BEG = `cat $INFILE |grep -w PHASE_BEG |awk '{print $2}'`
-set PHASE_LEN = `cat $INFILE |grep -w PHASE_LEN |awk '{print $2}'`
-set ED_CHECK_FILE1 = `cat $DATADIR/INFILE |grep -w ED_CHECK_FILE |awk '{print $2}'`
+set PHASE_BEG = `cat $INFILE |grep -w PHASE_BEG |awk 'NR==1 {print $2}'`
+set PHASE_LEN = `cat $INFILE |grep -w PHASE_LEN |awk 'NR==1 {print $2}'`
+set ED_CHECK_FILE1 = `cat $DATADIR/INFILE |grep -w ED_CHECK_FILE |awk 'NR==1 {print $2}'`
 set PHASE_END = `echo "$PHASE_BEG + $PHASE_LEN"|bc -l `
 set work_dir = $DATADIR/$EQ
 set input = $work_dir/input
-##set check_info = $DIR/storage_dir/${EQ}_${PHASE}_STA_LIST
 set ESinfo = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.tmp
 
@@ -48,15 +44,7 @@ cat ./pred |awk 'NR>1 {print $0}' >! $out_pred
 paste $ESinfo $out_pred >! $ESinfo_tmp
 mv $ESinfo_tmp $ESinfo
 cd -
-
 # =========================================================== # 
-
-
-
-
-# remove record with quality flag != 1
-#cat $ESinfo |awk '$14>=1 {print $0}' >! $ESinfo_tmp
-#mv $ESinfo_tmp $ESinfo
 
 
 set BENCHMARK_FLAG = `cat $DATADIR/$EQ/INFILE |grep -w BENCHMARK_FLAG|awk '{print $2}'`
@@ -82,14 +70,6 @@ if( ! -e $ed_check_file ) then
 endif
 
 set total_record_number = `cat $ESinfo |wc -l`
-## we seperate the PPP sta into an extra file
-#set PPP_sta_event = $work_dir/event.PPP
-#cat $ESinfo |grep PPP >! $PPP_sta_event
-#cat $ESinfo |grep -v PPP >! $ESinfo_tmp
-#if($fff != "") then
-#cat $ESinfo >! $ESinfo_tmp
-#endif
-#cp $ESinfo_tmp $ESinfo
 
 
 echo "=============================================="
@@ -111,7 +91,6 @@ foreach sta (`cat $ESinfo |awk '{print $1}' `)
 	endif
 	## deal with origional sta
 	set sta_ppp = `echo $sta |rev |cut -c 5-|rev`
-#set ppp_exist = `cat $ESinfo |awk '{print $1}' |grep -w $sta_ppp |awk 'NR==1 {print $1}'`
 	## find sta quality
 	set sta_quality = `cat $ESinfo |awk -v sss=$sta '$1==sss {print $14}'|awk 'NR==1 {print $1}'`
 	set sta_ppp_quality = `cat $ESinfo |awk -v sss=$sta_ppp '$1==sss {print $14}'|awk 'NR==1 {print $1}'`
@@ -122,18 +101,9 @@ foreach sta (`cat $ESinfo |awk '{print $1}' `)
 		cat $ESinfo |awk -v sss=$sta '$1==sss {print $0}' >> $tmp_event
 	endif
 
-#cat $ESinfo |awk -v sss=$sta '$1==sss {print $0}' >> $tmp_event
 
 end
 cp $tmp_event $ESinfo
-
-
-
-
-
-
-
-
 
 # ====================================================
 # 			set output pdf file and plot parameter
@@ -141,14 +111,6 @@ cp $tmp_event $ESinfo
 # sort according to $14 quality flag of recrods
 set ESinfo_tmp = $work_dir/eventinfo.${EQ}.${PHASE}.${COMP}.${filter_flag}_tmp
 mv $ESinfo $ESinfo_tmp
-## quality = 2 or quality = 3 record goes into info first
-
-##awk '$14==2 {print $0}' $ESinfo_tmp > $ESinfo
-##awk '$14==3 {print $0}' $ESinfo_tmp >> $ESinfo
-#awk '$14>=1 {print $0}' $ESinfo_tmp >> $ESinfo
-#awk '$14<1 {print $0}' $ESinfo_tmp >> $ESinfo
-
-
 # =============================================================================== fff NULL
 if($fff == "") then
 
@@ -190,10 +152,9 @@ end
 cat $eventinfo_bad_tmp_list |sort -n -k 3 >> $ESinfo
 
 
-#cp $new_event $ESinfo
 # =============================================================================== fff
 # =============================================================================== fff not NULL
-### if current exist in ed checked file, then we put anything that is not checked by ed into 
+# if current exist in ed checked file, then we put anything that is not checked by ed into 
 # the new eventinfo first and then the good pick 
 else if($fff != "" ) then
 echo "-> This EQ has been checked, we arrange by bad + good"
@@ -258,33 +219,18 @@ foreach sta (`cat $good_event_sta_list |awk '{print $1}'`)
 	endif
 end
 cat $eventinfo_good_tmp_list |sort -n -k 3 >> $ESinfo
-
-
-#mv $ESinfo_tmp $ESinfo
-
 # =============================================================================== fff not NULL
 endif
-
-
-
-
-
 
 
 # copy eventinfo to PLOTDIR
 cp $ESinfo $PLOTDIR/
 
 
-
-
 set OUTFILE_pdf = $PLOTDIR/${EQ}_${PHASE}_${COMP}_${filter_flag}_catalog_all_record.pdf
 if($fff != "") then
 set OUTFILE_pdf = $PLOTDIR/u${EQ}_${PHASE}_${COMP}_${filter_flag}_catalog_all_record.pdf
 endif
-
-
-
-
 
 # =============================
 # gmt setting and Page Setting 
@@ -294,33 +240,23 @@ gmtset ANNOT_FONT_SIZE_PRIMARY = 5p
 gmtset FRAME_PEN = 0.4p
 gmtset ANNOT_OFFSET_PRIMARY = 0.1c
 gmtset PAPER_MEDIA = A4
-
 set PLOT_PER_PAGE = 16
 set PAGE = 1
 set current_record = 1
 set ploted_record = 1
 set arrow_parameter = "-Svh0.005i/0.08i/0.01i"
-
-
 set record_with_low_amp_list = $PLOTDIR/list.station.zero_amplitude.${EQ}.${PHASE}.txt
 cat /dev/null >! $record_with_low_amp_list
 
 
-
 # =============================
-
 # establish a file containing the records that should be thrown away because of being too close to other phases only for good records
-
-
 # ====================================================
 # 	plot record one by one
 # ====================================================
 
 echo " -->figure out how many trace is actually being plotte"
-
-
 set record_num = `cat $ESinfo |wc -l`
-
 set num_record_getting_skipped = 0
 set new_ESinfo = $work_dir/new.esinfo
 cat /dev/null >! $new_ESinfo
@@ -377,41 +313,15 @@ cat $ESinfo |grep -w $sta >> $new_ESinfo
 
 end # sta
 mv $new_ESinfo $ESinfo
-
 set record_num = `cat $ESinfo |wc -l`
 echo "--->> $num_record_getting_skipped / $total_record_number records is getting skipped "
-
-
 set num_record_plotted = `echo "$total_record_number - $num_record_getting_skipped"|bc `
-
-
-
-
-
-
 foreach sta (`cat $ESinfo |awk '{print $1}'`)
-
-## if sta contains PPP continue
-##set PPP_sta = `echo $sta |grep PPP `
-##if( $PPP_sta == "" || $PPP_sta == " " ) then
-	##set a = 1
-##else
-##continue
-##endif
-
-
-
-##echo "---> Working on plotting $sta PHASE is $PHASE"
 set long = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.long
 set emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.emp
 set phase = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.phase
 set gau = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.gau
 set orig_emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.orig.emp
-#set CMT_polar_prediction_file = $work_dir/eventinfo.polarity.${PHASE}.${COMP}
-#set CMT_polar_tmp  = `grep -w $sta $CMT_polar_prediction_file |awk 'NR==1 {print $2}'` 
-#set CMT_polar_prediction = `printf "%.2f" $CMT_polar_tmp`
-##echo "---> sta $sta cmt $CMT_polar_prediction"
-
 
 ## make sure that long is not horizontal line, meaning the amplitude max is greater then 0.5
 set long_amp = `cat $long |minmax -C |awk '{print $4}'`
@@ -424,10 +334,6 @@ echo $sta >> $record_with_low_amp_list
 @ ploted_record ++
 continue
 endif
-
-
-
-
 
 if( ! -e $long ) then
 ##echo "$long does not exist! ========"
@@ -479,27 +385,9 @@ set EQ_name = $infoES[12]
 set polar_flag = $infoES[13]
 set quality_flag = $infoES[14]
 set CMT_polar_prediction = $infoES[43]
-## here we hardwire the picking info with our big eventinfo.final
-##set final_event = $DIR/eventinfo.final
-##ls $final_event
-##set quality_flag = `cat $final_event |grep -w $EQ |grep -w $sta |grep -w $PHASE |awk 'NR==1 {print $14}'`
 if($quality_flag == "") then
 set quality_flag = -1
 endif
-
-
-
-
-##if( -e $check_info ) then
-##set check_flag = `grep -w $STA $check_info |awk 'NR==1 {print $1}'`
-##if($check_flag == $STA ) then
-##set quality_flag = 1
-##else 
-##set quality_flag = -1
-##endif
-##endif
-
-
 
 set prem = $infoES[15]
 set phase_amplitude = $infoES[16]
@@ -507,53 +395,38 @@ set ccc = $infoES[17]
 set SNR = $infoES[18]
 set SNR2 = $infoES[31]
 set dt_obs_prem = $infoES[19]
-##echo "STA $STA dt_obs_prem is $dt_obs_prem"
 set best_stretch_ccc = $infoES[21]
 set best_stretch_coeff = $infoES[22]
 set tstar_ccc = $infoES[36]
 set tstar = $infoES[35]
-
 set CCC3 = $infoES[37]
-
 ##set tstar = $best_stretch_coeff
 set misfit = $infoES[23]
 set misfit2 = $infoES[32]
 set misfit_pre = $infoES[38]
 set misfit_bak = $infoES[39]
 set record_gaussian_factor = $infoES[40]
-
 set NOISE_BEG = $infoES[27]
 set NOISE_LEN = $infoES[28]
 set NOISE_END = `echo "$NOISE_BEG + $NOISE_LEN"|bc -l`
 set PHASE_WINDOW_BEG = $infoES[29]
 set PHASE_WINDOW_END = `echo "$PHASE_WINDOW_BEG + $PHASE_LEN"|bc`
-
 set record_weight = $infoES[30]
-
 set misfit2T_pre = $infoES[46]
 set misfit2T_bak = $infoES[48]
 set misfit3T_pre = $infoES[47]
 set misfit3T_bak = $infoES[49]
 set SNR_peak_trough = $infoES[50]
 set SNR_peak_ratio = $infoES[51]
-
-
 set ONSET = $infoES[33]
 set ENDSET = $infoES[34]
 set one_period = $infoES[54]
 set ML_quality = $infoES[55]
 set ML_flag = $infoES[56]
-
 #set ML_quality = $quality_flag
 #set ML_flag = 1
 #set ML_quality = 0
 #set ML_flag = 0
-
-##for ScS cut from -80 to 80 sec
-##if($PHASE == "ScS") then
-##awk '{if($1>-70 && $1 < 70) print $0}' $long > $work_dir/long_tmp
-##mv $work_dir/long_tmp $long
-##endif
 
 set xy_tmp = `minmax -C $long`
 set xmin = $xy_tmp[1]
@@ -561,12 +434,7 @@ set xmax = $xy_tmp[2]
 set ymin = $xy_tmp[3]
 set ymax = $xy_tmp[4]
 # we compute surface wave time window and ignore everything within the window
-
-
 ## Now lets deal with the traffic phase part
-
-##echo "current record is $current_record"
-
 	if( $current_record == 1 ) then
 		set OUTFILE = $PLOTDIR/catalog_all_eventstation_page_${PAGE}.ps
 cat << EOF > ${OUTFILE}
@@ -604,51 +472,16 @@ END
 		psxy -JX -R0/7/-1/1 -Sc0.1 -G255/0/0 -Y-0.3i -O -N -K <<EOF>>$OUTFILE
 0.5 0.3
 EOF
-#psxy -JX -R0/7/-1/1 -Sc0.1 -G255/0/0  -O -K -N <<EOF>>$OUTFILE
-#0.5 -0.3
-#EOF
 		pstext -JX -R0/7/-1/1 -O -K -N <<EOF>>$OUTFILE
 1 0.3 6 0 0 CB flipped
 EOF
-#//1 0.3  6 0 0 CB not flipped (black, not shown here)
 
 set traffic_color = (green purple orange 104/178/255 blue 255/0/0 255/100/0 255/100/100)
 		# add marker information for all phases
 set x_loc = 1.0
 set x_loc2 = 1.5
-	##foreach color (`echo $traffic_color`)
-		##psxy -JX -R0/7/-1/1 -W/${color}  -O -K <<EOF>>$OUTFILE
-##$x_loc 0
-##$x_loc2 0
-##EOF
-##set x_loc = `echo "$x_loc + 1"|bc -l`
-##set x_loc2 = `echo "$x_loc2 + 1"|bc -l`
-##end #color
-		# ONSET symble
-		##psxy -JX -R $arrow_parameter -G255/0/0  -O -K <<EOF>>$OUTFILE
-##5.4 0 90 0.5
-##EOF
-		# misfit window symble
-		##psxy -JX -R -Wfaint/255/153/51ta -O -K <<EOF>>$OUTFILE
-##6.4 0.5
-##6.4 -0.5
-##EOF
 
 set x_loc = 1.5
-##set traffic_file = $work_dir/traffic_file.${EQ}.${STA}.${PHASE}
-	##foreach phase_name (`cat $traffic_file |awk '{print $1}'`)
-		##pstext -JX -R -O -K <<EOF>>$OUTFILE
-##$x_loc 0 7	0 0 LB	$phase_name
-##EOF
-##set x_loc = `echo "$x_loc + 1"|bc -l`
-	##end
-
-#pstext -JX -R -O -K <<EOF>>$OUTFILE
-#5.5 0 7 0 0 LB  ONSET
-#EOF
-#pstext -JX -R -O -K <<EOF>>$OUTFILE
-##6.5 0 7 0 0 LB  misfit_win
-#EOF
 psxy -JX -R -O -K -N -Y0.2i << EOF>>$OUTFILE
 EOF
 
@@ -660,7 +493,6 @@ EOF
 
 ##=======================================
 ## Plot window information
-## 1 
 set FLAG_COLOR = 204/255/204
 set FLAG_FILE = $DATADIR/$EQ/FLAG_FILE.data
 if($BENCHMARK_FLAG == 1) then
@@ -726,28 +558,6 @@ EOF
 			set long_color = green
 		endif
 
-		##if($quality_flag > -1)then
-		# if record has small polar prediction and is not flipped
-		##if( $long_color_flag == "green" && $is_ppp == ""  ) then
-			##set ppp_polar_flag = `cat $final_event |grep -w $EQ |grep -w $sta |grep -w $PHASE |awk 'NR==1 {print $13}'`
-##echo "$sta in not flipped, polar = $ppp_polar_flag"
-			##if($ppp_polar_flag == 1) then
-				##set quality_flag = 1
-			##else
-				##set quality_flag = -1
-			##endif
-		##endif
-		##if( $long_color_flag == "green" && $is_ppp != ""  ) then
-			##set new_sss = `echo $sta|rev|cut -c 5-|rev`
-			##set ppp_polar_flag = `cat $final_event |grep -w $EQ |grep -w $new_sss |grep -w $PHASE |awk 'NR==1 {print $13}'`
-##echo "$sta is flipped, polar = $ppp_polar_flag"
-			##if($ppp_polar_flag == -1) then
-			##set quality_flag = 1
-			##else
-				##set quality_flag = -1
-			##endif
-		##endif
-		####endif
 
 # ==========================================================
 	#	add traffic phase system symbal
@@ -761,8 +571,6 @@ while ($NUM <= $traffic_num)
 	set TMP = `cat $traffic_file |awk -v sss=$STA '$1==sss {print $0}' |awk -v dd=$NUM 'NR==dd {print $0 }' `
 	set tPHASE = $TMP[2]
 	set rel_time = $TMP[4]
-#//echo "$STA $tPHASE $rel_time"
-#//set too_close_flag = $TMP[4]
 ## if relative time too big, skip
 set flag_rel_time = `echo $rel_time |awk '{ if ($1 > 100 || $1 < -100 ) print "HHH"}'`
 if( $flag_rel_time == "HHH" ) then
@@ -813,8 +621,6 @@ EOF
 	end #while
 endif
 
-	#	add traffic phase system symbal
-# ==========================================================
 		#  ===================== add vertical lines  =====================================
 
 		psxy -JX -R -W4/204/71/228 -O -K <<EOF >> $OUTFILE
@@ -823,14 +629,6 @@ endif
 EOF
 
 		psxy $long -JX -R -W/$long_color  -O -K >>$OUTFILE
-
-		## for records with small polar prediction, we plot its flipping too
-		##if( $long_color_flag == "green" ) then
-				##set long_PPP = $work_dir/${EQ}.${sta}_PPP.${PHASE}.${COMP}.long
-				##set emp_PPP = $work_dir/${EQ}.${sta}_PPP.${PHASE}.${COMP}.emp
-				##set gau_PPP = $work_dir/${EQ}.${sta}_PPP.${PHASE}.${COMP}.gau
-	##psxy $long_PPP -JX5i/0.5i -R$xmin/$xmax/-1/1 -W/blue  -O -K >>$OUTFILE
-		##endif
 
 
 		# add a dot to indicate whether it is fliped or not
@@ -850,27 +648,14 @@ EOF
 		if($quality_flag == 2 || $quality_flag  == 3 ) then
 		set quality_color = red
 		endif
-		##set x_loc = `echo "$xmin + 45"|bc`
-		##pstext -JX -R -G$quality_color -O -K -N << EOF >>$OUTFILE
-##$x_loc 1 8 0 0 LB $quality_flag
-##EOF
 
 
 		set emp_color = red 
 		psxy $emp -JX -R -W/$emp_color -O -K>>$OUTFILE
-
-#//psxy $phase -JX -R -W/blue -O -K >> $OUTFILE
-
-
 		## add best fit gaussian here
 		psxy $gau -JX -R -W/orange -O -K>>$OUTFILE
 
-
-		# this is the not stretched empirical waveform
-##psxy $orig_emp -JX -R -W/green -O -K>>$OUTFILE
-
 foreach loc (-15 -10 -5 5 10 15)
-		##psxy -JX -R -Wfaint,204/169/228,- -O -K <<EOF>>$OUTFILE
 		psxy -JX -R -Wfaint,204/169/228 -O -K <<EOF>>$OUTFILE
 $loc -0.1
 $loc  0.1
@@ -1008,7 +793,6 @@ cat  << EOF >> $OUTFILE
 EOF
 
 if( $ML_flag == 0) then
-#echo "found it "
 # Here we add another tiny box to indicate if ML model disagree with original pick
 cat  << EOF >> $OUTFILE
 [ 
@@ -1047,9 +831,6 @@ endif
 END
 
 
-##//echo "current record is $current_record record num is $record_num ploted record is $ploted_record"
-##//echo "plot is $ploted_record record is $record_num"
-
 	if( $ploted_record == $record_num || $current_record == $record_num ) then
 		psxy  -JX5i/0.5i -R$xmin/$xmax/-1/1 -Ba10f5S -O  -N -P <<EOF>>$OUTFILE
 EOF
@@ -1070,6 +851,5 @@ EOF
 end #sta foreach
 
 ps2pdf $tmp_ps $OUTFILE_pdf
-#to_hongyu $PLOTDIR_main
 /bin/rm $tmp_ps
 

@@ -18,26 +18,21 @@ puts("--> Working on grid Stacking");
 	double dist_deg_tmp_lon;
 
 
-puts("--> searching for station within each grid");
-printf("HHHHHH my input num lat lon %d %d \n", my_input->num_lat, my_input->num_lon);
 	for(ilat = 0; ilat < my_input->num_lat; ilat++)
 		for(ilon = 0; ilon < my_input->num_lon; ilon++)
 		{
-//printf(" lat beg is %lf \n", my_grid[ilat][ilon].lat_beg);
 			//current grid is my_gird[ilat][ilon]
 			lat_tmp = my_grid[ilat][ilon].lat;
 			lon_tmp = my_grid[ilat][ilon].lon;
 
 			my_grid[ilat][ilon].sum_num = 0;
 
-//printf("--> working on ialt ilon %d %d %lf %lf \n", ilat , ilon, lat_tmp, lon_tmp);
 			// iterative through all record and find every station within range of this grid
 			for(ista = 0 ; ista < my_input->sta_num; ista++)
 			{
 				dist_deg_tmp_lat = fabs( my_grid[ilat][ilon].lat - my_record[ista].sta_lat );
 				dist_deg_tmp_lon = fabs( my_grid[ilat][ilon].lon - my_record[ista].sta_lon );
 
-//printf("dist lat lon is %lf %lf station latlon %lf %lf \n", dist_deg_tmp_lat, dist_deg_tmp_lon, my_record[ista].sta_lat, my_record[ista].sta_lon );
 				// if within range
 				if( dist_deg_tmp_lat < my_input->AREA_RADIUS &&
 						dist_deg_tmp_lon < my_input->AREA_RADIUS )
@@ -64,7 +59,6 @@ puts("--> Fix BAZ and Stack for varying slowness");
 	int j,k,itime;
 	int long_npts = (int) (my_input->long_len / my_input->delta );
 printf("long len is %lf delta %lf npts %d \n", my_input->long_len, my_input->delta, long_npts);
-// iterative through each grid and stack
 
 	FILE* out;
 
@@ -74,7 +68,6 @@ printf("long len is %lf delta %lf npts %d \n", my_input->long_len, my_input->del
 		{
 			if(my_grid[ilat][ilon].sum_num < 2 )
 			{
-				//printf("ERROR too few station for grid ilat ilon %d %d, skip this one\n", ilat, ilon);
 				continue;
 			}
 			else
@@ -124,11 +117,9 @@ printf("long len is %lf delta %lf npts %d \n", my_input->long_len, my_input->del
 					dist_tmp = dist_A_B(lat_tmp, lon_tmp, clat, clon);
 
 					//angle between raypath and grid_sta geometry
-//printf("%lf %lf %lf %lf \n", clat , clon, lat_tmp, lon_tmp);
 					az_sta = az_A_B(clat, clon, lat_tmp, lon_tmp);
 					az_event = my_record[ista].BAZ;
 					dangle = az_sta - az_event;
-//printf("az sta is %lf az event is %lf dist is %lf \n", az_sta, az_event, dist_tmp);
 					//distance along ray
 					dist_along_ray =  cos( dangle / 180 * 3.1415926) * dist_tmp  ;
 					//slowness in s/deg convert to s/km
@@ -136,7 +127,6 @@ printf("long len is %lf delta %lf npts %d \n", my_input->long_len, my_input->del
 					//convert it to npts
 					int tmp_npts = (int) (my_grid[ilat][ilon].fix_BAZ_delay_time / my_input->delta);
 
-//printf("dangle is %lf baz %lf slowness %lf distance along ray %lf , time delay %lf \n", dangle ,az_event, slowness,dist_along_ray,  my_grid[ilat][ilon].fix_BAZ_delay_time);
 					//stacking to sum
 					int new_npts = itime - tmp_npts;
 					if(new_npts < 0)

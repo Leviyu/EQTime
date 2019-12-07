@@ -66,10 +66,6 @@ int hilbert(double* array_in, int npts, double* array_out)
 			h[i] = 0;
 	}
 
-	// apply a hamming window here
-	//
-
-
 	
 	//3.
 	double xhreal[npts];

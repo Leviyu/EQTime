@@ -38,22 +38,8 @@ int read_record_for_phase_for_one_sta_for_stacking(new_RECORD* my_record, new_IN
 	double prem_tmp;
 	char phase_tmp[200];
 	strcpy(phase_tmp,my_input->PHASE);
-
-
-
-
-
-
-
-	////sprintf(taup_command,"taup_time -mod prem -h 0 -ph %s  -deg 80| awk 'NR==6 {print $4}' ", my_input->PHASE );
-	 ///prem_tmp = shell_pipe(taup_command);
 	prem_tmp = my_input->TIME_REF;
 
-
-
-
-
-//printf("sac is %s prem is %lf instrument is %s prem is %lf \n", sac_file, prem_tmp, instrument, prem_tmp);
 	// initiate current phase
 	initiate_phase(my_record,prem_tmp,sac_file,  my_input);
 
@@ -61,9 +47,6 @@ int read_record_for_phase_for_one_sta_for_stacking(new_RECORD* my_record, new_IN
 	// normalize long win
 	normalize_array(my_record->long_win, (int) (my_input->long_len / my_input->delta));
 
-
-	//output long window and phase window
-	//output_long_phase_window(my_record, my_input);	
 
 	return 0;
 }

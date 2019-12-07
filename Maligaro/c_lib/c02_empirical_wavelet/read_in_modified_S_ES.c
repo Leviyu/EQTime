@@ -9,10 +9,6 @@
  *  we apply -1*S_EW for : S3 S3m S5 S5m SS 
  *   since we flipped all negative phase, we use S E.W. for all phases
  *   note we applied hilbert transform to SS S4
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int read_in_modified_S_ES(new_INPUT* my_input, double* array)
@@ -24,10 +20,6 @@ int read_in_modified_S_ES(new_INPUT* my_input, double* array)
 	double xx[npts_phase];
 	double yy[npts_phase];
 
-
-
-	// read in origional S ES
-	//char S_ES_input[300] = "S_ES.second.out";
 	char S_ES_input[300] = "main_ES.out";
 	FILE* in;
 	double S_ES[10000];
@@ -78,12 +70,6 @@ int read_in_modified_S_ES(new_INPUT* my_input, double* array)
 //	for S3 S5 SS we use -1* S EW
 // ====================================================================
 // ====================================================================
-	//if(strcmp(my_input->PHASE, "SSS") ==  0 || 
-		//strcmp(my_input->PHASE, "SSSm") ==  0 || 
-		//strcmp(my_input->PHASE, "SSSSS") ==  0 || 
-		//strcmp(my_input->PHASE, "SSSSSm") ==  0 || 
-		//strcmp(my_input->PHASE, "SS") ==  0  )
-	//{
 		double AMP = 0;
 		int npts_peak;
 		for(i = 0; i<npts_phase;i++)
@@ -132,42 +118,8 @@ int read_in_modified_S_ES(new_INPUT* my_input, double* array)
 		for(i=0; i<npts_phase ;i++)
 			yarray[i] = array[i];
 		wsac1(out_file,yarray, &npts_phase, &beg,&del, &nerr, strlen( out_file ));
-	//}
 	return 0;
 
 
 }
 
-/*
-
-	// if phase is SS we do a 1 times (90 degree phase shift)hilbert transfrom to it 
-	// now we try to hilberet SS to S, then we use S E.W. to cc with hilbert(SS)
-	if( strcmp(my_input->PHASE, "SmmmmS")== 0 )
-	{
-		printf("---> For PHASE: %s. the first E.W. is constructed using S E.W. \n",my_input->PHASE);
-		double H90[npts_phase];
-		double H180[npts_phase];
-		double H270[npts_phase];
-
-		output_array1("S_ES_for_SS.out.tmp1", array,npts_phase);
-		hilbert(array, npts_phase, H90);
-		//hilbert(H90, npts_phase, H180);
-		//hilbert(H180, npts_phase, H270);
-		for(i = 0;i<npts_phase; i++)
-			array[i] = H90[i];
-
-		output_array1("S_ES_for_SS.out", array,npts_phase);
-		// output it as sac
-		int nerr,i;
-		char out_file[200] = "S_ES_for_SS.sac";
-		float beg  = 0;
-		float del = my_input->delta;
-
-		float yarray[npts_phase];
-		for(i=0; i<npts_phase ;i++)
-			yarray[i] = array[i];
-		wsac1(out_file,yarray, &npts_phase, &beg,&del, &nerr, strlen( out_file ));
-
-		return 0;
-	}
-	*/

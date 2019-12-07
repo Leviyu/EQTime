@@ -13,30 +13,18 @@ puts("--> Initigate grid ");
 	double lat_delta = my_input->lat_delta;
 	double radius_deg = 5;
 	
-
-
-
-
 	// define dimension of grid 
 	int num_lat = (int)( fabs(lat_end - lat_beg) / lat_delta );
 	int num_lon = (int)( fabs(lon_end - lon_beg) / lon_delta );
 	my_input->num_lat = num_lat;
 	my_input->num_lon = num_lon;
-
 	int count;
-
-
-
-
-
-
-printf("--> number of lat %d  and lon %d \n ", num_lat, num_lon);
+    printf("--> number of lat %d  and lon %d \n ", num_lat, num_lon);
 
 	int i,j;
 	for(i = 0; i< num_lat ; i++)
 		for(j = 0; j<num_lon ; j++)
 		{
-//printf("--> working on i j %d %d \n", i , j );
 			my_grid[i][j].lat_beg  =  lat_beg;
 			my_grid[i][j].lon_beg  =  lon_beg;
 			my_grid[i][j].lat_end  =  lat_end;
@@ -46,8 +34,6 @@ printf("--> number of lat %d  and lon %d \n ", num_lat, num_lon);
 
 			my_grid[i][j].lat = lat_beg + i*lat_delta;
 			my_grid[i][j].lon = lon_beg + j*lon_delta;
-//printf(" lat lon %lf %lf \n", my_grid[i][j].lat , my_grid[i][j].lon );
-
 			my_grid[i][j].radius_deg = radius_deg;
 
 			my_grid[i][j].sum_num = 0;

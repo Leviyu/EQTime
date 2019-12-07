@@ -13,12 +13,6 @@ puts("---> Get Misfit for each recrod and get the SNR");
 	for(ista =0; ista < my_input->sta_num ; ista ++)
 	{
 		int npts_phase = (int)(my_input->phase_len / my_input->delta);
-
-		//if(my_record[ista].quality == -1)
-			//continue;
-
-//printf("--->processing for sta %s \n",my_record[ista].name);
-		//calculate the misfit from ONSET to ENDSET with an additional 6sec extension
 		
 		double npts_ONSET,npts_ENDSET;
 		double extra_time = 0;	//sec
@@ -37,7 +31,6 @@ puts("---> Get Misfit for each recrod and get the SNR");
 		double misfit = 0;
 		double AMP_ES = amplitude(my_record[ista].ES_win, npts_phase);
 		double AMP_record = amplitude(my_record[ista].phase_win, npts_phase);
-//printf("sta %s AMP ES %lf record %lf \n", my_record[ista].name, AMP_ES, AMP_record);
 		if(AMP_ES ==0 || AMP_record == 0)
 		{
 			my_record[ista].quality = -1;
@@ -45,14 +38,10 @@ puts("---> Get Misfit for each recrod and get the SNR");
 		}
 		for(count = npts_ONSET; count < npts_ENDSET; count++)
 		{
-			//misfit_ES +=  fabs( my_record[ista].ES_win[count] );
-			//misfit_record +=  fabs( my_record[ista].phase_win[count] );
 			misfit += fabs( my_record[ista].ES_win[count]/AMP_ES -  my_record[ista].phase_win[count] / AMP_record);
 		}
 
 		//average it with the number of points
-		//misfit_ES = misfit_ES / (npts_ENDSET - npts_ONSET);
-		//misfit_record = misfit_record / (npts_ENDSET - npts_ONSET);
 		misfit = misfit / (npts_ENDSET - npts_ONSET);
 
 		my_record[ista].misfit = misfit;
@@ -70,7 +59,6 @@ puts("---> Get Misfit for each recrod and get the SNR");
 		{
 			noise_signal += fabs(my_record[ista].noise_win[i]);
 		}
-		//printf("noise signal is %lf phase signa; is %lf npts noise phase %d %d\n", noise_signal, phase_signal, my_record[ista].npts_noise,my_record[ista].npts_phase);
 		if( noise_signal == 0 )
 		{
 			puts("ERROR: noise_signal is 0 SNR problem!");
@@ -90,12 +78,7 @@ puts("---> Get Misfit for each recrod and get the SNR");
 			my_record[ista].SNR = SNR;
 		}
 
-		//printf("---> In getting misfit SNR for %s is %lf \n",my_record[ista].name, my_record[ista].SNR);
 	}
-
-
-
-
 
 	// output ONSET ENDSET for plotting
 	FILE* out;

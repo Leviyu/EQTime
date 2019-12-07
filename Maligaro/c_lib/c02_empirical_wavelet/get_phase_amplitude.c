@@ -4,14 +4,6 @@
 /******************************************************************
  * This is a c script to get phase window amp 
  *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 
@@ -31,7 +23,6 @@ int get_phase_amplitude(new_RECORD* my_record)
 	}
 
 
-//##printf(" STA %s DEPMINMAZX Is %20.15lf %20.15lf\n", my_record->name,amp_nega, amp_posi);
 
 	// find the max value and store into amplitude
 	my_record->amplitude = amp_posi;

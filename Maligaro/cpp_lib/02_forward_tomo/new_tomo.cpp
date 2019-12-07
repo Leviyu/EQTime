@@ -2,18 +2,7 @@
 #include "forward_tomography.h"
 /******************************************************************
  * This is a c script to initiate tomography 
- *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
-
-
 void new_tomo::initiate_tomo()
 {
 	cout << "---> Tomography is initiated " << endl;

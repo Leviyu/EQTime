@@ -32,11 +32,11 @@ cp $PWD/INFILE $WORKDIR/$EQ/
 
 
 set INFILE = ${WORKDIR}/$EQ/INFILE
-set DIR =						`grep -w CURRENT_DIR $INFILE | awk '{print $2}'`
+set DIR =						`grep -w CURRENT_DIR $INFILE | awk 'NR==1 {print $2}'`
 set PLOTDIR =					`grep -w PLOTDIR $INFILE | awk 'NR==1 {print $2}'`
-set C_DIR =						`grep -w "<C_DIR>" $INFILE | awk '{print $2}'`
-set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk '{print $2}'`
-set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk '{print $2}'`
+set C_DIR =						`grep -w "<C_DIR>" $INFILE | awk 'NR==1 {print $2}'`
+set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk 'NR==1 {print $2}'`
+set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk 'NR==1 {print $2}'`
 
 
 #set DATADIR = $DATADIR/$ID

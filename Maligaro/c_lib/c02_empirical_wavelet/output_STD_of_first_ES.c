@@ -80,9 +80,6 @@ puts("-->output_STD_of_first_ES \n");
 		{
 			if(my_record[ista].quality != -1 && my_record[ista].weight > 0)
 			{
-				// calculate the std
-
-				// output stretched record into out2
 				for(ii = 0; ii < npts_phase; ii++)
 					fprintf(out2,"%lf %lf %d\n", ii *my_input->delta, my_record[ista].phase_win[ii],1);
 			}	

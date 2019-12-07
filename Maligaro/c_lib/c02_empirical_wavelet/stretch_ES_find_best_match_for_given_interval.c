@@ -4,6 +4,7 @@ int stretch_ES_find_best_match_for_given_interval(new_RECORD* my_record, double*
 		int* best_time_shift, double* best_ES, new_INPUT* my_input)
 {
 	double coeff = 0;
+	int count;
 
 	int NUM;
 	int NUM_max; // number of stretching needed
@@ -74,7 +75,16 @@ int stretch_ES_find_best_match_for_given_interval(new_RECORD* my_record, double*
 		stretched_CCC[NUM] = ccc;
 		stretched_coefficient[NUM] = coeff;
 		stretched_timeshift[NUM] = npts_shift;
-		//printf("--->working on coeff %lf ccc %lf time shift %d \n",coeff, ccc, npts_shift);
+
+		// outfile 
+		char out3[100];
+		sprintf(out3, "waveform.%s.%lf", my_record->name, coeff);
+		double xx[npts_phase];
+		for(count = 0; count < npts_phase ; count ++)
+			xx[count] = count;
+		output_array2(out3,xx, record_tmp , npts_phase, 1);
+		
+
 	}
 
 	int j;
@@ -92,8 +102,6 @@ int stretch_ES_find_best_match_for_given_interval(new_RECORD* my_record, double*
 	*best_ccc = stretched_CCC[index_max];
 	*best_time_shift = stretched_timeshift[index_max];
 	*best_coeff = stretched_coefficient[index_max];
-	//printf("best coeff is %lf \n", *best_coeff);
-	int count;
 	for(count=0;count<npts_phase;count++)
 		best_ES[count] = stretched_ES[index_max][count];
 

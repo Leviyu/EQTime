@@ -1,0 +1,4 @@
+#<DIST_MASK_BEG>         75
+#<DIST_MASK_END>         75
+                        # the distance range to mask off when constructing Empirical Wavelet
+                        # If *NOT* wish to use it, just change them to be the same.

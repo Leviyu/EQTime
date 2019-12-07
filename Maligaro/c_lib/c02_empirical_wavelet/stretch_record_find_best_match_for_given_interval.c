@@ -40,8 +40,6 @@ int stretch_record_find_best_match_for_given_interval(double* record,
 		if(coeff <= 0)
 			continue;
 		stretched_coefficient[NUM] = coeff;
-//
-//printf("--> tstar beg for %lf \n", coeff);
 		double tmp_ES[npts_phase];
 		//1. stretch ES
 		stretch_ES_function(ES_win, npts_phase, coeff, tmp_ES);
@@ -58,7 +56,6 @@ int stretch_record_find_best_match_for_given_interval(double* record,
 			construct_array_with_main_lobe(tmp_ES, &npts_phase,ES_tmp);
 			construct_array_with_main_lobe(phase_win, &npts_phase,record_tmp);
 
-//printf("--> tstar end \n\n");
 		//2. ccc stretched ES with record
 		double ccc;
 		int npts_shift, npts_tmp,ccc_flag;
@@ -71,7 +68,6 @@ int stretch_record_find_best_match_for_given_interval(double* record,
 		stretched_CCC[NUM] = ccc;
 		stretched_coefficient[NUM] = coeff;
 		stretched_timeshift[NUM] = npts_shift;
-		//printf("--->working on coeff %lf ccc %lf time shift %d \n",coeff, ccc, npts_shift);
 	}
 
 	int j;

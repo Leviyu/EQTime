@@ -14,13 +14,11 @@ int read_input_info(new_INPUT* my_input)
 
 
 	int file_num = count_file_num(INFILE_name);
-//printf("file name is %s file num is %d \n",INFILE_name,file_num);
 
 	for(count = 0;count < file_num; count ++)
 	{
 		fgets(read_tmp,N, in);              // line
 		sscanf(read_tmp,"%s" ,buff);
-//printf("read in %s \n",buff);
 		if (strcmp(buff,"<COMP>") == 0)
 			sscanf(read_tmp,"%s %s" ,buff, my_input->COMP);
 		else if (strcmp(buff,"<filter_flag>") == 0)
@@ -39,6 +37,10 @@ int read_input_info(new_INPUT* my_input)
 			sscanf(read_tmp,"%s %lf" ,buff, &my_input->noise_beg);
 		else if (strcmp(buff,"<NOISE_LEN>") == 0)
 			sscanf(read_tmp,"%s %lf" ,buff, &my_input->noise_len);
+		else if (strcmp(buff,"<DIST_MASK_BEG>") == 0)
+			sscanf(read_tmp,"%s %lf" ,buff, &my_input->DIST_MASK_BEG);
+		else if (strcmp(buff,"<DIST_MASK_END>") == 0)
+			sscanf(read_tmp,"%s %lf" ,buff, &my_input->DIST_MASK_END);
 		else if (strcmp(buff,"<velocity_or_displacement>") == 0)
 			sscanf(read_tmp,"%s %s" ,buff, my_input->velocity_or_displacement);
 		else if (strcmp(buff,"<SNR_CUT>") == 0)
@@ -84,13 +86,11 @@ int read_input_info(new_INPUT* my_input)
 
 
 	file_num = count_file_num(INFILE_name2);
-//printf("file name is %s file num is %d \n",INFILE_name,file_num);
 
 	for(count = 0;count < file_num; count ++)
 	{
 		fgets(read_tmp,N, in2);              // line
 		sscanf(read_tmp,"%s" ,buff);
-//printf("read in %s \n",buff);
 		if (strcmp(buff,"<T_star_lib>") == 0)
 			sscanf(read_tmp,"%s %s" ,buff, my_input->tstar_lib);
 		else if (strcmp(buff,"<ED_CHECK_FILE>") == 0)
@@ -108,25 +108,6 @@ int read_input_info(new_INPUT* my_input)
 	}
 
 	fclose(in2);
-
-	// output input
-	//FILE* out;
-	//out=fopen("input.out","w");
-	//fprintf(out,"EQ is %s\n",my_input->EQ);
-	//fprintf(out,"eventfile %s\n",my_input->event_file);
-	//fprintf(out,"phase is  %s\n",my_input->PHASE);
-	//fprintf(out,"comp is %s\n",my_input->COMP);
-	//fprintf(out,"ve_or_di is %s\n",my_input->velocity_or_displacement);
-	//fprintf(out,"long_beg_len is %lf %lf \n",my_input->long_beg, my_input->long_len);
-	//fprintf(out,"phase_beg_len is %lf %lf \n",my_input->phase_beg, my_input->phase_len);
-	//fprintf(out,"noise_beg_len is %lf %lf \n",my_input->noise_beg, my_input->noise_len);
-	//fprintf(out,"dist_min_max is %lf %lf \n",my_input->distmin, my_input->distmax);
-	//fclose(out);	
-	//
-	
-
-
-
 
 	// initiate mask_win_min & mask_win_max
 	if(strcmp(my_input->PHASE, "Sdiff") == 0)

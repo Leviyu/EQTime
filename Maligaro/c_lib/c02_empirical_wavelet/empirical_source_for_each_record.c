@@ -5,18 +5,6 @@
 /******************************************************************
 // This function does the cross-correlation between E.W, with each record and update the 
 // phase window for each phase
- *
- *	Input:
- *	my_record
- *	my_input
- *	current_ES
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int empirical_source_for_each_record(new_RECORD* my_record, new_INPUT* my_input, double* current_ES, int loop_num)
@@ -58,10 +46,8 @@ int empirical_source_for_each_record(new_RECORD* my_record, new_INPUT* my_input,
 			if( loop_num == 1 && my_input->POLAR_SOLUTION == 2 && my_record[ista].polar_flag == 0 )
 			{
 				my_record[ista].polar_flag = 1;
-//printf("working on sta %s \n", my_record[ista].name);
 				if(strstr(my_record[ista].name, "PPP") != NULL)
 				{
-//printf("flop sta is %s \n", my_record[ista].name);
 					my_record[ista].polar_flag = -1;
 					// find negative amp and normalize with it
 					amplitudeloc(my_record[ista].phase_win, (int)(my_record[ista].phase_len/my_input->delta),&max_amp_loc, &AMP_phase, -1);
@@ -92,37 +78,13 @@ int empirical_source_for_each_record(new_RECORD* my_record, new_INPUT* my_input,
 			CCC(tmp_new_ES,npts_phase,tmp_new_PHASE, npts_phase, &npts_shift, &ccc, ccc_flag);
 
 
-//printf("--->sta %s loop %d ccc %lf \n", my_record[ista].name, loop_num, ccc);
 		// ===========================================================
 		// use shift from ESF to shift record and update phase win
 		// if shift too big, we shift it back
 		// ===========================================================
 		shift_time = npts_shift*my_input->delta;
 
-
-
-		// if reprocessing_flag is 1, we dont allow big shift
-		// if shift is greater then 3sec, then we hardwire it to be 0
-		//if(my_input->Reprocessing_Flag == 1 &&  fabs(shift_time) > 5 )
-		//{
-			//printf(" --> reprocessing_flag STA %s shifted %lf \n", my_record[ista].name, shift_time);
-			//shift_time = 0;
-		//}
-		//if( my_input->Reprocessing_Flag == 1 && loop_num == 1)
-		//{
-			//shift_time = -1*my_record[ista].dt_picked_shift;
-			////printf("loop 1 --> reprocessing_flag STA %s shifted %lf \n", my_record[ista].name, shift_time);
-		//}
-		//if(fabs(shift_time) > 20)
-			//shift_time = 0;
-
-		//printf(" STA %s  shift time is %lf \n",my_record[ista].name, shift_time);
-
 		my_record[ista].phase_beg -= shift_time;
-
-		//if(my_record[ista].beyong_window_flag == 1)
-		//printf("%s new shift time is %lf beyong_window_flag %lf \n",my_record[ista].name, shift_time, my_record[ista].beyong_window_flag);
-//
 
 		// ===========================================================
 		//	update phase window

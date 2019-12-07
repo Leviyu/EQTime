@@ -1,2 +1,0 @@
-	strcpy(my_input->logfile, "logfile.main");
-	my_input->out_logfile = fopen(my_input->logfile,"w");

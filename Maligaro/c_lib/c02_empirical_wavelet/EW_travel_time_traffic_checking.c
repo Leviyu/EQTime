@@ -395,13 +395,7 @@ int EW_travel_time_traffic_checking(new_RECORD* my_record, new_INPUT* my_input)
 
 
 	// now output the traffic_phase list
-	//char traffic_file[500];
-	//FILE* out;
 	int count;
-	//sprintf(traffic_file, "traffic_file.%s.%s.%s", my_record->EQ, my_record->name, my_record->PHASE);
-	//out = fopen(traffic_file,"w");
-
-
 
 	// construct traffic phase system
 	my_record->num_traffic = iphase;
@@ -473,13 +467,8 @@ int EW_travel_time_traffic_checking(new_RECORD* my_record, new_INPUT* my_input)
 		if( fabs(my_record->prem - prem_tmp) <  traffic_range_sec) 
 		{
 			// for uppder going phase, we just use it for visual reference 
-			//sprintf(upper_flag,"%c",my_record->PHASE[0]);
-			//if(strcmp(upper_flag,"s")==0 || strcmp(upper_flag, "p") ==0)
-				//my_record->quality = 0;
-			//else 
 			my_record->quality = -1;
 			my_record->traffic_phase_nearby = 1;
-			//printf("sta %s flag %d \n", my_record->name, my_record->traffic_phase_nearby);
 
 			// phase_name, absolute_PREM, relative_PREM, flag
 			// flag  too_close / good

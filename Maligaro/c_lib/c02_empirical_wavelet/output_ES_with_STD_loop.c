@@ -25,7 +25,6 @@ int output_ES_with_STD_loop(new_RECORD* my_record,new_INPUT*  my_input,double* c
 				else 
 					polar_flag = my_record[ista].polar_flag;
 				STD[pcount] += pow( (current_ES[pcount] - my_record[ista].phase_win[pcount] ) ,2 );
-				//printf("current STD is %lf \n", STD[pcount]);
 				num = num + 1;
 			}	
 		}

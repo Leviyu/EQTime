@@ -41,9 +41,10 @@ int construct_array_with_main_lobe(double* array_in, int* npts_in, double* array
 	// if peak is within the first or last 10sec window, we make a new array
 	// with first and last 10sec masked and re find peak
 	//printf(" peak max is %d \n", npts_peak_max);
-	int skip_npts = 80;
+	int skip_npts = 120;
 	if(npts_peak_max < skip_npts || npts_peak_max > *npts_in - skip_npts)
 	{
+		//printf("---------------> the peak value is too close to beg or end \n");
 		double tmpArray[*npts_in];
 		for(kkk = 0; kkk < *npts_in ; kkk++)
 		{
@@ -53,7 +54,6 @@ int construct_array_with_main_lobe(double* array_in, int* npts_in, double* array
 				tmpArray[kkk] = array_in[kkk];
 		}
 		amplitudeloc(tmpArray, *npts_in, &npts_peak_max, &peak_max,1);
-
 	}
 
 
@@ -66,28 +66,28 @@ int construct_array_with_main_lobe(double* array_in, int* npts_in, double* array
 	if( npts_cut == 0 || npts_cut == *npts_in-1)
 	//if( npts_cut < 100 || npts_cut > *npts_in-1 - 100)
 	{
-	current_npts = *npts_in;
-	kkk_time = 1;
-	cut_time_sum = 0;
-	while( npts_cut == 0 || npts_cut == current_npts-1)
-	// we change it in a way that the npts_cut, which is the peak location, 
-	// are not allowed to be in the first or last 10sec of the window
-	//while( npts_cut <100 || npts_cut > current_npts-1 - 100 )
-	{
-		// chop off 2* 10 points
-		// lets try chop off 2* 20
-		current_npts = *npts_in - kkk_time * 40;
-		if( current_npts < 40 )
-			break;
-		for(kkk = 0; kkk< current_npts; kkk++) 
-			new_cut[ kkk] = array_in[kkk+10*kkk_time];
-		amplitudeloc(new_cut, current_npts, &npts_cut, &peak_max,1);
-		//if( npts_cut == current_npts -1 || npts_cut == 0)
-		cut_time_sum = npts_cut + 10*kkk_time;
-		//printf("  kkk %d current peak npts is %d  npts_cut %d \n",kkk_time, cut_time_sum, npts_cut);
-		kkk_time += 1;
-	}
-	npts_peak_max = cut_time_sum;
+		current_npts = *npts_in;
+		kkk_time = 1;
+		cut_time_sum = 0;
+		while( npts_cut == 0 || npts_cut == current_npts-1)
+		// we change it in a way that the npts_cut, which is the peak location, 
+		// are not allowed to be in the first or last 10sec of the window
+		//while( npts_cut <100 || npts_cut > current_npts-1 - 100 )
+		{
+			// chop off 2* 10 points
+			// lets try chop off 2* 20
+			current_npts = *npts_in - kkk_time * 40;
+			if( current_npts < 40 )
+				break;
+			for(kkk = 0; kkk< current_npts; kkk++) 
+				new_cut[ kkk] = array_in[kkk+10*kkk_time];
+			amplitudeloc(new_cut, current_npts, &npts_cut, &peak_max,1);
+			//if( npts_cut == current_npts -1 || npts_cut == 0)
+			cut_time_sum = npts_cut + 10*kkk_time;
+			//printf("  kkk %d current peak npts is %d  npts_cut %d \n",kkk_time, cut_time_sum, npts_cut);
+			kkk_time += 1;
+		}
+		npts_peak_max = cut_time_sum;
 	}
 
 
@@ -189,10 +189,7 @@ int construct_array_with_main_lobe(double* array_in, int* npts_in, double* array
 			array_out[count] = value_peak/fabs(value_peak) *( array_tmp[count] - cut_min)/(1-cut_min);
 		}
 	}
-//#printf("ONSET AND ENDSET is %d %d\n", ONSET ,ENDSET);
-//output_array1("test1111",array_out,*npts_in);
 
-	//puts("---> construct array with main lobe done \n");
 	return 0;
 
 }

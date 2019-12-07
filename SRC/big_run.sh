@@ -26,7 +26,7 @@ set END = `echo "($PART)*$INC "|bc`
 set PART_FILE = $TPWD/LOG/.list.EQ.${BIG_ID}.${PART}
 cat $EQ_LIST |awk '{ if(NR>='$BEG' && NR<='$END') print $1}' >! $PART_FILE
 cd $TPWD
-set ID = ${BIG_ID}_${PART}
+set ID = ${BIG_ID}.${PART}
 cp $PART_FILE $TPWD/code_dir/INPUT_EQ_LIST
 csh $TPWD/code_dir/mother.sh $PWD $ID  > & /dev/null &
 sleep 3s

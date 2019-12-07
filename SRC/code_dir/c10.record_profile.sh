@@ -2,9 +2,6 @@
 
 # ==================================================
 #	This Script plot the record profile of EQ
-#	
-#	Hongyu DATE: 
-#	Key words: 
 # ==================================================
 
 
@@ -59,18 +56,11 @@ EOF
 set record_num = `cat $ESinfo |wc -l`
 foreach sta (`cat $ESinfo |awk '{print $1}'`)
 set long = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.long
-##set emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.emp
-##set orig_emp = $work_dir/${EQ}.${sta}.${PHASE}.${COMP}.orig.emp
-##set CMT_polar_prediction_file = $work_dir/eventinfo.polarity.${PHASE}.${COMP}
-##set CMT_polar_tmp  = `grep -w $sta $CMT_polar_prediction_file |awk 'NR==1 {print $2}'` 
-##set CMT_polar_prediction = `printf "%.2f" $CMT_polar_tmp`
 
 if( ! -e $long ) then
 echo "$long does not exist! ========"
 continue
 endif
-
-
 
 # =============== get info prepared section ============
 set infoES  = `awk -v STA=$sta 'STA==$1 {print $0}' $ESinfo`

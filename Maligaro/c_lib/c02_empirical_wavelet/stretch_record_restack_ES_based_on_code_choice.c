@@ -5,14 +5,6 @@
  * stretch each record using stretch_facotr 
  * and then restack for new ES
  *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int stretch_record_restack_ES_based_on_code_choice(new_RECORD* my_record, new_INPUT* my_input, double* ES)
@@ -36,7 +28,6 @@ int stretch_record_restack_ES_based_on_code_choice(new_RECORD* my_record, new_IN
 		if( my_record[ista].quality <= 0)
 			continue;
 
-		//printf(" %d th record weight is %lf \n", ista, my_record[ista].weight);
 		if( my_record[ista].best_stretch_coefficient == 0)
 			my_record[ista].best_stretch_coefficient = 1;
 		stretch_factor_record = 1/my_record[ista].best_stretch_coefficient;
@@ -83,7 +74,6 @@ int stretch_record_restack_ES_based_on_code_choice(new_RECORD* my_record, new_IN
 				if(my_record[ista].stretched_phase_win[i] != my_record[ista].stretched_phase_win[i] )
 					my_record[ista].stretched_phase_win[i] = 0;
 
-				//ES_tmp[i] += stretch_tmp[i]*my_record[ista].weight;
 				ES[i] += my_record[ista].stretched_phase_win[i];
 			}
 			num_records_make_new_ES++;

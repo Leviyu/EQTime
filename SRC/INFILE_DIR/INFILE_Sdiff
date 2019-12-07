@@ -5,6 +5,7 @@
 <COMP>								T	
 <filter_flag>						bp
 <DIST_MIN_MAX>						non 180
+    # "non" is to have code use all distances to the minimum distance
 <DIST_DELTA>                        2
 <Frequency_range>					0.01	0.0667
 

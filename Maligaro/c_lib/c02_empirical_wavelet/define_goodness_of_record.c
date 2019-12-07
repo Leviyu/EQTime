@@ -169,16 +169,6 @@ int define_goodness_of_record(new_RECORD* my_record, new_INPUT* my_input)
 			my_record[ista].quality = 3;
 
 
-				//fabs(tstar_factor) > tstar_factor_min &&
-				//fabs(tstar_factor) < tstar_factor_max)
-		//if(my_record[ista].quality != -1 &&
-				//fabs(SNR) > my_input->SNR_CUT &&
-				//fabs(stretch_ccc) > my_input->CCC_CUT &&
-				//fabs(ccc) > 0.5)
-			//my_record[ista].quality = 1;
-
-
-//printf("STA %s ccc %lf SNR %lf quality %d \n ", my_record[ista].name, stretch_ccc, stretch_factor, my_record[ista].quality );
 	}
 
 

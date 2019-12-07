@@ -3,29 +3,52 @@
 # =============================================================
 # =============================================================
 # Parameters To Change
-<TASK_NAME>				test6
+<TASK_NAME>				TESTB
 						# TASK_NAME should be the unique ID for this task				
+						# no underscore in filename allowed!
+                        # This ID is used to create working dirctory and plotting directory
+                        # A process flag is attached at the end of the directory name to indicate 
+                        # the multiprocessing process number 
 
 <PHASE_LIST>			S 
-#<PHASE_LIST>			S ScS Sdiff ScSScS SS SSS
 #<PHASE_LIST>			P PcP Pdiff
 #<PHASE_LIST>			SSS SSSm SSSS SSSSm SSSSS SSSSSm SSSSSS SSSSSSm ScSScSScS ScSScSScSm ScSScSScSScS ScSScSScSScSm ScSScSScSScSScS ScSScSScSScSScSm
 						# Phases of interest, for multiple phases, simple add 
 						# the other phase at the end of the line
 						# e.g. P PcP Pdiff 
+                        # For each phase, please modify their corresponding parameter file under:
+                        # ./INFILE_DIR/
 
-<EQ_LIST_FILE>			test
+<EQ_LIST_FILE>			testa
 #<EQ_LIST_FILE>			SwaveMLPatch5
+                        # event name format as in DataCollection
+                        # event directory location: /mnt/soduser/Merge.Mw6.50km
+                        # see readme.md: info about "get_EQ_sac having location of data
 						# file name of a list of events to be processed
-						# by default, the file is placed under EQ_LIST_DIR 
+						# by default, the file is placed under ./EQ_LIST_DIR/ 
 
 <IS_MULTI_PHASE>		NO
+                        # multi bounce phase flag DISTANCE RESTRICTION FILTER
+                        # if not used, all distances considered
+                        #It is used to specify desired distance range for given event and phase
+                        # based on file ./code_dir/GOOD_MULTI_EVENT
+                        # The format of the file is: 
+                        # EQ_NAME/BEG_DIST/END_DIST/PHASE_LIST
 
-<Process_Number>		2
+<Process_Number>	    1
 						# How many processes to run at the same time
 						# <EQ_LIST_FILE> would be divided into multiple
 						# parts and each part is processed individually
 						# this number should not be greater then 8
+
+# This flag is now moved to ./INFILE_DIR/INFILE_S and ./INFILE_DIR/INFILE_P
+#<DIST_MASK_BEG>         75
+#<DIST_MASK_END>         75
+                        # the distance range to mask off when constructing Empirical Wavelet
+                        # If *NOT* wish to use it, just change them to be the same.
+
+
+
 # =============================================================
 # =============================================================
 # the following is pre-configured, don't change
@@ -45,32 +68,44 @@
 # Directory information
 <BIGDIR>				/mnt/data2/maligaro/EQTime
 						# This has to be absolute path of current directory
-#<EQ_SAC_FILE_DIR>		/mnt/soduser/Merge.Mw6.50km
+
 <DATADIR>				/mnt/data2/maligaro/EQTime/DATADIR
 						# This has to be absolute path of where you would prefer 
 						# the data processing to happen, which can take some space
 
-
 <CURRENT_DIR>			SRC
-                        # source scripts for plotting and post-processing
+                        # relative path of source scripts for plotting and post-processing
 <PLOTDIR>				PLOTDIR
-                        # location where to store the pdf catalog
+                        # relative path of location where to store the pdf catalog
 <SHELL_DIR>				SRC/code_dir
-                        # shell scripts locations
+                        # relative path of shell scripts locations
 <C_DIR>					Maligaro/c_lib
-                        # c code locations 
+                        # relative path of c code locations 
 <TAUP_DIR>				TIMEDIR
-                        # taup_time storage locations
+                        # relative path of taup_time storage locations
 <T_star_lib>			tstar_lib
-                        # tstar storage locations
-<ED_CHECK_FLAG>			0
-<ED_CHECK_FILE>			SRC/code_dir/eventinfo
+                        # relative path of tstar storage locations
 <DELTA>					0.1
-                        # interpolation time increment
+                        # interpolation time increment: for all data, guassians, etc, in processing
+
+
+## ==========================================================
+# Flags deprecated so far (Not used)
+<ED_CHECK_FLAG>			0
+                        # used long ago: probably not needed
+
+<ED_CHECK_FILE>			SRC/code_dir/eventinfo
+                        # used long ago: probably not needed
+
 <BENCHMARK_FLAG>		0
-                        # for benchmark purpose only
+                        # for benchmark purpose only (for HYL's test case ???)
+
 <Fix_missing_sta_flag>	0			
-                        # only use missing station to process
+                        # only use missing station to process: if later stations collected, process
+                        # with existing EW.  but unusable by me -- used HYL's database stuff (thus
+                        # reprocess whole event
+
 <Reprocessing_Flag>		0			
                         # if this flag is on, we reprocess all picked records
-<PLOT_FLAG>				1
+                        # post processing thing
+                        # delete??

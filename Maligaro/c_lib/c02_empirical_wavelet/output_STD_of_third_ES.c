@@ -64,8 +64,6 @@ int output_STD_of_third_ES(new_RECORD* my_record,new_INPUT*  my_input,double* cu
 		{
 			if(my_record[ista].quality > 0  )
 			{
-
-				// output stretched record into out2
 				for(ii = 0; ii < npts_phase; ii++)
 					fprintf(out2,"%lf %lf %d\n", ii *my_input->delta, my_record[ista].stretched_phase_win[ii],1);
 			}	

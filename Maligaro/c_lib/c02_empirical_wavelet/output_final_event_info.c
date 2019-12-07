@@ -2,22 +2,10 @@
 #include "ESF.h"
 /******************************************************************
  * This is a c script to output the big info file
- *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 int output_final_pick_onset_info_for_record(new_RECORD* my_record, FILE* out)
 {
 	// output format
-	// 1		2					3					4	
-	// sta		time_phase_peak		npts_phase_peak		stretch_factor
-	
 	fprintf(out,"%7s %10.5lf %10d %5.2lf\n",my_record->name, my_record->time_phase_peak, my_record->npts_phase_peak, my_record->best_stretch_coefficient);
 
 	return 0;
@@ -28,7 +16,6 @@ void get_record_gau_ave_std(new_RECORD* my_record, new_INPUT* my_input)
 {
 
 	int i = 0;
-
 	double sum = 0;
 	int count = 0;
 	for( i = 0; i < my_input->sta_num; i++)
@@ -73,26 +60,20 @@ int output_final_event_info(new_RECORD* my_record, new_INPUT* my_input)
 	phase_flag = 0;
 
 	FILE* out;
-	//FILE* out2;
 	char out_name[200];
 	char out_eventpick[200];
 	sprintf(out_name,"eventinfo.%s.%s.%s",my_input->EQ, phase, my_input->COMP);
 	out=fopen(out_name,"w");
-	//sprintf(out_eventpick,"eventpick.%s.%s.%s",my_input->EQ, phase, my_input->COMP);
-	//out2=fopen(out_eventpick,"w");
 	
 	get_record_gau_ave_std(my_record,my_input);
 
 	for(ista = 0; ista< my_input->sta_num;ista++)
 	{
 		// output record info for each record
-		//printf("%d / %d  %s \n ",ista, my_input->sta_num , my_record[ista].name);
 		define_final_weight(&my_record[ista],my_input);
 		output_final_event_info_for_record(&my_record[ista], out, my_input);
-		//output_final_pick_onset_info_for_record(&my_record[ista],out2);
 	}
 	fclose(out);
-	//fclose(out2);
 
 	return 0;
 }
@@ -207,8 +188,6 @@ double define_final_weight(new_RECORD* my_record, new_INPUT* my_input)
 	wPolarity = polarity_weight(my_record->polarity);
 	wGAU = gau_weight(my_record->record_gaussian_factor, my_input->gau_ave, my_input->gau_std);
 
-	//printf("weight %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf \n", wSNR,wCCC,wMISFIT,wPRE,wPRE2,wPRE3,
-			//wPOST,wPOST2,wPOST3,wPolarity,wGAU);
 	my_record->final_weight = wSNR * wCCC * wMISFIT*wPRE*wPRE2*wPRE3*wPOST*wPolarity*wGAU;
 
 	if(my_record->final_weight < 0.05)
@@ -252,8 +231,6 @@ int output_final_event_info_for_record(new_RECORD* my_record, FILE* out, new_INP
 	if(best_ccc > 1 || best_ccc < -1)
 		ccc = 0;
 
-
-	//printf("STA %s SNR %lf CCC %lf SNR_CUT %lf CCC_Cut %lf quality %d \n", my_record->name, my_record->SNR, my_record->best_stretch_ccc, my_input->SNR_CUT, my_input->CCC_CUT, my_record->quality);
 
 	char sta[20];
 	strcpy(sta,my_record->name);
@@ -310,7 +287,6 @@ double polarity = my_record->polarity;
 	double SNR3 = my_record->SNR3;
 	double SNR4 = my_record->SNR4;
 	int noise_too_short_flag = my_record->noise_too_short_flag;
-	//printf("ccc2 \n");
 	int traffic_in_noise_window_flag = my_record->traffic_in_noise_window_flag;
 	double one_period = my_record->one_period;
 
@@ -319,11 +295,6 @@ double polarity = my_record->polarity;
 	// for Lp Sdiff SS SSS data, we add delay time to the dt_residual
 	//double dt_obs_prem = my_record->dt_obs_prem - my_input->bp_delay_time;
 	double dt_obs_prem = my_record->dt_obs_prem;
-	// for postprocessing
-	// hardwire dt to be dt_picked shift
-	//if(my_input->Reprocessing_Flag == 1) 
-		//dt_obs_prem = my_record->dt_picked_shift;
-		//
 	
 
 	if(my_input->Reprocessing_Flag == 1)

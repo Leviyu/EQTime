@@ -1,13 +1,5 @@
 #!/bin/csh
 
-# ==================================================
-#	This Script prepare the data for ESF
-#	
-#	Hongyu DATE: 
-#	Key words: 
-# ==================================================
-
-
 set EQ = $1
 set DATADIR = $2
 set work_dir = $3
@@ -48,32 +40,23 @@ echo "--> DIST2 $DISTMIN2 $DISTMAX2 default is $DISTMIN $DISTMAX"
 if( $DISTMIN2 > $DISTMIN ) then
 set DISTMIN = $DISTMIN2
 endif
-echo "--> h2 "
 if( $DISTMAX2 < $DISTMAX ) then
 set DISTMAX = $DISTMAX2 
 endif
-echo "--> h3 "
 
-f( $DISTMIN > $DISTMAX ) then
+if( $DISTMIN > $DISTMAX ) then
 set DISTMAX = $DISTMIN
 endif
 
-
 echo "---> New DISTMINMAX is $DISTMIN $DISTMAX"
-
 # copy S_ES to local dir 
 set S_ES_DIR = ~/EQTime/SRC/S_EW_DIR
 cp $S_ES_DIR/S_ES.${EQ} $work_dir/main_ES.out
-
 endif
-
-
-
 
 set event = $work_dir/eventStation.${EQ}.${PHASE}.${COMP}
 # ========================== find the right distance range ===================
 awk '{if ( $3>='$DISTMIN' && $3 <= '$DISTMAX' ) print $0}' $tmp_event |sort -n -k 3 > $event
-
 
 # ======
 # we check to make sure when Reprocessing_Flag is on, we only selected those
@@ -103,18 +86,12 @@ mv $Reprocessing_event $event
 endif # Reprocessing_Flag
 # ======
 
-
-
-
-
-
 # =============================================================
 # if Fix_missing_sta_flag == 1
 # we use previous S_ES as empirical wavelet and only process for those 
 # that has not been procesed
 # =============================================================
 if($Fix_missing_sta_flag == 1) then
-echo "Fix_missing_sta_flag processing begin"
 set new_event_list = $work_dir/old.event.list
 cat $event |awk '{print $1}'|sort|uniq >! $new_event_list
 
@@ -134,8 +111,6 @@ set S_ES_DIR = /mnt/data2/hongyu/Catalog_Plots/mother_dir/C01_make_eventinfo/eve
 cp $S_ES_DIR/${EQ}.S_ES $work_dir/main_ES.out
 endif
 
-
-
 set total_num = `cat  $event |wc -l`
 echo "Total records: $total_num"
 
@@ -146,8 +121,6 @@ set LONG_BEG = `grep -w LONG_BEG $INFILE |awk '{print $2}'`
 set LONG_LEN = `grep -w LONG_LEN $INFILE |awk '{print $2}'`
 set DELTA = `cat $work_dir/INFILE |grep DELTA |awk '{print $2}'`
 
-#echo "$bp_min $bp_max $LONG_BEG $LONG_LEN $DELTA"
-
 
 echo "--> begin downloading sac file"
 # ========================= download sac file =================
@@ -157,20 +130,10 @@ foreach STA (`cat $event |awk '{print $1}'`)
 	set NET = $tmp1[2]
 	set DIST = $tmp1[3]
 	set EQ_DEP = $tmp1[13]
-
-#echo $EQ $NET $DIST $EQ_DEP
 	set sacname1 = ${EQ}.${NET}.${STA}.BH${COMP}.sac
 	set sacname2 = ${EQ}.${NET}.${STA}.HH${COMP}.sac
-#echo $sacname1 $sacname2
-	##if(-e $sacname1 || -e $sacname2 ) then
-	##set sac_file_already_exist = 0
-	##else
-$get_DATA  ${EQ}/$sacname1  $EQ_SAC_FILE_DIR> & /dev/null 
-##$get_DATA  ${EQ}/$sacname1   &
-$get_DATA  ${EQ}/$sacname2  $EQ_SAC_FILE_DIR> & /dev/null
-##$get_DATA  ${EQ}/$sacname2    &
-	##endif
-
+    $get_DATA  ${EQ}/$sacname1  $EQ_SAC_FILE_DIR> & /dev/null 
+    $get_DATA  ${EQ}/$sacname2  $EQ_SAC_FILE_DIR> & /dev/null
 
 	if(-e $sacname1 ) then
 	set sacname = $sacname1
@@ -203,7 +166,6 @@ r $sacname
 mul -1
 write over
 EOF
-#sac < $macro > & /dev/null
 endif
 
 # ================================
@@ -214,7 +176,6 @@ r $sacname
 hilbert
 write over
 EOF
-#sac < $macro > & /dev/null
 endif
 
 # ===============================
@@ -233,7 +194,6 @@ hilbert
 mul -1
 write over
 EOF
-#sac < $macro > & /dev/null
 endif
 
 
@@ -241,7 +201,6 @@ endif
 
 #filter 
 if( $filter_flag == "bp") then
-##    echo "-----> filter bp"
 cat<< EOF >> $macro
 r $sacname
 rtr
@@ -272,15 +231,8 @@ rmean
 interpolate delta ${DELTA}
 write over
 EOF
-
-#sac <$macro >& /dev/null
-
 endif
-
-
 sac <$macro >& /dev/null
-
-
 	end #foreach
 
 # =============================================================

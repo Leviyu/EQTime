@@ -12,7 +12,6 @@ int output_long_phase_window(new_RECORD* my_record, new_INPUT* my_input)
 	{
 		if(my_record[count].beyong_window_flag == -1)
 			continue;
-		//##printf("output long and phase for %d record\n", count);
 		output_long_phase_window_for_each(&my_record[count], my_input);
 	}
 	return 0;
@@ -29,13 +28,10 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	// normalize both long and phase window with amp of long
 	int max_loc;
 	double amp;
-	//amplitudeloc(my_record->long_win, (int)( my_record->long_len / my_input->delta) ,&max_loc, &amp, 0);	
-	//amplitudeloc(my_record->long_orig, (int)( my_record->long_len / my_input->delta) ,&max_loc, &amp, 0);	
 	amplitudeloc(my_record->long_win, (int)( my_record->long_len / my_input->delta) ,&max_loc, &amp, 0);	
 	int max_loc2;
 	double amp2;
 	amplitudeloc(my_record->phase_win,my_record->npts_phase,&max_loc2, &amp2,1);
-//printf(" amp long is %lf amp phase is %lf \n", amp,amp2);
 	if(amp == 0 )
 		amp =1;
 	if(amp2 == 0)
@@ -44,11 +40,9 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	// when S gets close to ScS, we make this differently
 	// when phase is ScS and the distance > 76 and the peak location is within 
 	// the first 7second then we get rid of the first 7 second and find the amplitude
-	//if( strcmp(my_record->PHASE,"ScS") ==0 && my_record->DIST > 75 && max_loc2 < 100 )
 	int npts_skip = 50;
 	if( max_loc2 < npts_skip )
 	{
-		//printf("revious amp is %lf \n",amp2);
 		double new_cut[3000];
 		int kkk;
 		for(kkk = 0; kkk< my_record->npts_phase -npts_skip; kkk++)
@@ -59,7 +53,6 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	}
 	else if( max_loc2 > my_record->npts_phase - npts_skip )
 	{
-		//printf("revious amp is %lf \n",amp2);
 		double new_cut[3000];
 		int kkk;
 		for(kkk = 0; kkk< my_record->npts_phase -npts_skip; kkk++)
@@ -73,12 +66,10 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	my_record->long_amplitude = fabs(amp) / amp2;
 	if( my_record->long_amplitude == 0)
 		my_record->long_amplitude =1;
-//printf("record is %s long amp ratio is %lf \n", my_record->name, my_record->long_amplitude);
 
 	if(amp == 0)
 		amp = 1;
 	int i;
-	// get x_long
 	// ======================================================
 	// if long_win / phase_win ratio <= 2, we normalize long window to 1
 	int increment = 5;
@@ -92,13 +83,11 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	int new_npts_long = (int)(my_record->npts_long / increment);
 	if(my_record->long_amplitude <=2 )
 	{
-			//for(i=0;i<my_record->npts_phase;i++)
 			for(i=0;i<new_npts_phase; i++)
 			{
 				my_record->phase_win[i] = my_record->phase_win[i*increment] / fabs(amp);
 				x_phase[i] = my_record->phase_beg + i*increment*my_input->delta;
 			}
-			//for(i=0;i<my_record->npts_long;i++)
 			for(i=0;i<new_npts_long;i++)
 			{
 				my_record->long_win[i] = my_record->long_win[i*increment] / fabs(amp);
@@ -126,7 +115,6 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 	}
 
 
-
 	sprintf(long_win_name,"%s.%s.%s.%s.long", my_record->EQ,my_record->name,my_record->PHASE,my_record->COMP);
 	sprintf(phase_win_name,"%s.%s.%s.%s.phase", my_record->EQ,my_record->name,my_record->PHASE,my_record->COMP);
 	//output_array2(long_win_name,x_long,my_record->long_orig, my_record->npts_long, 1);
@@ -134,7 +122,7 @@ int output_long_phase_window_for_each(new_RECORD* my_record, new_INPUT* my_input
 
 
 	output_array2(long_win_name,x_long,my_record->long_orig, new_npts_long, 1);
-	//output_array2(phase_win_name,x_phase,my_record->phase_win, new_npts_phase, 1);
+	output_array2(phase_win_name,x_phase,my_record->phase_win, new_npts_phase, 1);
 	//output_array2(long_win_name,x_long,my_record->long_orig, my_record->npts_long, 1);
 	//output_array2(phase_win_name,x_phase,my_record->phase_win, my_record->npts_phase, 1);
 

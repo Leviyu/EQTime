@@ -29,6 +29,8 @@ int initiate_input(new_INPUT* my_input)
 	my_input->logfile = (char*)malloc(sizeof(char)*200);
 	my_input->PWD = (char*)malloc(sizeof(char)*200);
 
+    my_input->DIST_MASK_BEG = 0;
+    my_input->DIST_MASK_END = 0;
 
 
 	// get DIR from INFILE file

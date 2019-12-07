@@ -2,10 +2,6 @@
 
 # ==================================================
 #	This Script is the main script for ESF
-#	
-#	
-#	Hongyu DATE: 
-#	Key words: 
 # ==================================================
 set EQ = $1
 set DATADIR = $2

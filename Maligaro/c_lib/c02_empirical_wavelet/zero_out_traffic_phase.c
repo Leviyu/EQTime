@@ -3,7 +3,6 @@
 // this is a function to construct long window with traffic phase padded with zero
 int zero_out_traffic_phase( new_RECORD* my_record, new_INPUT* my_input)
 {
-	//printf("zero out traffic %s \n", my_record->name);
 	int count;
 
 	for(count = 0; count < my_record->num_traffic ; count++)
@@ -11,7 +10,6 @@ int zero_out_traffic_phase( new_RECORD* my_record, new_INPUT* my_input)
 
 		// if is depth_phase and is close to main phase then 15 second
 		// we use 15sec cause we dont have any estimation of one Period here
-		// yet
 		if( strcmp( my_record->traffic_phase[count], my_record->depth_phase) == 0)
 			if( fabs( my_record->traffic_time[count]) < 15  )
 				continue;
@@ -36,7 +34,6 @@ int zero_out_traffic_phase( new_RECORD* my_record, new_INPUT* my_input)
 				my_record->traffic_time[count] > what_is_too_far_huawei )
 			continue;
 
-//printf(" zero out %d / %d phase %s \n", count , my_record->num_traffic, my_record->traffic_phase[count]);
 		int pad_length = 8;
 		int npts_pad_each_side = (int)( pad_length / my_input->delta);
 		int npts_min = (int)(-15 / my_input->delta);
@@ -51,13 +48,10 @@ int zero_out_traffic_phase( new_RECORD* my_record, new_INPUT* my_input)
 
 		if( npts_beg_pad <= 0 || npts_end_pad > (int)(my_input->phase_len / my_input->delta))
 		{
-			//printf(" npts problem \n");
 			npts_beg_pad = 0;
 			npts_end_pad = 0;
 		}
 
-		//printf("sta %s , traffic zoom out is %s \n", my_record->name, my_record->traffic_phase[count]);
-		//printf("npts beg end is %d %d  \n", npts_beg_pad, npts_end_pad );
 
 		int kkk;
 		for(kkk = npts_beg_pad ; kkk< npts_end_pad ; kkk++)

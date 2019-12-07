@@ -1,13 +1,5 @@
 #!/bin/csh
 
-# ==================================================
-#	This Script preprocess the data for esf
-#	
-#	Hongyu DATE: 
-#	Key words: 
-# ==================================================
-
-
 set EQ = $1
 set DATADIR = $2
 set PLOTDIR = $3
@@ -105,8 +97,6 @@ echo $EQ $PHASE $DELTA  > ! $c_input
 
 date
 set c_logfile = $work_dir/logfile.c
-##./EWM.out << EOF  >> & $c_logfile
-#./EWM $c_input
 ./EWM $c_input >& $c_logfile 
 
 date

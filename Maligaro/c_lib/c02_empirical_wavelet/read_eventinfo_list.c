@@ -18,8 +18,6 @@ puts("---> Read eventinfo ");
 
 		initiate_record_name(&my_record[i]);
 		fgets(buff,N,in);
-//printf("buff is %s \n",buff);
-		//sscanf(buff,"%s %s %lf %lf %lf	%lf %lf %lf %lf %lf %lf %s 	%d 	%d  %lf %lf %lf %lf %lf %s 	%lf %lf %lf  %s 	%lf %d %lf	%lf %lf %lf %lf %lf  ",
 		sscanf(buff,"%s %s %lf %lf %lf	%lf %lf %lf %lf %lf %lf %s 	%d 	%d  %lf %lf %lf %lf %lf %s 	%lf %lf %lf  %s 	%lf %d %lf	%lf %lf %lf %lf %lf %lf %lf %lf %lf ",
 				my_record[i].name,
 				my_record[i].NET,

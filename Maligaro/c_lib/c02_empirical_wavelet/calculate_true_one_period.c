@@ -33,7 +33,6 @@ int calculate_true_one_period_for_each(new_RECORD* my_record, new_INPUT* my_inpu
 	double vel[npts];
 	double disp[npts];
 
-	//printf("sta %s beg %lf end %lf  1t is %lf\n", my_record->name, beg, end,t1);
 
 	// read from long_win_orig
 	int i;
@@ -71,7 +70,6 @@ int calculate_true_one_period_for_each(new_RECORD* my_record, new_INPUT* my_inpu
 	my_input->emp_gaussian_factor = best_coeff;
 
 
-	//printf(" best coeff is %lf \n", best_coeff);
 
 	// 4. define ONSET and ENDSET on the gaussian 
 	// int amplitudeloc(double* array, int len, int* max_amp_loc, double* amplitude, int flag)

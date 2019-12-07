@@ -45,7 +45,7 @@ set TAUP_DIR =					`grep -w TAUP_DIR $INFILE | awk '{print $2}'`
 set SHELL_DIR =					`grep -w SHELL_DIR $INFILE | awk '{print $2}'`
 
 set DATADIR = $WORKDIR/$ID
-set big_id = `echo $ID |awk -F"_" '{print $1}'`
+set big_id = `echo $ID |awk -F"." '{print $1}'`
 
 set PLOTDIR = $PLOTDIR/$big_id
 mkdir -p $DATADIR 

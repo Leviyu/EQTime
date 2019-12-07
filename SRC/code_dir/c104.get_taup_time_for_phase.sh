@@ -2,20 +2,11 @@
 
 # ====================================================================
 # This is a csh script to return the taup_time for a record
-# 
 # Input: EQ info
 # 		station
 # 		phase info
-#
 # Output: a file store travel time for all phases for current EQ_STA
-#
-#
-# DATE:					Keywords:
-#
-# Reference:
 # ===================================================================
-
-
 set EQ =	$1
 set STA =	$2
 set PHASE = $3
@@ -31,8 +22,6 @@ set INFILE = ./INFILE
 set TAUP_DIR = `grep TAUP_DIR $INFILE|awk 'NR==1 {print $2}'`
 set SHELL_DIR = `grep SHELL_DIR $INFILE|awk 'NR==1 {print $2}'`
 set eventStation = ./eventStation.${EQ}
-
-# deal with PPP flag
 set PPP_flag = `echo $STA |grep PPP`
 if($PPP_flag == "") then
 	set a = 1
@@ -47,11 +36,8 @@ set taup_time_file = $TAUP_DIR/${EQ}/taup_time.${EQ}.${STA}
 
 ## if taup_file for current main_PHASE does not exist, create it
 if(! -e $taup_time_file ) then
-	#echo "--> make taup file"
 	csh $SHELL_DIR/c106.from_eventStation_make_big_taup_file.sh $EQ $STA $eventStation $TAUP_DIR/$EQ
-	#taup_time -mod prem -ph $main_PHASE -h $eq_dep -sta $sta_lat $sta_lon -evt $eq_lat $eq_lon >> $taup_time_file
 endif
-
 
 # Get minor phase taup_time 
 # This is done by grabing the first travel time given by taup_time that < 180
@@ -62,9 +48,6 @@ set main_result = `cat $taup_time_file |grep -w $main_PHASE | awk '$8<180 {print
 else 
 set main_result = `cat $taup_time_file |grep -w $main_PHASE | awk '$8>180 {print $4}' |awk 'NR==1 {print $0}'  `
 endif
-#cat $taup_time_file |grep -w $main_PHASE| awk '$8<180 {print $4}' |awk 'NR==1 {print $0}'
-#echo $PHASE $main_PHASE
-#echo "main $main_result "
 if($main_result == "" ) then
 	set time_diff = 0
 	else
@@ -73,7 +56,6 @@ endif
 
 
 echo $time_diff
-##//echo "main phase is $main_PHASE PHASE is $PHASE"
 
 
 exit 0

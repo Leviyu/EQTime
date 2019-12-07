@@ -9,8 +9,6 @@ int output_long_phase_window_distsum(new_RECORD* my_record, new_INPUT* my_input)
 	double distmin = my_input->distmin;
 	double distmax = my_input->distmax;
 	double distdelta = my_input->DIST_DELTA;
-
-
 	int ista;
 	int ii;
 	int MAX = 100000;
@@ -32,9 +30,6 @@ int output_long_phase_window_distsum(new_RECORD* my_record, new_INPUT* my_input)
 			x_long[ii] = 0;
 			distsum[ii] = 0;
 		}
-
-
-
 		double dist_beg = distmin + count * distdelta;
 		double dist_end = distmin + (count +1) * distdelta;
 
@@ -73,17 +68,7 @@ int output_long_phase_window_distsum(new_RECORD* my_record, new_INPUT* my_input)
 
 		// normalize the long
 		int jj;
-		//double AMP = amplitude(distsum,my_record[2].npts_long);
-		//printf("AMP is %lf \n", AMP);
-		//normalize_array(distsum,my_record[2].npts_long);
-		//for(jj = 0; jj< my_record[2].npts_long; jj++)
-			//distsum[jj] = distsum[jj] / AMP;
-
-		//for(jj = 0; jj< my_record[2].npts_long; jj++)
-			//distsum[jj] += dist_beg;
-
 		sprintf(dist_sum_name,"%s.%s.%s.distsum.%d", my_record->EQ,my_record->PHASE,my_record->COMP, count );
-
 		fprintf(out, "%d %d\n", count, stack_num);
 
 
@@ -91,7 +76,6 @@ int output_long_phase_window_distsum(new_RECORD* my_record, new_INPUT* my_input)
 	int i;
 	for(i=0;i<my_record[2].npts_long;i++)
 		x_long[i] = my_record[2].long_beg + i*my_input->delta;
-//printf("---> Woring on %lf %lf \n", dist_beg, dist_end);
 	output_array2(dist_sum_name,x_long,distsum, my_record[2].npts_long, 0);
 
 

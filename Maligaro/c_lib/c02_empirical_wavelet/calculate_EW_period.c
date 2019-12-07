@@ -1,23 +1,9 @@
-
 #include "hongyulib.h"
 #include "ESF.h"
-/******************************************************************
- * This is a c script to calculate the EW_period
- *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
-******************************************************************/
 
 int calculate_EW_period(new_INPUT* my_input, double* EW)
 {
 
-//int amplitudeloc(double* array, int len, int* max_amp_loc, double* amplitude, int flag)
 
 	int npts = (int)(my_input->phase_len / my_input->delta);
 	int max_amp_loc = 0;

@@ -23,15 +23,6 @@ printf("---> Read eventstation list info \n");
 
 		strcpy(my_record[i].PHASE, my_input->PHASE);
 		
-		//int DEBUG = 1;
-		//if( DEBUG == 0 )
-		//{
-		 ////output for DUBUG
-		//printf("%s %s %lf %s %lf %s %lf %s %lf %lf %lf %lf %lf %s %s %lf %s %s %s\n",
-				//my_record[i].name,my_record[i].NET,my_record[i].DIST,buff1,my_record[i].AZ,buff1,my_record[i].BAZ,buff1,
-				//my_record[i].sta_lat,my_record[i].sta_lon,my_record[i].eq_lat,my_record[i].eq_lon,my_record[i].eq_dep,
-				//buff1,buff1,my_record[i].eq_mag,buff1,buff1,my_record[i].EQ);
-		//}
 	}
 
 	fclose(in);
@@ -63,7 +54,6 @@ printf("---> Read eventstation list info \n");
 				if(strcmp(sta_tmp,my_record[ista].name)==0)
 				{
 					my_record[ista].polarity = tmp_polarity;
-				//printf("sta %s polarity is %lf \n", my_record[ista].name, tmp_polarity);
 				// set polar_flag according to the polarity info
 				if( my_record[ista].polarity > 0.15)
 					my_record[ista].polar_flag = 1;
@@ -79,7 +69,6 @@ printf("---> Read eventstation list info \n");
 
 		}
 	}
-	//fclose(in2);
 
 
 

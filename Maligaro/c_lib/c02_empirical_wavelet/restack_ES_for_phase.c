@@ -4,15 +4,6 @@
 /******************************************************************
  * This is a c script to restack EW using records that 
  * with good SNR and ccc
- *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int restack_ES_for_phase(new_RECORD* my_record, new_INPUT* my_input, double* ES)
@@ -28,18 +19,11 @@ printf("---> Restack E.W. \n ");
 
 	for(ista=0;ista< my_input->sta_num; ista ++)
 	{
-		//if(my_record[ista].quality == -1)
-			//continue;
-
 
 		my_record[ista].weight = get_weight_from_SNR_CCC( my_record[ista].SNR, my_record[ista].ccc);
-		//if(strstr(my_record[ista].name, "PPP") != NULL )
-			//continue;
-
 		if(my_record[ista].weight == 0)
 			continue;
 
-		// hongyu change
 		// here we grab records from eventinfo.ed_checked
 		// and we only use records that we picked already to construct the S E.W.
 		if(my_input->ED_CHECKED_FLAG == 1 )
@@ -71,14 +55,6 @@ printf("---> Restack E.W. \n ");
 
 		for(ista=0;ista< my_input->sta_num; ista ++)
 		{
-			//if(my_record[ista].quality == -1)
-				//continue;
-			//if(strstr(my_record[ista].name, "PPP") != NULL)
-				//continue;
-				//my_record[ista].weight = get_weight_from_SNR_CCC( my_record[ista].SNR, my_record[ista].ccc);
-				//if(my_record[ista].weight == 0)
-					//continue;
-			//printf(" %d th record weight is %lf \n", ista, my_record[ista].weight);
 			for(i=0;i<npts_phase;i++)
 			{
 				if(my_record[ista].phase_win[i] != my_record[ista].phase_win[i]) 

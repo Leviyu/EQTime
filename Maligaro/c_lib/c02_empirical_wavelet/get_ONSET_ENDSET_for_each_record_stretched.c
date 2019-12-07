@@ -11,8 +11,6 @@
  *  [peak_to_amp_threshold_in_front_of_peak,
  *  peak_to_amp_threshold_at_back_of_peak]
  *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT* my_input)
@@ -35,24 +33,15 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		if(my_record[ista].beyong_window_flag == -1 ) 
 			continue;
 		// use max value as the phase peak
-			// assumption is that the phase peak will always be the first peak
-			//
-		//printf( "--> on %d / %d \n", ista, my_input->sta_num );
+		// assumption is that the phase peak will always be the first peak
 
-		AMP = 0;
-		for(i = 0; i<npts_phase;i++)
-		{
-			if( my_record[ista].stretched_ES_win[i]  >= AMP )
-			{
-				AMP = fabs( my_record[ista].stretched_ES_win[i] );
-				npts_peak = i;
-			}
-		}
+		AMP = my_input->EW_AMP;
+		npts_peak = my_input->npts_EW_peak  ;
 
 		if(npts_peak == 0)
 			npts_peak = 100;
 		if(npts_peak == npts_phase -1)
-			npts_peak = npts_phase -100;
+			npts_peak = npts_phase -50;
 	
 		// store phase peak time and npts
 		my_record[ista].time_phase_peak = my_record[ista].phase_beg + npts_peak * my_input->delta;
@@ -66,6 +55,7 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		// instead of use stretched ES win, we should be using phase_win
 		for( i = npts_peak; i> 1 ; i--)
 		{
+			//printf(" amp is %lf \n", my_record[ista].stretched_ES_win[i] );
 			//if(fabs( my_record[ista].stretched_ES_win[i] ) < fabs(noise_level) )
 			if(fabs( my_record[ista].stretched_ES_win[i] ) < fabs(noise_level) )
 			{
@@ -76,6 +66,9 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 
 		// convert npts ONSET into dt
 		dt_ONSET = my_record[ista].phase_beg + npts_ONSET * my_input->delta ;
+printf(" sta %s dt_onset %lf phase beg %lf dff %lf \n",my_record[ista].name,dt_ONSET, my_record[ista].phase_beg, npts_ONSET * my_input->delta);
+printf(" peak %d \n", npts_peak);
+
 
 		// npts_ENDSET is find the same way as npts_ONSET
 		//npts_ENDSET = npts_peak + (npts_peak - npts_ONSET);
@@ -103,7 +96,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		int npts_peak_ONSET = npts_peak - npts_ONSET;
 		dt_ENDSET = my_record[ista].phase_beg + ( npts_peak+ npts_peak_ONSET) * my_input->delta ;
 	
-//printf(" dt_ENDSET %lf %d %d %lf \n", my_record[ista].phase_beg, npts_peak , npts_peak_ONSET, my_input->delta)	;
 		// store ONSET into dt_obs_prem
 		my_record[ista].dt_obs_prem = dt_ONSET;
 		my_record[ista].ONSET = dt_ONSET;
@@ -211,9 +203,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		misfit = misfit_diff / d_npts;
 		my_record[ista].misfit_pre3T = misfit;
 
-		//printf("misfit pre pre2T pre3T %lf %lf %lf \n", my_record[ista].misfit_pre,
-				//my_record[ista].misfit_pre2T,
-				//my_record[ista].misfit_pre3T);
 
 // ===========================================================
 //	get misfit measurement misfit_bak
@@ -271,7 +260,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		misfit = misfit_diff / d_npts;
 		my_record[ista].misfit_bak3T = misfit;
 
-//printf("sta is %s ONSET time is %lf phase beg is %lf npts_onset is %d * my_input->delta =  %lf  \n",my_record[ista].name,  dt_ONSET, my_record[ista].phase_beg, npts_ONSET, npts_ONSET * my_input->delta);
 
 
 		double extra_time = 3;
@@ -300,7 +288,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 			my_record[ista].noise_too_short_flag = 1;
 
 
-		//printf("noise signal is %lf phase signa; is %lf npts noise phase %d %d\n", noise_signal, phase_signal, my_record[ista].npts_noise,my_record[ista].npts_phase);
 		if( noise_signal == 0 || npts_ONSET == npts_ENDSET)
 		{
 			puts("ERROR: noise_signal is 0 SNR problem!");
@@ -310,7 +297,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 		else
 		{
 			double SNR_sig = phase_signal / (npts_ENDSET - npts_ONSET);
-			//double SNR_noi = noise_signal / (my_record[ista].noise_len/my_input->delta);
 			double SNR_noi = noise_signal / value_noise_npts;
 			double SNR = SNR_sig/SNR_noi;
 			my_record[ista].SNR_sig = SNR_sig;
@@ -366,7 +352,6 @@ int get_ONSET_ENDSET_for_each_record_stretched(new_RECORD* my_record, new_INPUT*
 // ===========================================================
 //	get SNR3 which is the peak to trough SNR
 // ===========================================================
-	//int get_SNR3_and_4_for_record(double* phase_win,int phase_npts, double* noise_win,int noise_npts, double* SNR3, double* SNR4)
 	if( my_input->Reprocessing_Flag == 1 )
 	{
 		double SNR3 = 0;

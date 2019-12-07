@@ -1,1 +1,0 @@
-	fprintf(out,"%6s %6s %8.3lf %8.3lf %8.3lf %8.3lf %8.3lf %8.3lf %8.3lf %8.3lf %8.3lf %13s %2d %2d %8.3lf %10.9lf %5.2lf %5.2lf %6.3lf %6s %5.2lf %5.2lf %5.2lf %5s %5.2lf %6d %5.2lf %5.2lf %8.3lf %5.2lf %5.2lf %5.2lf %5.2lf %5.2lf %5.2lf %5.2lf\n",

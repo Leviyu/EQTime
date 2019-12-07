@@ -1,17 +1,6 @@
 #!/bin/tcsh
 # ====================================================================
 # This is a csh script to plot record section for one EQ for one PHASE
-# 
-# Input:
-#
-#
-#
-# Output:
-#
-#
-# DATE:					Keywords:
-#
-# Reference:
 # ===================================================================
 
 set EQ = $1

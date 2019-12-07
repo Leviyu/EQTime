@@ -5,13 +5,13 @@ int stretch_ES_function(double* current_ES, int npts_phase, double coeff,double*
 	//1. find the max location of current ES
 	int i=0;
 	int index_max = 0;
-	double max_value = 0;
+	double max_value = -1;
 	for(i=0; i<npts_phase; i++)
 	{
-		//##if( fabs(current_ES[i]) > max_value)
+		if ( i * 0.1 < 5 || ( npts_phase - i) * 0.1 < 5) 
+			continue;
 		if( current_ES[i] > max_value)
 		{
-			//##max_value = fabs(current_ES[i]);
 			max_value = current_ES[i];
 			index_max = i;
 		}
@@ -28,15 +28,11 @@ int stretch_ES_function(double* current_ES, int npts_phase, double coeff,double*
 		{
 			tmp_ES[i] = current_ES[0];
 			continue;
-			//lower_num = 0;
-			//upper_num = 0;
 		}
 		else if(double_delta_from_beg >= npts_phase-1  )
 		{
 			tmp_ES[i] = current_ES[npts_phase-1];
 			continue;
-			//lower_num = npts_phase-1;
-			//upper_num = npts_phase-1;
 		}
 		else 
 		{

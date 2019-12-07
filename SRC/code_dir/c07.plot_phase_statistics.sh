@@ -51,10 +51,7 @@ echo "PLOT Empirical Wavelet Info for PHASE: $PHASE $flag"
 		else 
 		continue
 		endif
-	
 	set OUT_tmp = $work_dir/${EQ}/out.tmp_${PHASE}_${flag}.ps
-
-
 	#  ==================  prepare the plot ==========================
 	pstext -JX6i/1i -R0/10/0/10 -K -N -P  -Y11i << EOF >! $OUT_tmp
 	0 0   15 0 0 LB Empirical Source Plot of EQ: $EQ for PHASE:$PHASE in $velocity_or_displacement  
@@ -63,8 +60,6 @@ EOF
 
 	set ES = $work_dir/${EQ}/${PHASE}_ES.second.out
 	set STD = $work_dir/${EQ}/${PHASE}_STD.second.out
-##echo "both STD and ES plotted"
-
 	if ( -e $ES) then	
 	set tmp = `minmax -C $ES`
 	set xmin = $tmp[1]

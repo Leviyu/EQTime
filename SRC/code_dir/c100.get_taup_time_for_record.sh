@@ -2,17 +2,6 @@
 
 # ====================================================================
 # This is a csh script to return the taup_time for a record
-# 
-# Input:
-#
-#
-#
-# Output:
-#
-#
-# DATE:					Keywords:
-#
-# Reference:
 # ===================================================================
 
 
@@ -70,7 +59,6 @@ set result = 0
 endif
 
 echo $result
-##//echo "main phase is $main_PHASE PHASE is $PHASE"
 
 
 exit 0

@@ -42,11 +42,6 @@ int output_STD_of_ES_with_stretch_record(new_RECORD* my_record,new_INPUT*  my_in
 				stretch_ES_function(my_record[ista].phase_win, npts_phase, stretch_factor_record, stretch_tmp);
 				normalize_array(stretch_tmp, npts_phase);
 
-				// output stretched record into out2
-				//for(ii = 0; ii < npts_phase; ii++)
-					//fprintf(out2,"%lf %lf %d\n", ii *my_input->delta, stretch_tmp[ii],1);
-				
-
 				STD[pcount] += pow( (current_ES[pcount] - stretch_tmp[pcount] ) ,2 );
 				num = num + 1;
 			}	

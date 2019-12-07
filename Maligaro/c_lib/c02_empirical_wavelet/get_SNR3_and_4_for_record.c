@@ -18,15 +18,10 @@ int get_SNR3_and_4_for_record(double* phase_win,int phase_npts, double* noise_wi
 	int flag = 1;
 	amplitudeloc(phase_win, phase_npts, &npts_phase_max, &phase_amp, flag);
 	amplitudeloc(noise_win, noise_npts, &npts_noise_max, &noise_amp, flag);
-
-//printf("phase amp %lf noise amp %lf \n", )
 	if(noise_amp == 0)
 		noise_amp = 1;
 	*SNR4 = fabs( phase_amp / noise_amp);
 
-//printf("SNR4 %lf \n", *SNR4);
-
-	// 
 	double phase_to_trough_array[20];
 	int noise_len = 80;
 	int search_inc = 4;

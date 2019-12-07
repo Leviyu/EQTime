@@ -4,15 +4,6 @@
 /******************************************************************
  * This is a c script to restack EW using records that 
  * with good SNR and ccc
- *
- *	Input:
- *
- *
- *	Output:
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int restack_ES_for_phase_after_tstar(new_RECORD* my_record, new_INPUT* my_input, double* ES)
@@ -25,11 +16,8 @@ int restack_ES_for_phase_after_tstar(new_RECORD* my_record, new_INPUT* my_input,
 	for(ista=0;ista< my_input->sta_num; ista ++)
 	{
 		ccc_tmp = my_record[ista].best_tstar_ccc;
-		//my_record[ista].weight = get_weight_from_SNR_CCC( my_record[ista].SNR, ccc_tmp);
 		if(my_record[ista].quality == -1)
 			continue;
-		//if(my_record[ista].weight == 0)
-			//continue;
 		for(i=0;i<npts_phase;i++)
 		{
 			if(my_record[ista].phase_win[i] != my_record[ista].phase_win[i]) 
@@ -49,7 +37,6 @@ int restack_ES_for_phase_after_tstar(new_RECORD* my_record, new_INPUT* my_input,
 		{
 			if(my_record[ista].quality == -1)
 				continue;
-			//printf(" %d th record weight is %lf \n", ista, my_record[ista].weight);
 			for(i=0;i<npts_phase;i++)
 			{
 				if(my_record[ista].phase_win[i] != my_record[ista].phase_win[i]) 
@@ -62,10 +49,6 @@ int restack_ES_for_phase_after_tstar(new_RECORD* my_record, new_INPUT* my_input,
 
 
 		normalize_array(ES, npts_phase);
-
-
-		//char output_name[200] = "restack.out";
-		//output_array1(  output_name,  ES, npts_phase );
 		return 1;
 	}
 

@@ -20,10 +20,6 @@ int narrow_down_phase_window(new_RECORD* my_record, new_INPUT* my_input, int old
 	int npts_half_win = (int)(my_input->phase_len / 2 / my_input->delta);
 	int npts_win_beg = npts_max - npts_half_win;
 
-	//printf(" new phase_len %lf old_phase_len %lf  \n", my_input->phase_len, old_npts*my_input->delta);
-	//printf("delta is %lf \n", my_input->delta);
-	//printf("max npts is %d beg is %d \n", npts_max, npts_win_beg);
-
 
 	// 3. update tight window
 	int new_npts = (int) (my_record->phase_len / my_input->delta);

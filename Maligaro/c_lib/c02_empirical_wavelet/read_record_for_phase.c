@@ -51,7 +51,7 @@ int read_record_for_phase_for_one_sta(new_RECORD* my_record, new_INPUT* my_input
 	if(prem_tmp == 0)
 		my_record->quality = -1;
 
-	//#printf(" === Working on %s  taup time %lf \n", sac_file, prem_tmp);
+	//printf(" === Working on %s  taup time %lf \n", sac_file, prem_tmp);
 
 	// do travel time traffic checking 
 

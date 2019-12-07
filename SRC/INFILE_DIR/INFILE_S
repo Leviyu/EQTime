@@ -13,9 +13,10 @@
 	# bp means bandpass filter,frequency_range defines the corner frequency 
 	# of the bandpass filter, with the first one being the low corner and the 
 	# second one being the high corner in Hz
-<DIST_MIN_MAX>						70 71
+<DIST_MIN_MAX>						30 non
 	# minimum / maximum distance 
 	# only stations with the distance range would be processed
+    # max dist can be "non" which means you get to max dist TauP computes
 # ============================================================================
 
 
@@ -27,7 +28,8 @@
 	# large window length in seconds
 <PHASE_BEG>  						-13
 	# phase window begin time relative to PREM in seconds
-<PHASE_LEN>  						40
+<PHASE_LEN>  						55
+#<PHASE_LEN>  						40
 	# phase length in seconds
 <NOISE_BEG>  						-100
 	# noise window begin time relative to PREM in seconds
@@ -36,17 +38,21 @@
 	# velocity / displacement
 	# whether to process records in velocity domain or displacement domain
 
+<DIST_MASK_BEG>         75
+<DIST_MASK_END>         75
+                        # the distance range to mask off when constructing Empirical Wavelet
+                        # If *NOT* wish to use it, just change them to be the same.
 
 
 
 # === SNR CCC CUT parameter ==== #
 <SNR_CUT>							2.1
 <CCC_CUT>							0.92
-	# SNR threshold and CCC threshold
+	# SNR threshold and CCC threshold for EW making
 	# records with SNR smaller then SNR_CUT  and CCC smaller then
-	# CCC_CUT would be classified as bad records
+	# CCC_CUT would be classified as bad records and not included
 
 
 
 <POLAR_SOLUTION>					2
-	# Discarded flag
+	# Discarded flag (not used)

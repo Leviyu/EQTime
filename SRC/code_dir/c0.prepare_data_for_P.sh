@@ -1,12 +1,8 @@
 #!/bin/csh
 
 # ==================================================
-#	This Script prepare the data for ESF
-#	
-#	Hongyu DATE: 
-#	Key words: 
+#	This Script prepare the data for ESF for P wave
 # ==================================================
-
 
 set EQ = $1
 set DATADIR = $2
@@ -49,13 +45,11 @@ set DELTA = `cat $work_dir/INFILE |grep DELTA |awk '{print $2}'`
 # ========================= download sac file =================
 set index = 1
 foreach STA (`cat $event |awk '{print $1}'`)
-#echo "--> download $index / $total_num"
 	set tmp1 = `awk -v sta=$STA '$1==sta {print $0}' $event`
 	set EQ = $tmp1[19]
 	set NET = $tmp1[2]
 	set DIST = $tmp1[3]
 	set EQ_DEP = $tmp1[13]
-## get incident angle
 	set TAUP_DIR = `cat $work_dir/INFILE |grep -w TAUP_DIR |awk 'NR==1 {print $2}'`
 	set SHELL_DIR = `cat $work_dir/INFILE |grep -w SHELL_DIR |awk 'NR==1 {print $2}' `
 	mkdir -p $TAUP_DIR/$EQ
@@ -65,35 +59,17 @@ foreach STA (`cat $event |awk '{print $1}'`)
 	endif
 
 	set incident = `cat $taup_file |grep -w $PHASE |awk 'NR==1 {print $7}'`
-#//echo "STA $STA PHASE $PHASE incident $incident"
 	if($incident == "") then
 	set incident = 0
 	endif
-#
-#set fff_is_multi = `echo $PHASE |grep m `
-#if($fff_is_multi == "" ) then
-#set phase_travel_time = `cat $taup_file |grep -w $PHASE |awk '$8<180 {print $4}' |awk 'NR==1 {print $1}'`
-#else 
-#set phase_travel_time = `cat $taup_file |grep -w $PHASE |awk '$8>180&&$8<360 {print $4}'|awk 'NR==1 {print $1}'`
-#endif
-#if($phase_travel_time == "" )then
-#set phase_travel_time = 220
-#endif
-
-#set time_cut_min = `echo "$phase_travel_time -210 "|bc -l `
-#set time_cut_max = `echo "$phase_travel_time +210 "|bc -l `
-#echo "$time_cut_min $time_cut_max cut minmax $STA"
-
-
 	set sacname1 = ${EQ}.${NET}.${STA}.BHR.sac
 	set sacname2 = ${EQ}.${NET}.${STA}.BHZ.sac
 	set sacname3 = ${EQ}.${NET}.${STA}.HHR.sac
 	set sacname4 = ${EQ}.${NET}.${STA}.HHZ.sac
-$get_DATA  ${EQ}/$sacname1 $EQ_SAC_FILE_DIR > & /dev/null 
-$get_DATA  ${EQ}/$sacname2  $EQ_SAC_FILE_DIR> & /dev/null
-$get_DATA  ${EQ}/$sacname3  $EQ_SAC_FILE_DIR> & /dev/null
-$get_DATA  ${EQ}/$sacname4  $EQ_SAC_FILE_DIR> & /dev/null
-
+    $get_DATA  ${EQ}/$sacname1 $EQ_SAC_FILE_DIR > & /dev/null 
+    $get_DATA  ${EQ}/$sacname2  $EQ_SAC_FILE_DIR> & /dev/null
+    $get_DATA  ${EQ}/$sacname3  $EQ_SAC_FILE_DIR> & /dev/null
+    $get_DATA  ${EQ}/$sacname4  $EQ_SAC_FILE_DIR> & /dev/null
 
 	if(-e $sacname1 && -e $sacname2 ) then
 	set sacR = $sacname1
@@ -154,8 +130,6 @@ set Z_npts = `saclst npts f $sacZ|awk '{print $2}'`
 set comm_npts = `echo $R_npts $Z_npts |awk '{if($1>$2) print $2; else print $1}'`
 set npts_diff = `echo "$R_npts - $Z_npts"|bc`
 
-#//echo "difference npts is $npts_diff common npts is $comm_npts"
-
 if( $npts_diff > 1000 ) then
 echo "R and Z file npts is too far away ERROR STA $STA"
 rm $sacR $sacZ
@@ -177,16 +151,12 @@ interpolate delta 0.1
 w $sacR $sacZ
 q
 EOF
-#//cat $macro
-#sac < $macro 
 timeout 5s sac < $macro > & /dev/null
-#sac < $macro 
 
 if ( -e $sacZ ) then
 echo $STA >> $existing_sta_list
 endif
 
-#//echo "--> download $index / $total_num done  incident: $incident "
 @ index ++
 	end #foreach
 

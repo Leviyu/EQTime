@@ -32,45 +32,10 @@ void redo_for_S_P_remake_EW(new_RECORD* my_record, new_INPUT* my_input)
 		read_phase_window(&my_record[ista], my_input);
 		if(my_record[ista].quality <= 0)
 			continue;
-		//int amplitudeloc(double* array, int len, int* max_amp_loc, double* amplitude, int flag) 
 		amplitudeloc(my_record[ista].phase_win , npts_phase, & max_loc , & amp, 1 );
 		for(count = 0; count < npts_phase ; count++)
 			EW[count] += my_record[ista].phase_win[count] / amp * my_record[ista].weight;
-		//char sta_file[200];
-		//sprintf(sta_file,"sta_%s",my_record[ista].name);
-		//printf(" MMMMM output stat %s sta_file %s \n", my_record[ista].name, sta_file);
-		//output_array1(sta_file,my_record[ista].phase_win, npts_phase);
-
 	}
-	//int output_array1( char* output_name, double* array1,int file_num)
-	//output_array1("my_EW",EW,npts_phase);
-
-
-	/*
-
-	// 0. use all good records to stack new EW
-	int loop_num;
-	int loop_num_max = 2;
-	for(loop_num = 2; loop_num <= loop_num_max ; loop_num ++)
-	{
-		printf(" loop %d / %d \n", loop_num , loop_num_max);
-
-		my_input->iteration_flag = loop_num;
-		empirical_source_for_each_record(my_record,my_input,EW,loop_num);
-		get_ONSET_ENDSET_for_each_record_origional_phase(my_record,my_input,EW);
-		restack_ES_for_phase_code_choice(my_record,my_input,EW);
-	}
-
-	store_ES_into_record(my_record,my_input,EW);
-	find_best_match_gaussian_for_iterative_ES(my_record,my_input,EW);
-	output_STD_of_first_ES(my_record,my_input, EW);
-	output_current_ES_for_phase(my_input, EW);
-
-	
-	// 1. stretched records to EW
-	strcpy(my_input->stretch_flag, "stretch");
-	stretch_ES_and_CCC(my_record,my_input,EW);
-	*/
 
 
 	// 2. stretch records to restack

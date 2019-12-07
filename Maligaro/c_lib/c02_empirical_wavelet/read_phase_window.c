@@ -3,24 +3,17 @@
 #include "ESF.h"
 int read_phase_window(new_RECORD* my_record, new_INPUT* my_input)
 {
-	//printf("iteration flag %d ED_CHECKED_FLAG %d \n", my_input->iteration_flag, my_input->ED_CHECKED_FLAG);
 	if(my_input->iteration_flag == 0 && my_input->ED_CHECKED_FLAG ==1)
 	{
 		char command[100];
 		sprintf(command,"cat %s |grep -w %s |grep -w %s |grep -w %s|awk 'NR==1 {print $19}'", my_input->ed_checked_file, my_record->EQ, my_record->PHASE,my_record->name);
 		double dt_shift =  shell_pipe(command);
-		//printf(" sta %s dt shift is %lf \n", my_record->name, dt_shift);
 		if(dt_shift != dt_shift )
 			dt_shift = 0;
-		//my_record->phase_beg += dt_shift;
-			//##my_record->phase_beg += 0;
 		if(dt_shift != 0 )
 			my_record->checked_to_be_good = 1;
 
 	}
-
-
-	//printf(" sta %s phase beg is %lf \n", my_record->name, my_record->phase_beg);
 
 	double long_beg = my_record->long_beg;
 	double long_len = my_record->long_len;
@@ -43,9 +36,7 @@ int read_phase_window(new_RECORD* my_record, new_INPUT* my_input)
 
 		 if(my_record->beyong_window_flag == 1)
 		 {
-			 //back_time_window = my_input->mask_win_max ;
 		 	back_time_window = my_input->mask_win_max + my_input->EW_period;
-			 //printf("back_time_window is %lf \n", back_time_window);
 		 }
 
 

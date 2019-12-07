@@ -1,6 +1,4 @@
-# This is my big Makefile which is used to compile all my c code
-
-
+# This is my big Makefile which is used to compile Empirical Wavelet Code
 TOOL_DIR = ../c01_tools
 TOOL_CPP = $(wildcard ../c01_tools/*.c)
 TOOL_OBJ = $(TOOL_CPP:.c=.o)
@@ -10,12 +8,10 @@ ESF_CPP = $(wildcard ../c02_empirical_wavelet/*.c)
 ESF_OBJ = $(ESF_CPP:.c=.o)
 
 SACHOME = /opt/sac
-#SOURCE = ./empirical_wavelet.c
 SOURCE = ./main.c
 OBJ = $(SOURCE:.c=.o)
 
 CC = gcc -Wno-unused-variable
-#DEBUG = -g 
 DEBUG = 
 LIBS = libHongyu.a 
 
@@ -33,18 +29,8 @@ all: test
 test: EWM
 	#./EWM
 
-#EWM:  $(OBJ) $(LIBS)
-#EWM:  empirical_wavelet.o  hello2.o libHongyu.a
-#EWM:  empirical_wavelet.o   libHongyu.a
-#EWM:  empirical_wavelet.o   libHongyu.a
-	#gcc -o $@ $^ $(LFLAGS)  
-
 EWM: $(OBJ) libHongyu.a 
 	$(CC) -o $@ $^  $(LFLAGS)
-
-
-#hello2.o: ../c01_tools/hello2.c
-	#gcc -c  -o $@ $^ $(CFLAGS)
 
 $(OBJ): $(SOURCE)
 	gcc -c -o $@ $< $(CFLAGS)
@@ -52,18 +38,12 @@ $(OBJ): $(SOURCE)
 libHongyu.a: $(TOOL_OBJ) $(ESF_OBJ)
 	ar cr $@ $^
 
-#libESF.a: $(ESF_OBJ)
-	#ar cr $@ $^
-
 #$(TOOL_DIR)/%.o: $(TOOL_DIR)/%.c
 %.o: $(TOOL_DIR)/%.c
 	gcc -c -o $@ $< $(CFLAGS)
 
 $(ESF_DIR)/%.o: $(ESF_DIR)/%.c
 	gcc -c -o $@ $< $(CFLAGS) 
-
-
-
 
 clean :
 	\rm *.o *~ EWM *.a $(TOOL_OBJ) $(ESF_OBJ)

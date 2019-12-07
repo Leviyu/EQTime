@@ -1,24 +1,13 @@
 #/bin/csh
-
-
 # ====================================================================
 # This is a csh script for updating the eventinfo after data checking manually
 # 
 # Input: 1. EQ
 #		 2. PHASE
 #		 3. data checking finished for phase
-#
-#
-#
 # Output: updated quality flag for each record
-#
-#
 # DATE: Oct 2014					Keywords:
-#
-# Reference:
 # ===================================================================
-
-
 
 set EQ = $1
 set PHASE = $2

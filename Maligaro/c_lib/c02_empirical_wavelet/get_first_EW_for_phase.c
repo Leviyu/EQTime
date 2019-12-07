@@ -11,10 +11,6 @@
  *
  *	Output:
  *			ES[] 			EW of current phase
- *
- *
- *	DATE:				Keywords:
- *	Reference:
 ******************************************************************/
 
 int get_first_EW_for_phase(new_RECORD* my_record, new_INPUT* my_input, double* ES)

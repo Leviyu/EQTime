@@ -86,7 +86,6 @@ int CCC2( double* x, int npts_x, double* y, int npts_y, int*shift, double* ccc, 
 
 // flag == 1 return the positive ccc
 // flag == -1 return the negative ccc
-
 int CCC_posi2(double* x, int npts_x, double* y, int npts_y, int* shift, double* ccc , int flag,int n3)
 {
 	int i,j,count, i_sum;
