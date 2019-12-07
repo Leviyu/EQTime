@@ -9,3 +9,5 @@ SRC/benchmark/
 SRC/plot_zerio_weight/
 tstar_lib/
 SRC/S_EW_DIR
+
+*.o

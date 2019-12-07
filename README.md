@@ -1,5 +1,3 @@
-# see: https://github.com/Leviyu/EQTime/blob/postprocess/README.md
-
 <div align="center">
   <img src="https://github.com/Leviyu/EQTime/blob/master/image/header.png"><br><br>
 </div>
